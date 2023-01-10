@@ -1,0 +1,54 @@
+
+
+
+@color_4: #6dbee7;
+
+.information2 {
+  width: 210*2px;
+  height: 254*1.5px;
+  border-radius: 4px;
+  color: transparent;
+  display: flex;
+  gap: 5px;
+  padding: .4em;
+
+  p {
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .5s;
+    color: transparent;
+    border: 1px solid #51cedc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      flex: 5;
+      align-items: baseline;
+      display: flex;
+
+
+      span {
+        transform: rotate(0);
+        justify-self: center;
+        margin-top: 50px;
+        display: inline-block;
+      }
+    }
+
+    span {
+      min-width: 14em;
+      padding: .5em;
+      text-align: center;
+      transform: rotate(-90deg);
+      transition: all .5s;
+      text-transform: uppercase;
+      color: @color_4;
+      letter-spacing: .1em;
+      max-width: 14em;
+    }
+  }
+}

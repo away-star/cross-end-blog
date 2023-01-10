@@ -1,0 +1,78 @@
+.card2 {
+  width: 1000px;
+  height: 100px;
+  transition: all .5s;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.card2:hover {
+  height: 400px;
+  background: transparent;
+}
+
+.card2 .header {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  margin-bottom: 16px;
+}
+
+.card2 .header .img-box {
+  width: 50px;
+}
+
+.card2 .header .title {
+  font-family: "阿氿的少女心";
+  font-size: 2.6em;
+  letter-spacing: .1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 4px 0 14px;
+  transition: all .5s;
+  color: #2de34c;
+}
+
+.card2:hover .header {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 96%);
+}
+
+.card2:hover .card2 .header .title {
+  padding: 0;
+}
+
+.card2 .content {
+  font-family:"钟齐安景臣硬笔行书";
+  font-size: 40px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  color: #212121;
+  margin: 0 18px;
+}
+
+.card2 .content p {
+  transition: all .5s;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.card2 .content a {
+  color: #1d8122;
+  cursor: pointer;
+  transition: all .5s;
+  font-size: .8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.card2 .content .btn-link:hover {
+  border-bottom: 1px solid #1d8122;
+}

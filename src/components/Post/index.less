@@ -1,0 +1,114 @@
+.allList div{
+  border-bottom-color: #37FF8B;
+  background-color: #37FF8B;
+}
+
+
+.listItemTitle{
+  font-family: '斗鱼追光体' ;
+}
+
+
+.post {
+  width: 190*2px;
+  height: 120*2px;
+  padding: 0.5rem;
+  background: rgb(198 198 198 / 34%);
+  border-radius: 8*2px;
+  backdrop-filter: blur(5px);
+  position: absolute;
+  border-bottom: 3px solid rgb(255 255 255 / 44%);
+  border-left: 2px  rgb(255 255 255 / 54.5%) outset;
+  box-shadow: -40px 50px 30px rgb(0 0 0 / 28%);
+  transform: skewX(10deg);
+  transition: .4s;
+  overflow: hidden;
+  color: white;
+
+}
+
+.post:hover {
+  height: 254*1.3px;
+  transform: skew(0deg);
+}
+
+.post img {
+  width: 110px;
+  float: left;
+  transform: skew(0deg);
+  margin-right: 10px;
+}
+
+.post h1 {
+  text-align: center;
+  color: rgb(218 244 237);
+  text-shadow: -10px 5px 10px rgb(0 0 0 / 57.3%);
+}
+
+.post p{
+  font-family: "阿氿的少女心";
+  font-size: 15px;
+  color: #333;
+  height: 110px;
+  overflow: hidden;
+}
+
+.align-left {
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: flex-start;
+  float: left;
+}
+
+.red {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff605c;
+  box-shadow: -5px 5px 5px rgb(0 0 0 / 28%);
+}
+
+.yellow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ffbd44;
+  box-shadow: -5px 5px 5px rgb(0 0 0 / 28%);
+}
+
+.green {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #00ca4e;
+  box-shadow: -5px 5px 5px rgb(0 0 0 / 28%);
+}
+
+.postDate{
+  align-self: flex-end;
+  font-family: '钟齐安景臣硬笔行书';
+  font-size: 20px;
+}
+
+.align-right {
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: flex-end;
+  float: right;
+  max-height: 12px;
+  margin-top: 6px;
+}
+
+
+//设置每个post的高度
+.postRow{
+  height: 130px;
+}
+
+.postDivider{
+  background-color: transparent;
+}

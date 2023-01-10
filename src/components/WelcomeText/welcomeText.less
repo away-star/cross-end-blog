@@ -1,0 +1,47 @@
+.welcomeText {
+  width: 12rem;
+  cursor: pointer;
+}
+
+.welcomeTextContent {
+  text-align: center;
+  position: relative;
+  transition: all 2.25s;
+  background-color: rgb(127 204 240);
+  padding: 5em;
+  transform-style: preserve-3d;
+}
+
+.welcomeText:hover .welcomeTextContent {
+  transform: rotateY(0.5turn);
+}
+
+.welcomeTextFront,
+.welcomeTextBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 2em;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.welcomeTextTitle {
+  transform: translateZ(5rem);
+  font-size: 2rem;
+}
+
+.welcomeTextSubTitle {
+  transform: translateZ(2rem);
+}
+
+.welcomeTextBack {
+  transform: rotateY(0.5turn);
+  background-color: #009bff;
+}
+
+.welcomeTextDescription {
+  transform: translateZ(3rem);
+}
