@@ -12,7 +12,7 @@ import Card2 from "@/components/Card2";
 
 
 const HomePage: React.FC = () => {
-    //const {name} = useModel('global');
+    const {name} = useModel('global');
     return (
 
             <Row justify={"center"}>
