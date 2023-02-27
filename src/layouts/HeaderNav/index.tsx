@@ -1,4 +1,4 @@
-import {Menu, MenuProps, Col, Row, Affix} from "antd";
+import {Menu, MenuProps, Col, Row, Affix,Image} from "antd";
 import React, {useState} from "react";
 import {
     AppstoreOutlined,
@@ -9,6 +9,8 @@ import {
 } from "@ant-design/icons";
 import styles from './index.less'
 import {history} from 'umi';
+import {AUTHOR_AVATAR} from "@/constants";
+
 
 
 const items: MenuProps['items'] = [
@@ -45,24 +47,9 @@ const items: MenuProps['items'] = [
         ],
     },
     {
-        label: '杂想',
-        key: '/blog/thought',
+        label: '随笔',
+        key: '/blog/life',
         icon: <ReconciliationOutlined/>,
-        children: [
-            {
-                type: 'group',
-                children: [
-                    {
-                        label: '生活',
-                        key: '/blog/thought/livelihood',
-                    },
-                    {
-                        label: '生命',
-                        key: '/blog/thought/life',
-                    },
-                ],
-            },
-        ],
     },
     {
         label: '关于',
@@ -92,7 +79,7 @@ const items: MenuProps['items'] = [
 ];
 
 
-const HeaderNav: React.FC = (props: any) => {
+const HeaderNav: React.FC = (props) => {
 
     const [current, setCurrent] = useState('/blog/home');
 
@@ -107,10 +94,17 @@ const HeaderNav: React.FC = (props: any) => {
     return (
         <Affix offsetTop={0}>
             <Row justify={"center"} className={styles.row}>
-                <Col span={13} className={styles.starBlog}>
-                    <div className={styles.slog}>小星的博客</div>
+                <Col xs={0} sm={0} md={10} lg={10} xl={10} offset={2} className={styles.starBlog}>
+                    <div className={styles.slog}>
+                        <Image
+                            width={40}
+                            style={{borderRadius:50}}
+                            src={AUTHOR_AVATAR}
+                            />
+                        <span> 小星的博客 </span>
+                    </div>
                 </Col>
-                <Col span={11}>
+                <Col xs={24} sm={24} md={11} lg={11} xl={11}>
                     <Menu onClick={onClick}
                           selectedKeys={[current]}
                           mode="horizontal"

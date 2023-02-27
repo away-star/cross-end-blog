@@ -4,9 +4,10 @@ import Footer from "@/layouts/Footer";
 import Body from "@/layouts/Body";
 import '@/global.less'
 import styles from './index.less'
+import Index from "@/pages/Test";
 
 
-const Index = ()=> {
+const Main = ()=> {
     return (<>
         <div className={styles.overallCSS}>
           {/*  <div className="videocontainer">
@@ -23,4 +24,4 @@ const Index = ()=> {
     );
 };
 
-export default Index;
+export default Main;

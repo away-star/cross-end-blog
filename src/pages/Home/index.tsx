@@ -7,13 +7,12 @@ import Author from "@/components/Author";
 import {EMAIL, FLAG1,QQ} from "@/constants";
 import styles from './index.less'
 import Information1 from "@/components/Information1";
-import Card1 from "@/components/Card1";
 import Card2 from "@/components/Card2";
 
 
 
 const HomePage: React.FC = () => {
-    const {name} = useModel('global');
+    //const {name} = useModel('global');
     return (
 
             <Row justify={"center"}>
@@ -51,7 +50,6 @@ const HomePage: React.FC = () => {
                     </ProCard>
                 </Col>
             </Row>
-
     );
 };
 

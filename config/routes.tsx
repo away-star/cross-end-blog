@@ -1,10 +1,10 @@
 ﻿//路由表！！！
 export default [
     {
-        name: 'login',
-        path: '/login',
+        name: 'checkIn',
+        path: '/checkIn',
         title: "666",
-        component: './Login',
+        component: './CheckIn',
     },
     {
         name: '/test',
@@ -41,27 +41,24 @@ export default [
             },
             {
                 //todo  此处一定要写全路径
-                path: '/blog/stationLog',
-                component: './StationLog',
-            },
-            {
-                //todo  此处一定要写全路径
-                path: '/blog/skill',
-                routes: [
+                path: '/blog/skill/:category',
+                component: './SkillBlog',
+               /* routes: [
                     {
                         path: '/blog/skill/java',
                         component: './JavaBlog',
                     },
                     {
                         path: '/blog/skill/react',
-                        component: './ReactBlog',
+                        component: './SkillBlog',
                     }
-                ]
+                ]*/
             },
             {
                 //todo  此处一定要写全路径
-                path: '/blog/thought',
-                routes: [
+                path: '/blog/life',
+                component: './Life',
+               /* routes: [
                     {
                         path: '/blog/thought/livelihood',
                         component: './Livelihood',
@@ -70,7 +67,7 @@ export default [
                         path: '/blog/thought/life',
                         component: './Life',
                     }
-                ]
+                ]*/
             },
             {
                 component: './404'

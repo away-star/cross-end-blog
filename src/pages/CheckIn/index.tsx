@@ -2,7 +2,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Access, useAccess } from '@umijs/max';
 import { Button } from 'antd';
 
-const Livelihood: React.FC = () => {
+const AccessPage: React.FC = () => {
     const access = useAccess();
     return (
         <PageContainer
@@ -18,4 +18,4 @@ const Livelihood: React.FC = () => {
     );
 };
 
-export default Livelihood;
+export default AccessPage;
