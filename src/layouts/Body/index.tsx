@@ -10,9 +10,9 @@ import styles from './index.less'
 const Body: React.FC = () => {
     return (
         <div>
-            <PageContainer ghost className={styles.bodyImg}>
+
                <Outlet/>
-            </PageContainer>
+
         </div>
     )
 };

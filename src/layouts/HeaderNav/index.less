@@ -1,38 +1,34 @@
-/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
-
-.span {
-  font-family: dingding, sans-serif;
-  text-align: center;
-  margin-left: 200px;
-  margin-top: 10px; /* 上边界 */
-  font-size: 0.6rem;
-  color: #999;
-  display: inline-block;
-  padding-left: 0.3rem;
-
-  /* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
-}
-
-
-.menuNav {
-  margin-right: 10px;
-  background-color: transparent;
-}
-
 
 .row{
-  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--color-bg-1);
+  border-bottom: 1px solid var(--color-neutral-2);
+  .slog{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin-top: 5px;
+
+    span{
+      margin-left: 5px;
+      color: #86c7d1;
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 3px;
+      font-family: "钟齐安景臣硬笔行书" !important;
+    }
+  }
 }
 
-.slog{
-  font-family: "阿氿的少女心";
-  font-size: 60px;
-  border: #37FF8B;
-  color: #86c7d1;
-  font-weight: 300;
-  justify-self: center;
-  display: flex;
-  margin-left: 10%;
-  pointer-events: none;
+.slideIn{
+  top: 0;
+  transition: all 0.3s ease-in-out;
 }
 
+.slideOut{
+  top: -60px;
+  transition: all 0.3s ease-in-out;
+}
