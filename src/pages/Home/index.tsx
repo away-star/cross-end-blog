@@ -9,6 +9,7 @@ import styles from './index.less'
 import Information1 from "@/components/Information1";
 import Card2 from "@/components/Card2";
 import homeImg from '@/assets/home1.png'
+import Author2 from "@/components/Author2";
 
 
 
@@ -28,18 +29,14 @@ const HomePage: React.FC = () => {
                 <Image className={styles.img} preview={false}
                        src={homeImg}/>
                 <div className={styles.proverbs}>
-                    <p>世界以痛吻我，我报之以歌世界以痛吻我，我报之以歌</p>
+                    <p>世界以痛吻我，我报之以歌</p>
                     <p>坚定的90%唯物主义者</p>
                     <p>越努力越幸运</p>
                 </div>
                 <div className={styles.welcome}><p>欢迎来到小星的博客</p></div>
             </div>
 
-            <Row justify={"center"}>
-                <Col className={styles.homeTop}>
-                    {/* 遍历字符串，给每个字符对应的延时，将透明度从0至1*/}
-                    <div><Card2 name={"海底月是天上月，眼前人是心上人"}/></div>
-                </Col>
+            <Row justify={"center"} className={styles.homeBody}>
                 <Col span={22} flex={"auto"}>
                     <ProCard style={{marginBlockStart: 1}} gutter={1} ghost size={"small"}>
                         <ProCard colSpan={{xs: 24, sm: 24, md: 24, lg: 17, xl: 17}} className={styles.proCardList}>
@@ -68,7 +65,6 @@ const HomePage: React.FC = () => {
                                 </Row>
                             </Affix>
                         </ProCard>
-
                     </ProCard>
                 </Col>
             </Row>

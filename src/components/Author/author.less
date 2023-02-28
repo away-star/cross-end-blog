@@ -1,105 +1,96 @@
-@color_1: #333;
-@color_2: #75b6dc;
 
-/* Image */
-
-/* Card footer */
-
-/* Text */
-
-/* Hover */
-.author {
-  font-size: large;
-  width: 400px;
-  height: 400px;
+.card {
+  margin: auto;
   padding: 2rem 1.5rem;
   transition: box-shadow .3s ease, transform .2s ease;
-  border-radius: 82px;
-  background: transparent;
-  box-shadow: 30px 30px 22px #e1eaea, -30px -10px 22px #b9f4f4;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(135deg, #ebadb6 0%, #aceae1 100%);
+  border-radius: 7px;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  .info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s ease, opacity .2s ease;
+    .avatar{
+      --size: 60px;
 
-  &:hover {
-    box-shadow: 0 6px 50px #23232333;
-
-    .card-info {
-      transform: translateY(-5%);
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      transition: transform .2s ease;
+      margin-bottom: 1rem;
+      background-image: url('https://staraway.love/QQ%E5%9B%BE%E7%89%8720230107162416.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      &:hover{
+        transform: scale(1.7);
+      }
     }
 
-    .card-social {
-      transform: translateY(100%);
+    .title{
+      color: #333;
+      font-size: 1.5em;
+      font-weight: 600;
+      line-height: 2rem;
+    }
+
+    .subTitle{
+      color: #859ba8;
+      font-size: 0.8em;
+      margin-top: 5px;
+    }
+    &:hover{
+      box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+      transform: scale(0.98);
+      border-radius: 20px;
+    }
+    .textBody {
+      margin-top: 10px;
+      font-size: .8em;
+      text-align: center;
+      color: #6f6d78;
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
+  &:hover{
+    transform: translateY(-5%);
+    .social{
       opacity: 1;
     }
   }
-}
 
-.card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: transform .2s ease, opacity .2s ease;
-}
-
-.card-avatar {
-  --size: 200px;
-
-  background-image: url('https://staraway.love/QQ%E5%9B%BE%E7%89%8720230107162416.jpg');
-  // background: linear-gradient(to top, #f1e1c1 0%, #fcbc97 100%);
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  transition: transform .2s ease;
-  margin-bottom: 1rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-}
-
-.card-social {
-  transform: translateY(200%);
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  opacity: 0;
-  transition: transform .2s ease, opacity .2s ease;
-}
-
-.card-social__item {
-  margin-right: 30px;
-  justify-self: center;
-  list-style: none;
-
-  svg {
-    display: block;
-    height: 28px;
-    width: 28px;
-    fill: #87e156;
-    cursor: pointer;
-    transition: fill 0.2s ease ,transform 0.2s ease;
-
-    use {
-      transform: scaleX(-1);
-    }
-
-    &:hover {
-      fill: #e8ca1c;
-      transform: scale(1.1);
+  .social{
+    transform: translateY(200%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    transition: transform .2s ease, opacity .2s ease;
+    margin-block-start:0px;
+    padding-inline-start:0px;
+    .item{
+      list-style: none;
+      svg{
+        display: block;
+        height: 18px;
+        width: 18px;
+        fill: #515F65;
+        cursor: pointer;
+        transition: fill 0.2s ease ,transform 0.2s ease;
+        transform: scaleX(-1);
+      }
+      use{
+        transform: scaleX(-1);
+      }
     }
   }
 }
 
-.card-title {
-  color: #d9b573;
-  font-size: 1.5em;
-  font-weight: 600;
-  line-height: 2rem;
-}
 
-.card-subtitle {
-  color: #d9b573;
-  font-size: 1.3em;
-}
+
