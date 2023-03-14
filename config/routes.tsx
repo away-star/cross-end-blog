@@ -6,6 +6,7 @@ export default [
         title: "666",
         component: './CheckIn',
     },
+
     {
         name: '/test',
         //todo 如何路由加参数
@@ -68,6 +69,12 @@ export default [
                         component: './Life',
                     }
                 ]*/
+            },
+            {
+                name: 'write',
+                path: '/blog/write',
+                title: "666",
+                component: './Write',
             },
             {
                 component: './404'

@@ -1,4 +1,4 @@
-import {Col, Row, Image} from "antd";
+import {Col, Row, Image, Affix} from "antd";
 import React, {useEffect, useState} from "react";
 import styles from './index.less'
 import {AUTHOR_AVATAR} from "@/constants";

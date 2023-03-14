@@ -1,3 +1,10 @@
-# README
+## Getting Started
+First,download dependency
+```bash
+yarn
+```
 
-`@umijs/max` 模板项目，更多功能参考 [Umi Max 简介](https://umijs.org/docs/max/introduce)
+Second, run the development server:
+```bash
+yarn start
+```

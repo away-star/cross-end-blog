@@ -6,11 +6,8 @@ import Post from "@/components/Post";
 import Author from "@/components/Author";
 import {EMAIL, FLAG1, QQ} from "@/constants";
 import styles from './index.less'
-import Information1 from "@/components/Information1";
-import Card2 from "@/components/Card2";
 import homeImg from '@/assets/home1.png'
-import Author2 from "@/components/Author2";
-
+import PostCard from "@/components/PostCard";
 
 
 const HomePage: React.FC = () => {
@@ -18,11 +15,17 @@ const HomePage: React.FC = () => {
     // const {name} = useModel('global');
 
     //const {user} = useModel('model');
+    const {scrollPosition,changeDistanc } = useModel('scroll');
 
-
-    useEffect(() => {
-
-    }, [])
+   /* useEffect(() => {
+        if (scrollPosition < 10 && changeDistanc>0){
+            console.log("w zzz")
+            window.scrollTo({
+                top:1050,
+                behavior: "smooth"
+            });
+        }
+    }, [scrollPosition])*/
     return (
         <div>
             <div className={styles.homeTop}>
@@ -36,6 +39,24 @@ const HomePage: React.FC = () => {
                 <div className={styles.welcome}><p>欢迎来到小星的博客</p></div>
             </div>
 
+
+            <Row justify={"center"} className={styles.homeBody}>
+                <Col xs={24} sm={24} md={14} lg={14} xl={14}>
+                    <div className={styles.post} style={{float:"right"}}>
+                    <PostCard/>
+                    </div>
+                    <div className={styles.post} style={{float:"left"}}>
+                    <PostCard/>
+                    </div>
+                </Col>
+                <Col xs={0} sm={0} md={5} lg={6} xl={6} offset={1}>
+                    <div className={styles.author}>
+                        <Author/>
+                    </div>
+                </Col>
+            </Row>
+
+
             <Row justify={"center"} className={styles.homeBody}>
                 <Col span={22} flex={"auto"}>
                     <ProCard style={{marginBlockStart: 1}} gutter={1} ghost size={"small"}>
@@ -44,7 +65,7 @@ const HomePage: React.FC = () => {
                         </ProCard>
                         <ProCard colSpan={{xs: 0, sm: 0, md: 0, lg: 7, xl: 7}} className={styles.proCardList}>
                             { /*吸顶*/}
-                            <Affix offsetTop={50}>
+                            {/*<Affix offsetTop={50}>
                                 <Author/>
                                 <Divider/>
                                 <Row>
@@ -58,12 +79,12 @@ const HomePage: React.FC = () => {
                                                                           content={"越努力越幸运"}/></Col>
                                         </Space>}
 
-                                    {/*   {//information2
+                                       {//information2
                                         <Information2/>
 
-                                    }*/}
+                                    }
                                 </Row>
-                            </Affix>
+                            </Affix>*/}
                         </ProCard>
                     </ProCard>
                 </Col>
