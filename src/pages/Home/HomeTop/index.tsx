@@ -21,7 +21,6 @@ const HomeTop: React.FC<Props> = (props) => {
             </div>
             <div className={styles.welcome}><p>欢迎来到小星的博客</p></div>
         </div>
-
     );
 };
 

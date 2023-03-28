@@ -13,7 +13,6 @@ import PostCard from "@/components/PostCard";
 const HomePage: React.FC = () => {
 
     // const {name} = useModel('global');
-
     //const {user} = useModel('model');
     const {scrollPosition,changeDistanc } = useModel('scroll');
 

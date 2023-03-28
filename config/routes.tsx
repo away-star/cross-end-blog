@@ -7,15 +7,15 @@ export default [
         component: './CheckIn',
     },
 
-    {
-        name: '/test',
-        //todo 如何路由加参数
-        path: '/test/:id',
-        component: './Test',
-        /*    wrappers: [
-                '@/wrappers/auth/index.tsx',
-            ],*/
-    },
+    // {
+    //     name: '/test',
+    //     //todo 如何路由加参数
+    //     path: '*',
+    //     component: './Test',
+    //     /*    wrappers: [
+    //             '@/wrappers/auth/index.tsx',
+    //         ],*/
+    // },
     {
         name: '404',
         path: '/404',
@@ -34,6 +34,11 @@ export default [
                 //todo  此处一定要写全路径
                 path: '/blog/home',
                 component: './Home',
+            },
+            {
+                //todo  此处一定要写全路径
+                path: '/blog/details/:id',
+                component: './BlogDetail',
             },
             {
                 //todo  此处一定要写全路径

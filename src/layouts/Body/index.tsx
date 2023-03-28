@@ -4,9 +4,7 @@ import {Outlet} from "umi";
 
 const Body: React.FC = () => {
     return (
-
                <Outlet/>
-
     )
 };
 

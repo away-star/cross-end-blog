@@ -4,7 +4,6 @@ import Footer from "@/layouts/Footer";
 import Body from "@/layouts/Body";
 import '@/global.less'
 import styles from './index.less'
-import Index from "@/pages/Test";
 
 
 const Main = ()=> {

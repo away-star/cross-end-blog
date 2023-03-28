@@ -1,4 +1,4 @@
-import {Col, Row, Image, Affix} from "antd";
+import {Col, Row, Image} from "antd";
 import React, {useEffect, useState} from "react";
 import styles from './index.less'
 import {AUTHOR_AVATAR} from "@/constants";
@@ -10,7 +10,7 @@ import {useModel} from "@umijs/max";
 const HeaderNav: React.FC = () => {
     const {scrollPosition, changeDistanc} = useModel('scroll');
 
-    const [isUp, setIsUp] = useState(false)
+    const [isUp, setIsUp] = useState<boolean>(false)
 
     useEffect(() => {
         // 可以在这里设置下滑多少才会渐入渐出
@@ -36,6 +36,7 @@ const HeaderNav: React.FC = () => {
                 <Nav/>
             </Col>
         </Row>
+        
     )
 }
 
