@@ -13,7 +13,6 @@ const Back: React.FC = () => {
 
         <>
             <TopIm like={1} title={"dasdasda"} view={1}/>
-
             <Row justify={"center"}>
                 <Col span={12} style={{backgroundColor: "transparent"}}>
                     <div className={styles.left}>

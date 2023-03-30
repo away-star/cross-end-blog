@@ -1,18 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './index.less';
-import {Column} from "rc-table";
+import {formatTime} from "@/utils/time";
 
 interface IProps {
-    time?: Date
+    time?: string
 }
 
 // 脚手架示例组件
 const MyLabel: React.FC<IProps> = (props) => {
-    const {time} = props;
+    const {time=Date.now().toString()} = props;
+
     return (
         <div className={styles.left}>
-            <span style={{marginRight:10}}>23.1.17 </span><span>18:21</span><br/>
-            <span>Friday</span>
+            <span style={{marginRight:10}}>{formatTime(time).date}</span><span>{formatTime(time).time}</span><br/>
+            <span>{formatTime(time).day}</span>
         </div>
     );
 };

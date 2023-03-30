@@ -16,6 +16,7 @@ import ThreeD from "@/components/btn/ThreeD";
 import GoTo from "@/components/btn/GoTo";
 import Phamtom from "@/components/btn/Phamtom";
 import {history} from "umi";
+import EssayWrite from "@/layouts/Body/component/EssayWrite";
 
 export default () => {
     const [drawerVisit, setDrawerVisit] = useState(false);
@@ -40,7 +41,8 @@ export default () => {
                             history.push('/write')}
                         }/>
                         </div>
-                        <GoTo text={"记录一次随笔"}/>
+                        {/*<GoTo text={"记录一次随笔"}/>*/}
+                        <EssayWrite/>
                     </Col>
                 </Card>
                 <Divider plain={false}/>

@@ -53,5 +53,6 @@ export default defineConfig({
     routes,
     //包管理
     npmClient: "yarn",
+
     dva: {},
 });

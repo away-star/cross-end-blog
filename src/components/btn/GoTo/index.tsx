@@ -3,12 +3,13 @@ import styles from './index.less';
 
 interface IProps {
     text: string;
+    onclick: () => void;
 }
 
 const GoTo: React.FC<IProps> = (props) => {
-    const { text } = props;
+    const { text, onclick } = props;
     return (
-        <button className={styles.btn} type="button">
+        <button className={styles.btn} type="button" onClick={onclick}>
             <div className={styles.wrapper}>
                 <p className={styles.text}>{text}</p>
                 <div className={`${styles.flower} ${styles.flower1}`}>

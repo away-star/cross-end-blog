@@ -7,6 +7,13 @@ export default [
         component: './CheckIn',
     },
 
+    {
+        name: 'checkIn',
+        path: '/',
+        title: "666",
+        component: './CheckIn',
+    },
+
     // {
     //     name: '/test',
     //     //todo 如何路由加参数

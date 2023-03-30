@@ -3,7 +3,7 @@
 
 declare namespace API {
   interface PageInfo {
-    /** 
+    /**
 1 */
     current?: number;
     pageSize?: number;
@@ -12,7 +12,7 @@ declare namespace API {
   }
 
   interface PageInfo_UserInfo_ {
-    /** 
+    /**
 1 */
     current?: number;
     pageSize?: number;
@@ -65,4 +65,34 @@ declare namespace API {
   }
 
   type definitions_0 = null;
+
+
+  interface Essay {
+
+    id:string
+
+    createTime?: string;
+    updateTime?: string;
+    urls: string[];
+    /** nick */
+    content: string;
+    /** email */
+    open: boolean;
+
+    mood: string;
+  }
+
+  interface Post {
+
+    createTime?: string;
+    updateTime?: string;
+    coverUrl: string;
+    /** nick */
+    content: string;
+    /** email */
+    category: string;
+    description:string
+    id:string
+    title:string
+  }
 }
