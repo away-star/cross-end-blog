@@ -1,19 +1,30 @@
-import { Button, Result } from 'antd';
-import React from 'react';
-import { history } from 'umi';
+import styles from './index.less'
+import BackHome from "@/components/btn/BackHome";
+import {Row} from "antd";
+import {history} from "umi";
 
-const NoFoundPage: React.FC = () => (
+function NotFound() {
+    return (
+        <>
+        <div className={styles['not-found']}>
+            <div className={styles.vortex}>
+                <div className={styles['outer-ring']}></div>
+                <div className={styles['inner-ring']}></div>
+                <div className={styles.center}>
+                    <h1>404</h1>
+                    <h2>Page Not Found</h2>
+                    <p>The page you are looking for does not exist.</p>
+                </div>
+            </div>
 
-  <Result
-    status="404"
-    title="404"
-    subTitle="Sorry, the page you visited does not exist."
-    extra={
-      <Button type="primary" onClick={() => history.push('/blog/home')}>
-        Back Home6
-      </Button>
-    }
-  />
-);
+        </div>
+            <Row justify="center" style={{marginTop:80}}>
+            <BackHome text={'Back Home'} onClick={()=>{
+                history.push('/blog/home')}
+            } />
+            </Row>
+        </>
+    );
+}
 
-export default NoFoundPage;
+export default NotFound;

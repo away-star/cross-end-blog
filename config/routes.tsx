@@ -37,6 +37,11 @@ export default [
             },
             {
                 //todo  此处一定要写全路径
+                path: '/blog/essay',
+                component: './Essay',
+            },
+            {
+                //todo  此处一定要写全路径
                 path: '/blog/details/:id',
                 component: './BlogDetail',
             },
@@ -62,8 +67,8 @@ export default [
             },
             {
                 //todo  此处一定要写全路径
-                path: '/blog/life',
-                component: './Life',
+                path: '/blog/essay',
+                component: './Essay',
                /* routes: [
                     {
                         path: '/blog/thought/livelihood',
@@ -76,14 +81,14 @@ export default [
                 ]*/
             },
             {
-                name: 'write',
-                path: '/blog/write',
-                title: "666",
-                component: './Write',
-            },
-            {
                 component: './404'
             }
         ]
+    },
+    {
+        name: 'write',
+        path: '/write',
+        title: "666",
+        component: './Write',
     },
 ]

@@ -38,7 +38,7 @@ const items: MenuProps['items'] = [
     },
     {
         label: '随笔',
-        key: '/blog/life',
+        key: '/blog/essay',
         icon: <ReconciliationOutlined/>,
     },
     {

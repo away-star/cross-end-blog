@@ -24,7 +24,7 @@ const Back: React.FC = () => {
                 </Col>
                 <Col span={4} style={{marginLeft: 10}}>
                     <Affix offsetTop={60}>
-                    <Toc text={MOCK1}/>
+                        <Toc text={MOCK1}/>
                     </Affix>
                 </Col>
             </Row>

@@ -8,6 +8,7 @@ import {EMAIL, FLAG1, QQ} from "@/constants";
 import styles from './index.less'
 import homeImg from '@/assets/home1.png'
 import PostCard from "@/components/PostCard";
+import SelectCard from "@/layouts/Body/component/SelectCard";
 
 
 const HomePage: React.FC = () => {
