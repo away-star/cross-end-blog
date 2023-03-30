@@ -1,0 +1,69 @@
+.layout-1 {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.layout-2 {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .image-item {
+    width: calc(100% / 3 - 6px);
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.layout-3 {
+  width: 100%;
+  height: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 6px;
+
+  .image-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.image-layout {
+  margin-bottom: 20px;
+}
+
+/* 新增加了以下样式 */
+.image-layout .layout-2 .image-item {
+  height: 100%;
+
+}
+
+.image-layout .layout-3 .image-item {
+  height: 100%;
+}
+

@@ -1,0 +1,93 @@
+@keyframes pass {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pass1 {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.loader {
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
+
+  .l,
+  .o,
+  .a,
+  .d,
+  .i,
+  .n,
+  .g,
+  .d1,
+  .d2 {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+
+    &.d1,
+    &.d2 {
+      animation: pass1 2s ease-in-out infinite;
+    }
+  }
+
+  .l {
+    animation-delay: 0.2s;
+  }
+
+  .o {
+    animation-delay: 0.4s;
+  }
+
+  .a {
+    animation-delay: 0.6s;
+  }
+
+  .d {
+    animation-delay: 0.8s;
+  }
+
+  .i {
+    animation-delay: 1s;
+  }
+
+  .n {
+    animation-delay: 1.2s;
+  }
+
+  .g {
+    animation-delay: 1.4s;
+  }
+
+  .d1 {
+    animation-delay: 1.6s;
+  }
+
+  .d2 {
+    animation-delay: 2s;
+  }
+
+  &.loader span {
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+}

@@ -1,0 +1,73 @@
+
+.post {
+  //width: 190*2px;
+  height: 120*2.5px;
+  padding: 0.5rem;
+  background: rgb(198 198 198 / 34%);
+  border-radius: 8*2px;
+  backdrop-filter: blur(5px);
+  border-bottom: 3px solid rgb(255 255 255 / 44%);
+  border-left: 2px rgb(255 255 255 / 54.5%) outset;
+  box-shadow: -40px 50px 30px rgb(0 0 0 / 28%);
+  transform: skewX(10deg);
+  transition: .4s;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    height: 254*1.2px;
+    transform: skew(0deg);
+  }
+
+  .alignLeft {
+    padding: 0.1px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-self: flex-start;
+    float: left;
+
+    span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: -5px 5px 5px rgb(0 0 0 / 28%);
+
+      &:nth-child(1) {
+        background-color: #ff605c;
+      }
+
+      &:nth-child(2) {
+        background-color: #ffbd44;
+      }
+
+      &:nth-child(3) {
+        background-color: #00ca4e;
+      }
+    }
+  }
+
+  .alignRight {
+    display: flex;
+    align-self: flex-end;
+    float: right;
+    flex-direction: row;
+  }
+
+  h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //color: #1d2129;
+  }
+
+  .content {
+    display: inline-grid;
+    grid-template-columns: 1.3fr 2fr;
+    gap: 5px;
+  }
+
+}
+
+
+

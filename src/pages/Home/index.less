@@ -1,0 +1,85 @@
+.homeTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .proverbs {
+    position: absolute;
+    top: 18%;
+    left: 10%;
+    color: #fff;
+    width: 30%;
+    font-family: 斗鱼追光体;
+    transform: translateX(-100%);
+    //animation: popup 1s ease-out forwards;
+    animation: popLeft 1.3s ease-out forwards;
+    p {
+      &:nth-child(1) {
+        font-size: 1.5rem;
+      }
+      &:nth-child(2) {
+        font-size: 1rem;
+      }
+      &:nth-child(3) {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  .welcome {
+    position: absolute;
+    margin: auto;
+    font-family: 阿氿的少女心;
+    font-size: 2.5rem;
+    color: #7fc1d2;
+    animation: popup 1.5s ease-out forwards;
+    transform: translateY(100%);
+  }
+}
+
+
+.author{
+  width: 80%;
+}
+
+.post{
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+
+.homeBody{
+  margin-top: 100px;
+}
+
+.proCardList {
+  background-color: transparent;
+  margin-right: 100px;
+}
+
+@keyframes popup {
+  0% {
+    transform: translateY(100%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes popLeft {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(0%) rotate(90deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0%) rotate(0deg);
+    opacity: 1;
+  }
+}
