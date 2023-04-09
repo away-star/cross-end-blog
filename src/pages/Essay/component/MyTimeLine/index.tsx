@@ -43,7 +43,6 @@ const MyTimeLine: React.FC<IProps> = (props) => {
             items={essay.map((item) => ({
                 label: <MyLabel time={item.createTime}/>,
                 children: <MyCoEssay content={item.content} mood={item.mood} urls={item.urls}/>,
-
             }))}
         />
     );

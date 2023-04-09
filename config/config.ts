@@ -21,7 +21,7 @@ export default defineConfig({
     //打包输出目录
     outputPath: "dist",
     //标题
-    title: "starBlog",
+    title: "cross-end blog",
     history: {
         type: "browser",
     },

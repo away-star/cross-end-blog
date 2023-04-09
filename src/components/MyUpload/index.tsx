@@ -70,7 +70,7 @@ const MyUpload: React.FC<IProps> = (props) => {
         //console.log(newFileList)
         //console.log(fileList)
         console.log(newFileList[0])
-        if (newFileList[newFileList.length-1].status==='done'){
+        if (newFileList[newFileList.length-1]?.status==='done'){
             onUploadSuccess(newFileList.map((item)=> (item)?.response?.message))
         }
     }
@@ -104,7 +104,7 @@ const MyUpload: React.FC<IProps> = (props) => {
                     fileList={fileList}
                     onChange={handleChange}
                     onPreview={handlePreview}
-                    beforeUpload={beforeUpload}
+                    // beforeUpload={beforeUpload}
                 >
                     {/*{fileList.length < (multi?9:1) && uploadButton}*/}
                     {fileList.length >= (multi?9:1) ? null : uploadButton}

@@ -41,3 +41,13 @@ export async function getPost(
     });
 }
 
+export async function getPostDetail(
+    id: string,
+    options?: { [key: string]: any },
+) {
+    return request(`/api/service-content/post/${id}`, {
+        method: 'GET',
+        ...(options || {}),
+    });
+}
+

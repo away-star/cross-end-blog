@@ -7,12 +7,13 @@ import tiredSvg from '@/assets/studying.svg';
 import enrichSvg from '@/assets/success.svg';
 import sadSvg from '@/assets/working.svg';
 import ImageLayout from "@/pages/Essay/component/ImageLayout";
+import NineGrid from "@/pages/Essay/component/NineGrid";
 
 
 interface IProps {
-   content: string;
-   urls: string[];
-   mood: string;
+    content: string;
+    urls: string[];
+    mood: string;
 }
 
 
@@ -35,28 +36,20 @@ const getMood = (mood: string) => {
 const MyCoEssay: React.FC<IProps> = (props) => {
     const {content, urls, mood} = props;
     return (
-       <div className={styles.container}>
-           <Row style={{minHeight:150}}>
-           <div className={styles.saying}>
-               {content}
-           </div>
-           <div className={styles.ikon}><img src={getMood(mood)} alt={''} width={80} height={80}/></div>
-           </Row>
-           {/*<div>*/}
-           {/*<Image.PreviewGroup*/}
-           {/*    preview={{*/}
-           {/*        onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),*/}
-           {/*    }}*/}
-           {/*>*/}
-           {/*    <Image className={styles.img} src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />*/}
-           {/*    <Image*/}
-           {/*        width={100}*/}
-           {/*        src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"*/}
-           {/*    />*/}
-           {/*</Image.PreviewGroup>*/}
-           {/*</div>*/}
-           <ImageLayout images={urls} />
-       </div>
+        <div className={styles.essay}>
+            <div className={styles.container}>
+                <div className={styles.saying}>
+                    {content}
+                </div>
+                <div className={styles.ikon}><img src={getMood(mood)} alt={''} width={80} height={80}/></div>
+            </div>
+            {/*<div className={styles.img}>*/}
+            {/*    <NineGrid images={urls}/>*/}
+            {/*</div>*/}
+            <div className={styles.img}>
+            <Image src={urls[0]} width={300} height={300} style={{marginLeft:40,padding:10}}/>
+            </div>
+        </div>
     );
 };
 

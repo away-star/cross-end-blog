@@ -1,48 +1,128 @@
 import {
-    AlipayCircleOutlined,
-    LockOutlined,
-    MobileOutlined,
-    TaobaoCircleOutlined,
-    UserOutlined,
-    WeiboCircleOutlined,
+    GithubOutlined,
+    LockOutlined, MailOutlined,
+    QqOutlined,
+    WechatOutlined,
 } from '@ant-design/icons';
 import {
     LoginForm,
     ProFormCaptcha,
-    ProFormCheckbox,
     ProFormText,
     ProConfigProvider,
 } from '@ant-design/pro-components';
-import { message, Space, Tabs } from 'antd';
-import type { CSSProperties } from 'react';
-import { useState } from 'react';
+import {Divider, Form, message, Space, Tabs} from 'antd';
+import type {CSSProperties} from 'react';
+import {useState} from 'react';
+import {getLoginCaptcha, login} from "@/services/api/check";
+import {history} from "umi";
+import {TOKEN_PREFIX} from "@/constants";
+import {useModel} from "@@/exports";
 
-type LoginType = 'phone' | 'account';
+type LoginType = 'captcha' | 'password';
 
 const iconStyles: CSSProperties = {
-    marginInlineStart: '16px',
     color: 'rgba(0, 0, 0, 0.2)',
-    fontSize: '24px',
+    fontSize: '18px',
     verticalAlign: 'middle',
     cursor: 'pointer',
 };
 
+const actionIconStyles: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    height: 40,
+    width: 40,
+    border: '1px solid #D4D8DD',
+    borderRadius: '50%',
+}
+
+const actionStyles: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+}
+
+//登录方法
+const goLogin = async (values: any) => {
+    console.log(values)
+    const username: CheckAPI.loginData = {
+        authType: values.password ? "password" : "captcha",
+        captcha: values.captcha,
+        email: values.email,
+        password: values.password
+    }
+    console.log(username)
+    const res = await login({username});
+    console.log(res)
+    if (res.code === 200) {
+        message.success('登录成功');
+        localStorage.setItem('Authorization', TOKEN_PREFIX + res.data.access_token);
+        // todo 跳转到首页
+
+    } else {
+        message.error(res.message);
+    }
+}
+
 export default () => {
-    const [loginType, setLoginType] = useState<LoginType>('phone');
+    const [loginType, setLoginType] = useState<LoginType>('password');
+    const {setIsModalOpen} = useModel('checkModel', (model) => ({
+        setIsModalOpen: model.setIsModalOpen,
+    }));
+
+
+    const [form] = Form.useForm();
+    const email = Form.useWatch('email', form);
+
+    const getCaptcha = async () => {
+        console.log(email)
+        const res = await getLoginCaptcha({email});
+        if (res.code === 200) {
+            message.success('验证码已发送');
+        } else {
+            message.error(res.message);
+        }
+    }
+
     return (
         <ProConfigProvider hashed={false}>
-            <div style={{ backgroundColor: 'white' }}>
+            <div style={{backgroundColor: "transparent"}}>
                 <LoginForm
+                    form={form}
+                    onFinish={goLogin}
                     logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-                    title="Github"
-                    subTitle="全球最大的代码托管平台"
+                    title="cross-end blog"
+                    subTitle="跨端个人博客"
                     actions={
-                        <Space>
-                            其他登录方式
-                            <AlipayCircleOutlined style={iconStyles} />
-                            <TaobaoCircleOutlined style={iconStyles} />
-                            <WeiboCircleOutlined style={iconStyles} />
-                        </Space>
+                        <div
+                            style={actionStyles}
+                        >
+                            <Divider plain>
+              <span style={{color: '#CCC', fontWeight: 'normal', fontSize: 14}}>
+                其他登录方式
+              </span>
+                            </Divider>
+                            <Space align="center" size={24}>
+                                <div
+                                    style={actionIconStyles}
+                                >
+                                    <QqOutlined style={{...iconStyles, color: '#1677FF'}}/>
+                                </div>
+                                <div
+                                    style={actionIconStyles}
+                                >
+                                    <WechatOutlined style={{...iconStyles, color: '#FF6A10'}}/>
+                                </div>
+                                <div
+                                    style={actionIconStyles}
+                                >
+                                    <GithubOutlined style={{...iconStyles, color: '#333333'}}/>
+                                </div>
+                            </Space>
+                        </div>
                     }
                 >
                     <Tabs
@@ -50,32 +130,36 @@ export default () => {
                         activeKey={loginType}
                         onChange={(activeKey) => setLoginType(activeKey as LoginType)}
                     >
-                        <Tabs.TabPane key={'account'} tab={'账号密码登录'} />
-                        <Tabs.TabPane key={'phone'} tab={'手机号登录'} />
+                        <Tabs.TabPane key={'password'} tab={'密码登录'}/>
+                        <Tabs.TabPane key={'captcha'} tab={'验证码登录'}/>
                     </Tabs>
-                    {loginType === 'account' && (
+                    {loginType === 'password' && (
                         <>
                             <ProFormText
-                                name="username"
+                                name="email"
                                 fieldProps={{
                                     size: 'large',
-                                    prefix: <UserOutlined className={'prefixIcon'} />,
+                                    prefix: <MailOutlined className={'prefixIcon'}/>,
                                 }}
-                                placeholder={'用户名: admin or user'}
+                                placeholder={'email'}
                                 rules={[
                                     {
                                         required: true,
-                                        message: '请输入用户名!',
+                                        message: '请输入邮箱!',
                                     },
+                                    {
+                                        pattern: /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/,
+                                        message: '邮箱格式错误!',
+                                    }
                                 ]}
                             />
                             <ProFormText.Password
                                 name="password"
                                 fieldProps={{
                                     size: 'large',
-                                    prefix: <LockOutlined className={'prefixIcon'} />,
+                                    prefix: <LockOutlined className={'prefixIcon'}/>,
                                 }}
-                                placeholder={'密码: ant.design'}
+                                placeholder={'password'}
                                 rules={[
                                     {
                                         required: true,
@@ -85,30 +169,30 @@ export default () => {
                             />
                         </>
                     )}
-                    {loginType === 'phone' && (
+                    {loginType === 'captcha' && (
                         <>
                             <ProFormText
+                                name="email"
                                 fieldProps={{
                                     size: 'large',
-                                    prefix: <MobileOutlined className={'prefixIcon'} />,
+                                    prefix: <MailOutlined className={'prefixIcon'}/>,
                                 }}
-                                name="mobile"
-                                placeholder={'手机号'}
+                                placeholder={'email'}
                                 rules={[
                                     {
                                         required: true,
-                                        message: '请输入手机号！',
+                                        message: '请输入邮箱!',
                                     },
                                     {
-                                        pattern: /^1\d{10}$/,
-                                        message: '手机号格式错误！',
-                                    },
+                                        pattern: /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/,
+                                        message: '邮箱格式错误!',
+                                    }
                                 ]}
                             />
                             <ProFormCaptcha
                                 fieldProps={{
                                     size: 'large',
-                                    prefix: <LockOutlined className={'prefixIcon'} />,
+                                    prefix: <LockOutlined className={'prefixIcon'}/>,
                                 }}
                                 captchaProps={{
                                     size: 'large',
@@ -127,24 +211,20 @@ export default () => {
                                         message: '请输入验证码！',
                                     },
                                 ]}
-                                onGetCaptcha={async () => {
-                                    message.success('获取验证码成功！验证码为：1234');
-                                }}
+                                onGetCaptcha={getCaptcha}
                             />
                         </>
                     )}
                     <div
                         style={{
-                            marginBlockEnd: 24,
+                            //marginBlockEnd: 24,
                         }}
                     >
-                        <ProFormCheckbox noStyle name="autoLogin">
-                            自动登录
-                        </ProFormCheckbox>
-                        <a
-                            style={{
-                                float: 'right',
-                            }}
+                        <a onClick={() => setIsModalOpen(true)}
+                           style={{
+                               float: 'right',
+                               marginBottom: 12,
+                           }}
                         >
                             忘记密码
                         </a>

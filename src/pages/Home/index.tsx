@@ -65,9 +65,11 @@ const HomePage: React.FC = () => {
 
                 </Col>
                 <Col xs={0} sm={0} md={5} lg={6} xl={6} offset={1}>
+                    <Affix offsetTop={60}>
                     <div className={styles.author}>
                         <Author/>
                     </div>
+                    </Affix>
                 </Col>
             </Row>
         </div>

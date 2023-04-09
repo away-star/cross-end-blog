@@ -14,6 +14,7 @@ import {ProFormSwitch} from "@ant-design/pro-form";
 import GoTo from "@/components/btn/GoTo";
 import MyUpload from "@/components/MyUpload";
 import {getEssays, writeEssay} from "@/services/api";
+import {History} from "umi";
 
 
 const formItemLayout = {
@@ -39,6 +40,7 @@ export default () => {
 
     const onUploadSuccess = (fileUrls: string[]) => {
         setImages(fileUrls);
+        console.log(fileUrls)
     }
 
     return (
@@ -59,6 +61,7 @@ export default () => {
                     const response = await writeEssay(essay);
 
                     message.success('提交成功');
+                    window.location.reload();
                     return true;
                 }}
                 onOpenChange={setModalVisit}

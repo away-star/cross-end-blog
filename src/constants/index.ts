@@ -1,3 +1,13 @@
+
+export const CLIENT_ID = 'cross-end';
+export const CLIENT_SECRET = 'cross-end';
+export const GRANT_TYPE = 'password';
+export const TOKEN_PREFIX = 'Bearer ';
+
+
+
+
+
 export const DEFAULT_NAME = 'Umi Max';
 export const FLAG1 = 'FIGHTING';
 export const FLAG2 = '越努力越幸运';
@@ -6,7 +16,6 @@ export const EMAIL = 'email:2064989403@qq.com';
 export const AUTHOR_AVATAR = 'https://staraway.love/blog/authorAvatar.jpg';
 export const JUEJIN = 'https://juejin.cn/user/207157472794621';
 export const CSDN = 'https://blog.csdn.net/qq_67602816';
-
 export const POST_SLOGAN = '如果觉得内容不错，欢迎分享给其他人哦';
 
 
@@ -136,3 +145,6 @@ export const MOCK1 = "# 场景复现：\n" +
     "> \n" +
     "所以昨晚睡觉的时候我想到是否可以用localstorage存储，这样就不存在数据丢失的问题了（天哪我为什么没有早想到![在这里插入图片描述](https://img-blog.csdnimg.cn/a01ceb82c2074c3291dfb7f1f0fb88d8.gif)\n" +
     "）"
+
+
+

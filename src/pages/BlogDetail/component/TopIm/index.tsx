@@ -18,7 +18,11 @@ const TopIm: React.FC<IProps> = (props) => {
         <div className={styles.topOut}>
             <div className={styles.back}>
                 <Affix offsetTop={20}>
-                <Back text={'返回'} onClick={history.back}/>
+                <Back text={'返回'} onClick={()=>{
+                    console.log('返回')
+                    history.back()
+                }
+                }/>
                 </Affix>
             </div>
             <div className={styles.topIn}>

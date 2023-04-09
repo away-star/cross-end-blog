@@ -17,8 +17,8 @@ const TopIm: React.FC<IProps> = (props) => {
     return (
         <div className={styles.topOut}>
             <div className={styles.topIn}>
-                <h3>{title}</h3>
-                <h5>{subTitle}</h5>
+                <h2>{title}</h2>
+                <h4>{subTitle}</h4>
             </div>
         </div>
     );
