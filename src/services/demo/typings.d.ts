@@ -69,7 +69,7 @@ declare namespace API {
 
   interface Essay {
 
-    id:string
+    id?:string
 
     createTime?: string;
     updateTime?: string;

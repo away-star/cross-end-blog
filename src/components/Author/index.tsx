@@ -1,8 +1,20 @@
 import styles from './author.less'
 import React from "react";
 
+interface IProps {
+    avatar?: string;
+    nickname?: string;
+    subtitle?: string;
+    textBody?: string;
+    social?: {
+        otherLink: string;
+        githubLink: string;
+    }
+}
 
-const Author: React.FC = () => {
+
+const Author: React.FC<IProps> = (props) => {
+    const {avatar, nickname, subtitle, textBody, social} = props;
     return (
         <>
             <div className={styles.card}>

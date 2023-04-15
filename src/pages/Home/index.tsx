@@ -1,27 +1,31 @@
-import {ProCard} from '@ant-design/pro-components';
-import {useModel} from '@umijs/max';
-import {Affix, Col, Divider, Image, Row, Space} from "antd";
+import {Affix, Col, Image, Row} from "antd";
 import React, {useEffect, useState} from "react";
-import Post from "@/components/Post";
 import Author from "@/components/Author";
-import {EMAIL, FLAG1, QQ} from "@/constants";
 import styles from './index.less'
 import homeImg from '@/assets/home1.png'
 import PostCard from "@/components/PostCard";
-import SelectCard from "@/layouts/Body/component/SelectCard";
 import {getPost} from "@/services/api";
+import {history} from "@@/core/history";
+import {useModel} from "@@/exports";
 
 
 const HomePage: React.FC = () => {
 
+    const pathParts = history.location.pathname.trim().split('/');
+    const idUrl = pathParts[pathParts.length - 2];
+    const {initialData} = useModel('initialModel', (model) => ({
+        initialData: model.initialData,
+    }));
+    const {userInfo} = initialData;
+
+
     const [post, setPost] = useState<API.Post[]>([])
 
     useEffect(() => {
-        getPost({step: 10}).then(
+        getPost({step: 10,authorId:idUrl?.toString()??'2021120053'}).then(
             (res) => {
                 console.log(res.data.records)
                 // 将后端返回的 Essay 数组转换为与前端定义的数据格式一致的数组
-
                 const post = res.data.records.map((item: any) => ({
                     createTime: item.createTime,
                     updateTime: item.updateTime,
@@ -32,8 +36,6 @@ const HomePage: React.FC = () => {
                     id: item.id,
                     title: item.title,
                 }));
-                // 将前面转换好的数组赋值给组件状态
-                // setEssay(essays);
                 setPost(post)
             }
         )
@@ -62,12 +64,11 @@ const HomePage: React.FC = () => {
                         </div>
                         )
                     )}
-
                 </Col>
                 <Col xs={0} sm={0} md={5} lg={6} xl={6} offset={1}>
                     <Affix offsetTop={60}>
                     <div className={styles.author}>
-                        <Author/>
+                        <Author avatar={userInfo?.avatar} nickname={userInfo?.nickname}  subtitle={userInfo?.idiograph} textBody={userInfo?.idiograph}/>
                     </div>
                     </Affix>
                 </Col>

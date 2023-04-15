@@ -18,11 +18,12 @@ import {history} from "umi";
 import {TOKEN_PREFIX} from "@/constants";
 import {useModel} from "@@/exports";
 
+
 type LoginType = 'captcha' | 'password';
 
 const iconStyles: CSSProperties = {
     color: 'rgba(0, 0, 0, 0.2)',
-    fontSize: '18px',
+    fontSize: '25px',
     verticalAlign: 'middle',
     cursor: 'pointer',
 };
@@ -36,6 +37,7 @@ const actionIconStyles: CSSProperties = {
     width: 40,
     border: '1px solid #D4D8DD',
     borderRadius: '50%',
+    cursor: 'pointer',
 }
 
 const actionStyles: CSSProperties = {
@@ -59,18 +61,21 @@ const goLogin = async (values: any) => {
     console.log(res)
     if (res.code === 200) {
         message.success('登录成功');
+        //localStorage.setItem('loginInformationId', res.data.loginInformation.id)
         localStorage.setItem('Authorization', TOKEN_PREFIX + res.data.access_token);
-        // todo 跳转到首页
-
+        const loginInformationId=res.data.loginInformationId
+        console.log(loginInformationId)
+        localStorage.setItem('loginInformationId', loginInformationId);
+        history.push(`/blog/${loginInformationId}/home`)
     } else {
-        message.error(res.message);
+        message.error(res.msg);
     }
 }
 
 export default () => {
     const [loginType, setLoginType] = useState<LoginType>('password');
-    const {setIsModalOpen} = useModel('checkModel', (model) => ({
-        setIsModalOpen: model.setIsModalOpen,
+    const {setIsCoverModalOpen} = useModel('checkModel', (model) => ({
+        setIsCoverModalOpen: model.setIsCoverModalOpen,
     }));
 
 
@@ -220,7 +225,7 @@ export default () => {
                             //marginBlockEnd: 24,
                         }}
                     >
-                        <a onClick={() => setIsModalOpen(true)}
+                        <a onClick={() => setIsCoverModalOpen(true)}
                            style={{
                                float: 'right',
                                marginBottom: 12,

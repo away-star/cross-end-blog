@@ -1,56 +1,55 @@
 import React from 'react';
-import { Image } from 'antd';
+import {Row, Col, Space, Image} from 'antd';
 import styles from './index.less';
 
-const Layout1: React.FC<{ images: string[] }> = ({ images }) => {
-    // 显示一张大图
-    return (
-        <div className={styles['layout-1']}>
-            <Image src={images[0]} />
-        </div>
-    );
-};
+interface ImageLayoutProps {
+    images: string[]; // 图片数组
+}
 
-const Layout2: React.FC<{ images: string[] }> = ({ images }) => {
-    // 显示三张均匀分布的图
-    return (
-        <div className={styles['layout-2']}>
-            {images.map((image, index) => (
-                <div key={index} className={styles['image-item']}>
-                    <Image src={image} />
-                </div>
-            ))}
-        </div>
-    );
-};
-
-const Layout3: React.FC<{ images: string[] }> = ({ images }) => {
-    // 显示九张九宫格布局的图
-    return (
-        <div className={styles['layout-3']}>
-            {images.map((image, index) => (
-                <div key={index} className={styles['image-item']}>
-                    <Image src={image} />
-                </div>
-            ))}
-        </div>
-    );
-};
-
-const getLayout = (images: string[]) => {
-    const length = images.length;
-
-    if (length === 1) {
-        return <Layout1 images={images} />;
-    } else if (length >= 2 && length <= 4) {
-        return <Layout2 images={images} />;
-    } else if (length >= 5 && length <= 9) {
-        return <Layout3 images={images} />;
+const ImageLayout: React.FC<ImageLayoutProps> = ({images}) => {
+    // 判断图片数量，决定布局方式
+    let layout: number[];
+    switch (images.length) {
+        case 1:
+            layout = [24];
+            break;
+        case 2:
+            layout = [12, 12];
+            break;
+        case 3:
+            layout = [8, 8, 8];
+            break;
+        case 4:
+            layout = [12, 12, 12, 12];
+            break;
+        case 5:
+            layout = [8, 8, 8, 8, 8];
+            break;
+        case 6:
+            layout = [8, 8, 8, 8, 8, 8];
+            break;
+        case 7:
+            layout = [8, 8, 8, 8, 8, 8, 8];
+            break;
+        case 8:
+            layout = [8, 8, 8, 8, 8, 8, 8, 8];
+            break;
+        case 9:
+            layout = [8, 8, 8, 8, 8, 8, 8, 8, 8];
+            break;
+        default:
+            layout = [8, 8, 8, 6, 8, 8, 8, 8, 8];
     }
-};
 
-const ImageLayout: React.FC<{ images: string[] }> = ({ images }) => {
-    return <div className={styles['image-layout']}>{getLayout(images)}</div>;
+    return (
+        <Row>
+            {images.map((image, index) => (
+                <Col key={index} span={layout[index]} style={{ margin: "4px 0" }}>
+                    <Image src={image} style={{borderRadius:4,marginRight:1}} width={'100%'} />
+                </Col>
+            ))}
+        </Row>
+    );
 };
 
 export default ImageLayout;

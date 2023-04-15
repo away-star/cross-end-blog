@@ -10,7 +10,7 @@ interface IProps {
     subTitle: string;
 }
 
-// 脚手架示例组件
+
 const TopIm: React.FC<IProps> = (props) => {
     const {title, subTitle} = props;
 

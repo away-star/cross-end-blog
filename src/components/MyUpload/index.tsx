@@ -97,9 +97,9 @@ const MyUpload: React.FC<IProps> = (props) => {
             {/*</Modal>*/}
 
 
-            <ImgCrop rotationSlider cropShape={type==='picture-card'?'rect':'round'}>
+            <ImgCrop rotationSlider cropShape={type==='picture-card'?'rect':'round'} aspect={1}>
                 <Upload
-                    action="http://localhost:8082/source/upload"
+                    action="http://localhost:8088/source/upload"
                     listType={type==='picture-card'?'picture-card':'picture-circle'}
                     fileList={fileList}
                     onChange={handleChange}

@@ -11,6 +11,8 @@ import {getPostDetail} from "@/services/api";
 
 
 
+
+
 const Back: React.FC = () => {
 
     const id = history.location.pathname.split("/")[3];
@@ -31,6 +33,8 @@ const Back: React.FC = () => {
             <Row justify={"center"}>
                 <Col span={12} style={{backgroundColor: "transparent"}}>
                     <div className={styles.left}>
+                        {/*<MyMarkdown children={post?.content??''}/>*/}
+                        {/*<MarkDown content={post?.content??''}/>*/}
                         <MyMarkdown text={post?.content??''}/>
                         <Divider/>
                         <BottomInfo juejin={JUEJIN} csdn={CSDN} slogan={POST_SLOGAN}/>

@@ -1,36 +1,19 @@
 ﻿//路由表！！！
 export default [
     {
-        name: 'checkIn',
-        path: '/checkIn',
-        title: "666",
-        component: './CheckIn',
+        path: '/',
+        wrappers: [
+            '@/wrappers/auth/index.tsx',
+        ],
     },
-
     {
         name: 'checkIn',
-        path: '/',
-        title: "666",
+        path: '/checkIn',
         component: './CheckIn',
     },
-
-    // {
-    //     name: '/test',
-    //     //todo 如何路由加参数
-    //     path: '*',
-    //     component: './Test',
-    //     /*    wrappers: [
-    //             '@/wrappers/auth/index.tsx',
-    //         ],*/
-    // },
     {
         name: '404',
         path: '/404',
-        component: './404',
-    },
-    {
-        //todo   通过*来匹配404
-        path: '*',
         component: './404',
     },
     {
@@ -38,14 +21,27 @@ export default [
         component: '@/layouts/Main',
         routes: [
             {
+                name: 'messageBoard',
+                path: '/blog/:id/messageBoard',
+                component: './MessageBoard',
+                // wrappers: [
+                //     '@/wrappers/auth/index.tsx',
+                // ],
+            },
+            {
                 //todo  此处一定要写全路径
-                path: '/blog/home',
+                path: '/blog/:id/home',
                 component: './Home',
             },
             {
                 //todo  此处一定要写全路径
-                path: '/blog/essay',
+                path: '/blog/:id/essay',
                 component: './Essay',
+            },
+            {
+                //todo  此处一定要写全路径
+                path: '/blog/:id/aboutMe',
+                component: './AboutMe',
             },
             {
                 //todo  此处一定要写全路径
@@ -54,38 +50,8 @@ export default [
             },
             {
                 //todo  此处一定要写全路径
-                path: '/blog/aboutMe',
-                component: './AboutMe',
-            },
-            {
-                //todo  此处一定要写全路径
-                path: '/blog/skill/:category',
+                path: '/blog/:id/skill/:category',
                 component: './SkillBlog',
-               /* routes: [
-                    {
-                        path: '/blog/skill/java',
-                        component: './JavaBlog',
-                    },
-                    {
-                        path: '/blog/skill/react',
-                        component: './SkillBlog',
-                    }
-                ]*/
-            },
-            {
-                //todo  此处一定要写全路径
-                path: '/blog/essay',
-                component: './Essay',
-               /* routes: [
-                    {
-                        path: '/blog/thought/livelihood',
-                        component: './Livelihood',
-                    },
-                    {
-                        path: '/blog/thought/life',
-                        component: './Life',
-                    }
-                ]*/
             },
             {
                 component: './404'
@@ -95,7 +61,6 @@ export default [
     {
         name: 'write',
         path: '/write',
-        title: "666",
         component: './Write',
     },
 ]

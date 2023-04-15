@@ -34,14 +34,11 @@ export default () => {
             >
                 <Card title="创作中心:" bordered={false} style={{width: 500}}>
                     <Col>
-                        {/*<ThreeD text={"to write post"}/>*/}
-                        {/*<ThreeD text={"to write trifles"}/>*/}
                         <div className={styles.blogBut}>
                         <Phamtom text={'写一篇博客'} onclick={()=>{
                             history.push('/write')}
                         }/>
                         </div>
-                        {/*<GoTo text={"记录一次随笔"}/>*/}
                         <EssayWrite/>
                     </Col>
                 </Card>

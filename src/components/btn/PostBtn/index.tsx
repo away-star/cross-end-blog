@@ -10,7 +10,6 @@ interface IProp{
 }
 export default function PostBtn(prop:IProp) {
     const {onclick,text}=prop
-
     return (
         <div className={styles.btn}>
         <button onClick={onclick} type={'button'}>

@@ -1,6 +1,6 @@
 @import "../public/font/font.css";
 
-.myFont{
+.myFont {
   font-family: '钟齐安景臣硬笔行书';
   font-size: 500px;
 }
@@ -13,15 +13,17 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 16px;
- // background-color: #f4f5f5;
+  font-size: 20px;
+  // background-color: #f4f5f5;
   background: linear-gradient(135deg, #4fb7c5 0%, #e6d893 25%, #e6a7b2 50%, #68768e 75%, #bad596 100%);
   background-attachment: fixed;
 
 }
 
-*{
-  //font-family: 斗鱼追光体;
+* {
+  font-family: "Comic Sans", cursive;
+  //加全局动画
+  //animation: slideInUp 1s ease-out both;
 }
 
 ::-webkit-scrollbar {
@@ -31,12 +33,24 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   background-color: #99a9bf;
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   background-color: #d3dce6;
+}
+
+
+@keyframes slideInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

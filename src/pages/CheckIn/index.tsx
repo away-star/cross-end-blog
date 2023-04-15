@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.less'
 import loginSvg from '@/assets/login.svg'
 import registerSvg from '@/assets/register.svg'
@@ -20,6 +20,9 @@ export const onLogin=()=>{
 
 const CSSLogin: React.FC = () => {
 
+    // useEffect(()=>{
+    //     window.location.reload()
+    // },[])
 
     return (
         <div className="container">
@@ -41,7 +44,7 @@ const CSSLogin: React.FC = () => {
                         <p>
                             加入我们，成为本站的一份子。
                         </p>
-                        <button className="btn transparent" id="sign-up-btn" onClick={onRegister}>
+                        <button className="btn transparent" id="sign-up-btn" onClick={onRegister} type={"button"}>
                             去注册
                         </button>
                     </div>
@@ -53,7 +56,7 @@ const CSSLogin: React.FC = () => {
                         <p>
                             立即登录已有帐号，享受独家权益。
                         </p>
-                        <button className="btn transparent" id="sign-in-btn" onClick={onLogin}>
+                        <button className="btn transparent" id="sign-in-btn" onClick={onLogin} type={"button"}>
                             去登录
                         </button>
                     </div>

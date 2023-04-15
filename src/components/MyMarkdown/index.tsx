@@ -1,42 +1,44 @@
+
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow, solarizedlight, atomDark,hopscotch,okaidia,materialOceanic,gruvboxDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import styles from './index.less';
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
-import ReactMarkdown from 'react-markdown'
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {tomorrow} from 'react-syntax-highlighter/dist/esm/styles/prism'
-import {dark} from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 interface IProps {
     text: string;
 }
 
-// 脚手架示例组件
-const MyMarkdown: React.FC<IProps> = (props) => {
-    const {text} = props;
+const MyMarkdown: React.FC<IProps> = ({ text }) => {
+    const randStyle = (): any => {
+        const styles = [tomorrow, atomDark, solarizedlight,hopscotch,okaidia,materialOceanic,gruvboxDark];
+        return styles[Math.floor(Math.random() * styles.length)];
+    };
+
+
+
+    const renderCodeBlock = ({ className, children }: any) => {
+        const language = className ? className.replace('language-', '') : '';
+        return (
+            <SyntaxHighlighter language={language || 'ts'} style={randStyle()}>
+                {children}
+            </SyntaxHighlighter>
+        );
+    };
+
     return (
         <ReactMarkdown
             className={styles.body}
-            remarkPlugins={[remarkMath]}
-            rehypePlugins={[rehypeKatex]}
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
             components={{
-                code({inline, className, children}) {
-                    const match = /language-(\w+)/.exec(className || '')
-                    return !inline && match ? (
-                        <SyntaxHighlighter
-                            style={tomorrow}
-                            language={match[1]}
-                            PreTag="div"
-                        >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
-
-                    ) : (
-                        <code className={className} {...props}>
-                            {children}
-                        </code>
-                    )
-                }
+                code: renderCodeBlock,
             }}
-        >{text}</ReactMarkdown>
+        >
+            {text}
+        </ReactMarkdown>
     );
 };
 

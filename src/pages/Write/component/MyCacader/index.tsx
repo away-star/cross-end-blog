@@ -49,8 +49,8 @@ const options: Option[] = [
     },
 ];
 
-const onChange = (value: string[], selectedOptions: Option[]) => {
-    console.log(value, selectedOptions);
+const onChange = (value:any) => {
+    console.log(value);
 };
 
 const filter = (inputValue: string, path: DefaultOptionType[]) =>
@@ -58,7 +58,7 @@ const filter = (inputValue: string, path: DefaultOptionType[]) =>
         (option) => (option.label as string).toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
     );
 
-const MyCacader: React.FC = () => (
+const App: React.FC = () => (
     <Cascader
         options={options}
         onChange={onChange}
@@ -68,4 +68,4 @@ const MyCacader: React.FC = () => (
     />
 );
 
-export default MyCacader;
+export default App;

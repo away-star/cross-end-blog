@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-export default function CheckModel() {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+export default () =>{
+    const [isCoverModalOpen, setIsCoverModalOpen] = useState<boolean>(false);
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState<boolean>(false);
 
 
-    return { isModalOpen, setIsModalOpen };
+    return { isCoverModalOpen, setIsCoverModalOpen ,isInfoModalOpen, setIsInfoModalOpen};
 };

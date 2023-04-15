@@ -24,9 +24,9 @@ const getCaptcha = async (value: any) => {
 
 
 export default () => {
-    const {isModalOpen, setIsModalOpen} = useModel('checkModel', (model) => ({
-        isModalOpen: model.isModalOpen,
-        setIsModalOpen: model.setIsModalOpen,
+    const {isCoverModalOpen, setIsCoverModalOpen} = useModel('checkModel', (model) => ({
+        isCoverModalOpen: model.isCoverModalOpen,
+        setIsCoverModalOpen: model.setIsCoverModalOpen,
     }));
 
     const goRecover = async (values: any) => {
@@ -40,14 +40,14 @@ export default () => {
         console.log(res)
         if (res.code === 200) {
             message.success('重置密码成功,快去登录吧');
-            setIsModalOpen(false)
+            setIsCoverModalOpen(false)
         } else {
             message.error(res.msg);
         }
     }
 
     return (
-        <Modal title="找回密码" open={isModalOpen} footer={null} width={800}>
+        <Modal title="找回密码" open={isCoverModalOpen} footer={null} width={800}>
             <StepsForm<{
                 name: string;
             }>

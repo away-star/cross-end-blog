@@ -1,10 +1,12 @@
-import { Navigate, Outlet } from 'umi'
+import {history} from "umi";
 
-export default (props) => {
-    const {isLogin} = false;
-    if (isLogin) {
-        return <Outlet />;
-    } else{
-        return <Navigate to="/login" />;
+export default () => {
+    console.log(localStorage.getItem('Authorization'))
+    const loginInformationId = localStorage.getItem('loginInformationId')
+    console.log(loginInformationId)
+    if (loginInformationId === null || loginInformationId === undefined || loginInformationId === '') {
+        history.push('/checkIn')
+    } else {
+        history.push(`/blog/${loginInformationId}/home`)
     }
 }

@@ -14,10 +14,8 @@ export default defineConfig({
             .loader('file-loader');
     },
 
-
     //哈希后缀，使用browser模式，用于 增量发布和避免浏览器加载缓存
     hash: false,
-
     //打包输出目录
     outputPath: "dist",
     //标题
@@ -44,15 +42,12 @@ export default defineConfig({
 
     //取消自带的layouts配置
     layout: false,
-
     favicons: ['https://staraway.love/%E4%B8%BB%E9%A1%B5.svg'],
-
     //代理配置
     proxy: proxy["dev"],
     //路由配置
     routes,
     //包管理
     npmClient: "yarn",
-
     dva: {},
 });

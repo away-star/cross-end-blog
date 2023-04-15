@@ -1,0 +1,51 @@
+.task {
+  position: relative;
+  color: #2e2e2f;
+  // cursor: pointer;
+  background: linear-gradient(135deg, #ebadb6 0%, #aceae1 100%);
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+  margin-bottom: 1rem;
+  border: 9px dashed transparent;
+  //max-width: 350px;
+
+  &:hover {
+    box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+    border-color: rgba(162, 179, 207, 0.2) !important;
+  }
+
+  p {
+    font-size: 21px;
+    margin: 1.2rem 0;
+    white-space: pre-wrap;
+  }
+}
+
+.tag {
+  border-radius: 100px;
+  padding: 4px 13px;
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #1389eb;
+}
+
+.tags {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options {
+  background: transparent;
+  border: 0;
+  color: #c4cad3;
+  font-size: 17px;
+  cursor: pointer;
+
+  svg {
+    fill: #9fa4aa;
+    width: 20px;
+  }
+}

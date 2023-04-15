@@ -1,20 +1,15 @@
-import {PlusOutlined} from '@ant-design/icons';
 import {
-    DrawerForm,
     ModalForm,
     ProForm,
-    ProFormDateRangePicker,
     ProFormSelect,
-    ProFormText, ProFormTextArea,
+    ProFormTextArea,
 } from '@ant-design/pro-components';
-import {Button, Form, message, RadioChangeEvent, Select, Space, TreeSelect} from 'antd';
+import {message} from 'antd';
 import React, {useState} from 'react';
-import {SelectCommonPlacement} from "antd/es/_util/motion";
 import {ProFormSwitch} from "@ant-design/pro-form";
 import GoTo from "@/components/btn/GoTo";
 import MyUpload from "@/components/MyUpload";
-import {getEssays, writeEssay} from "@/services/api";
-import {History} from "umi";
+import {writeEssay} from "@/services/api";
 
 
 const formItemLayout = {
@@ -22,21 +17,11 @@ const formItemLayout = {
     wrapperCol: {span: 6},
 };
 
-const verify = (values: any) => {
-
-}
-
 
 export default () => {
     const [modalVisit, setModalVisit] = useState(false);
 
-    const [placement, SetPlacement] = useState<SelectCommonPlacement>('topLeft');
-
     const [images, setImages] = useState<string[]>([]);
-
-    const placementChange = (e: RadioChangeEvent) => {
-        SetPlacement(e.target.value);
-    };
 
     const onUploadSuccess = (fileUrls: string[]) => {
         setImages(fileUrls);
@@ -59,10 +44,15 @@ export default () => {
                         content: values.content, mood: values.mood, open: values.open, urls: images
                     }
                     const response = await writeEssay(essay);
-
-                    message.success('提交成功');
-                    window.location.reload();
-                    return true;
+                    console.log(response)
+                    if (response.code === 200) {
+                        message.success('提交成功');
+                        window.location.reload();
+                        return true;
+                    } else {
+                        message.error('提交失败');
+                        return false;
+                    }
                 }}
                 onOpenChange={setModalVisit}
                 trigger={
@@ -84,7 +74,7 @@ export default () => {
                 <ProFormTextArea
                     name="content"
                     label="随笔内容"
-                    placeholder="写下今日心情吧！"
+                    placeholder="用文字写下今日心情吧！"
                     wrapperCol={{span: 12}}
                     fieldProps={{autoSize: {minRows: 3, maxRows: 10}}}
                 />
