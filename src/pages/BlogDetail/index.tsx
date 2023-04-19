@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './index.less';
-import {Affix, Col, Divider, Row} from "antd";
+import {Affix, Col, Divider, message, Row} from "antd";
 import MyMarkdown from "@/components/MyMarkdown";
 import {CSDN, JUEJIN, MOCK1, POST_SLOGAN} from "@/constants";
 import Toc from "@/pages/BlogDetail/component/Toc";
@@ -8,6 +8,7 @@ import BottomInfo from "@/pages/BlogDetail/component/BottomInfo";
 import TopIm from "@/pages/BlogDetail/component/TopIm";
 import {history} from "umi";
 import {getPostDetail} from "@/services/api";
+import DescriptionCard from "@/pages/BlogDetail/component/DescriptionCard";
 
 
 
@@ -20,11 +21,15 @@ const Back: React.FC = () => {
 
 
     useEffect(() => {
-        getPostDetail(id).then(
-            (res)=>{
-              console.log(res.data)
+        const fetchData=async ()=>{
+            const res = await getPostDetail(id)
+            if(res.code===200){
                 setPost(res.data)
-            })
+            }else {
+                message.error('获取文章详情失败')
+            }
+        }
+        fetchData()
     },[])
 
     return (
@@ -35,6 +40,8 @@ const Back: React.FC = () => {
                     <div className={styles.left}>
                         {/*<MyMarkdown children={post?.content??''}/>*/}
                         {/*<MarkDown content={post?.content??''}/>*/}
+                        <DescriptionCard description={post?.description??''} cover={post?.coverUrl??''}/>
+                        <Divider/>
                         <MyMarkdown text={post?.content??''}/>
                         <Divider/>
                         <BottomInfo juejin={JUEJIN} csdn={CSDN} slogan={POST_SLOGAN}/>

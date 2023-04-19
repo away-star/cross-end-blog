@@ -1,19 +1,5 @@
 import {request} from '@umijs/max';
 
-export async function writeEssay(
-    body: API.Essay,
-    options?: { [key: string]: any },
-) {
-    return request('/api/service-content/essay', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        data: body,
-        ...(options || {}),
-    });
-}
-
 
 export async function getEssays(
     params: {
@@ -33,6 +19,7 @@ export async function getPost(
     params: {
         step: number;
         authorId:string
+        lastUpdateDate?:string
     },
     options?: { [key: string]: any },
 ) {
@@ -43,16 +30,6 @@ export async function getPost(
     });
 }
 
-export async function getTest(
-) {
-    const Authorization = localStorage.getItem('Authorization');
-    return request(`/api/service-content/information/777`, {
-       // 从本地存储中获取 token
-
-        method: 'GET',
-
-    });
-}
 
 export async function getPostDetail(
     id: string,
@@ -84,6 +61,8 @@ export interface initialData{
     personage:{
         email:string
         loginInformationId:string
-        proverbs:string[]
+        proverbs:UserInfoAPI.proverb[]
+        slideVenue:string[]
+        labels:UserInfoAPI.label[]
     }|undefined;
 }

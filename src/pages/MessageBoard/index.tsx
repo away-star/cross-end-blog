@@ -4,6 +4,8 @@ import backgroundImg from '@/assets/backgroundImg.jpeg';
 import styles from './index.less';
 import Panel from "@/pages/MessageBoard/component/Panel";
 import ChatGroup from "@/pages/MessageBoard/component/ChatGroup";
+import Head from "@/components/Head";
+import {useModel} from "@@/exports";
 
 const {Header, Content} = Layout;
 
@@ -76,33 +78,25 @@ const currentUser = {
 
 
 function MessageBoard() {
-    return (
-        <Layout style={{background: 'transparent'}}>
-            <div style={{
-                height: '30vh', position: 'relative', backgroundImage: `url(${backgroundImg})`, backgroundSize: 'cover',marginBottom:'20px'
-            }}>
 
-                <h1 style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    position: 'absolute',
-                    width: '100%',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <div>留言板</div>
-                </h1>
-            </div>
+    const {getRandSlide} = useModel('initialModel', (model) => ({
+        getRandSlide: model.getRandSlide
+    }));
+
+
+    return (
+
+    <>
+            <Head backUrl={getRandSlide()} subTitle={'岁月静好，留下一份温柔的留言吧~'} title={'留言区'}/>
             <Content style={{ width: '80%', margin: '0 auto', background: 'transparent' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ width: '50%' }}><Panel  owner={"star"}/></div>
-                    <div style={{ width: '50%' }}><ChatGroup currentUser={currentUser} messages={messages} onSendMessage={(text)=>{console.log(text)}}/></div>
+                    <div style={{ width: '50%' }}>
+                        {/*<ChatGroup messages={messages} onSendMessage={(text)=>{console.log(text)}}/>*/}
+                    </div>
                 </div>
             </Content>
-        </Layout>
+    </>
     );
 }
 

@@ -6,6 +6,7 @@ import Back from "@/components/btn/Back";
 import {history} from "umi";
 import {useModel} from "umi";
 import Release from "@/pages/Write/component/Release";
+import ParticleBackground from "@/components/ParticleBackground";
 
 
 
@@ -21,6 +22,7 @@ const Write: React.FC = () => {
 
     return (
         <>
+            <ParticleBackground/>
             <Affix offsetTop={10}>
                 <div className={styles.back}><Back onClick={history.back} text={'back'}/>
                 </div>

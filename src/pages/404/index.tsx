@@ -20,7 +20,7 @@ function NotFound() {
         </div>
             <Row justify="center" style={{marginTop:80}}>
             <BackHome text={'Back Home'} onClick={()=>{
-                history.push('/blog/home')}
+                history.push('/')}
             } />
             </Row>
         </>

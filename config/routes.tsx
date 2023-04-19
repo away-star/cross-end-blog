@@ -19,13 +19,16 @@ export default [
     {
         path: '/blog',
         component: '@/layouts/Main',
+        // wrappers:[
+        //     '@/wrappers/init/index.tsx.tsx',
+        // ],
         routes: [
             {
                 name: 'messageBoard',
                 path: '/blog/:id/messageBoard',
                 component: './MessageBoard',
                 // wrappers: [
-                //     '@/wrappers/auth/index.tsx',
+                //     '@/wrappers/auth/index.tsx.tsx',
                 // ],
             },
             {
@@ -40,8 +43,18 @@ export default [
             },
             {
                 //todo  此处一定要写全路径
+                path: '/blog/square',
+                component: './Square',
+            },
+            {
+                //todo  此处一定要写全路径
                 path: '/blog/:id/aboutMe',
                 component: './AboutMe',
+            },
+            {
+                //todo  此处一定要写全路径
+                path: '/blog/:id/setting',
+                component: './Setting',
             },
             {
                 //todo  此处一定要写全路径
@@ -62,5 +75,10 @@ export default [
         name: 'write',
         path: '/write',
         component: './Write',
+    },
+    {
+        name: '404',
+        path: '/*',
+        component: './404',
     },
 ]

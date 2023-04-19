@@ -1,17 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import styles from './index.less';
 import {Affix, Col, Divider, List, Row, Timeline} from "antd";
-import Head from "@/pages/Essay/component/Head";
+import Head from "@/components/Head";
 import Author from "@/components/Author";
 import MyTimeLine from "@/pages/Essay/component/MyTimeLine";
 import {getEssays} from "@/services/api";
 import {history} from "@@/core/history";
 import EssayMel from "@/pages/Essay/component/EssayMel";
+import {useModel} from "@@/exports";
 
-// 脚手架示例组件
+
 const Essay: React.FC = () => {
     const [essay,setEssay] = useState<API.Essay[]>([])
     const [initLoading, setInitLoading] = useState<boolean>(true);
+    const {initialData,getRandSlide} = useModel('initialModel', (model) => ({
+        initialData: model.initialData,
+        getRandSlide: model.getRandSlide
+    }));
+    const {userInfo, personage} = initialData;
 
     const pathParts = history.location.pathname.trim().split('/');
     const idUrl = pathParts[pathParts.length - 2];
@@ -38,7 +44,7 @@ const Essay: React.FC = () => {
 
     return (
         <>
-            <Head title={"艺术源自生活"} subTitle={"将代码写成诗，将生活过成梦"}/>
+            <Head title={"从生命的深处寻找答案"} subTitle={"生命是如此奇妙而复杂的存在，它的短暂与宝贵令我们不得不反思生命给予我们的意义。每一个人都有属于自己的故事。"} backUrl={getRandSlide()}/>
 
             <Row justify={"center"} style={{marginTop:20}}>
 
@@ -57,7 +63,8 @@ const Essay: React.FC = () => {
                 </Col>
                 <Col span={7} className={styles.right}>
                     <Affix offsetTop={60}>
-                        <Author/>
+                        <Author avatar={userInfo?.avatar} nickname={userInfo?.nickname}
+                                subtitle={userInfo?.subname} textBody={userInfo?.idiograph}/>
                     </Affix>
                 </Col>
             </Row>

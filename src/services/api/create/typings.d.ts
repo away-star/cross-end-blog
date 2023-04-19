@@ -7,6 +7,7 @@ declare namespace CreatAPI {
         open: boolean;
         coverUrl: string;
         description: string;
+        updateTime?: string;
     }
 
     interface essayData {
@@ -21,6 +22,4 @@ declare namespace CreatAPI {
         open: boolean;
         mood: string;
     }
-
-
 }

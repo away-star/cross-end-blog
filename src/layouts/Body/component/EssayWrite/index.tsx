@@ -9,7 +9,7 @@ import React, {useState} from 'react';
 import {ProFormSwitch} from "@ant-design/pro-form";
 import GoTo from "@/components/btn/GoTo";
 import MyUpload from "@/components/MyUpload";
-import {writeEssay} from "@/services/api";
+import {writeEssay} from "@/services/api/create";
 
 
 const formItemLayout = {
@@ -40,7 +40,7 @@ export default () => {
                         message.error('请填写完整');
                         return false;
                     }
-                    const essay: API.Essay = {
+                    const essay: CreatAPI.essayData = {
                         content: values.content, mood: values.mood, open: values.open, urls: images
                     }
                     const response = await writeEssay(essay);
@@ -56,7 +56,7 @@ export default () => {
                 }}
                 onOpenChange={setModalVisit}
                 trigger={
-                    <GoTo text={'记录随笔'} onclick={() => setModalVisit(true)}/>
+                    <span>Record an essay</span>
                 }
             >
                 <ProFormSelect
@@ -80,7 +80,7 @@ export default () => {
                 />
                 <ProForm.Item label="图片" name="file" wrapperCol={{span: 13}}>
                     {/*<MyUpload  onUploadSuccess={()=>{console.log('666')}}/>*/}
-                    <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'}/>
+                    <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'} maxCount={9}/>
                 </ProForm.Item>
                 <ProFormSwitch label={'isPublic'} name={'open'} initialValue={true}/>
             </ModalForm>

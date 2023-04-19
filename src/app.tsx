@@ -7,14 +7,6 @@ export async function getInitialState(): Promise<{ name: string }> {
     return {name: 'cross-end blog'};
 }
 
-/*export const layout = () => {
-  return {
-    logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
-    MyMenu: {
-      locale: false,
-    },
-  };
-};*/
 
 //设置拦截器
 export const request: RequestConfig = {

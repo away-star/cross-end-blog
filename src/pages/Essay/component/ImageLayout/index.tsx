@@ -45,7 +45,7 @@ const ImageLayout: React.FC<ImageLayoutProps> = ({images}) => {
         <Row>
             {images.map((image, index) => (
                 <Col key={index} span={layout[index]} style={{ margin: "4px 0" }}>
-                    <Image src={image} style={{borderRadius:4,marginRight:1}} width={'100%'} />
+                    <Image src={image} style={{borderRadius:4,marginRight:1,padding:1}} width={'100%'} />
                 </Col>
             ))}
         </Row>

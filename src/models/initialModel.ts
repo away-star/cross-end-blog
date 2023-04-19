@@ -7,6 +7,16 @@ export default ()=>{
             personage:undefined,
         }
     );
+    const [userInfoModalOpen,setUserInfoModalOpen] = useState<boolean>(false);
+    const [blogSettingModalOpen,setBlogSettingModalOpen] = useState<boolean>(false);
 
-    return {initialData, setInitialData};
+    const getRandSlide = () :string=>{
+        const slide = initialData.personage?.slideVenue;
+        if(slide){
+            return slide[Math.floor(Math.random()*slide.length)]
+        }
+        return ' '
+    }
+
+    return {initialData, setInitialData,userInfoModalOpen,setUserInfoModalOpen,blogSettingModalOpen,setBlogSettingModalOpen,getRandSlide}
 }

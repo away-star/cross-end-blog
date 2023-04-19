@@ -63,6 +63,16 @@ const Nav: React.FC = () => {
             icon: <ReconciliationOutlined/>,
         },
         {
+            label: '广场',
+            key: `/blog/square`,
+            icon: <ReconciliationOutlined/>,
+        },
+        {
+            label: '配置',
+            key: `/blog/${personage?.loginInformationId}/setting`,
+            icon: <ReconciliationOutlined/>,
+        },
+        {
             label: '关于',
             key: `/blog/${personage?.loginInformationId}/aboutMe`,
             icon: <InfoOutlined spin={true}/>,

@@ -19,12 +19,10 @@ const Author: React.FC<IProps> = (props) => {
         <>
             <div className={styles.card}>
                 <div className={styles.info}>
-                    <div className={styles.avatar}></div>
-                    <div className={styles.title}>小星</div>
-                    <div className={styles.subtitle}>专注于前端开发的后端工程师</div>
-                    <p className={styles.textBody}>So far all life is written with failure, but this does not prevent me
-                        from
-                        moving forward</p>
+                    <div className={styles.avatar} style={{  backgroundImage: `url(${avatar})`}}></div>
+                    <div className={styles.title}>{nickname}</div>
+                    <div className={styles.subtitle}>{subtitle}</div>
+                    <p className={styles.textBody}>{textBody}</p>
                 </div>
                 <ul className={styles.social}>
                     <li className={styles.item}>
@@ -34,7 +32,10 @@ const Author: React.FC<IProps> = (props) => {
                             </path>
                         </svg>
                     </li>
-                    <li className={styles.item}>
+                    <li className={styles.item} onClick={() => {
+                        window.open(social?.githubLink)
+                    }
+                    }>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-house-door"
                              viewBox="0 0 16 16">
