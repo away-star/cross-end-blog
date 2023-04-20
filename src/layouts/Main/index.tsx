@@ -7,8 +7,11 @@ import styles from './index.less'
 import {getInitialArgs, initialData} from "@/services/api";
 import {useModel} from "@umijs/max";
 import {history} from "umi";
-import {message} from "antd";
+import {message, notification} from "antd";
 import ParticleBackground from "@/components/ParticleBackground";
+import {SmileOutlined} from "@ant-design/icons";
+
+
 
 
 const Main = () => {
@@ -21,12 +24,24 @@ const Main = () => {
 
     const [loading, setLoading] = useState(true);
 
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotification = () => {
+        api.open({
+            message: 'cross-end blog 温馨提示',
+            description:
+                '您正在访问他人博客，已禁用您的修改权限，祝您有良好的访问体验',
+            icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+        });
+    };
+
     useEffect(
         () => {
             let loginInformationId = localStorage.getItem('loginInformationId')
             console.log(loginInformationId)
             if (lastPart !== loginInformationId) {
                 loginInformationId = lastPart ? lastPart : null
+                openNotification()
             }
             console.log(lastPart)
             const initial = async () => {
@@ -37,7 +52,7 @@ const Main = () => {
                     history.replace('/checkIn')
                     return
                 }
-                localStorage.setItem('loginInformationId', res?.data?.loginInformation?.id)
+                //localStorage.setItem('loginInformationId', res?.data?.loginInformation?.id)
                 const userInfo: UserInfoAPI.userInfoData = {
                     csdnAddr: res.data.userInfoDto.csdnAddr,
                     githubAddr: res.data.userInfoDto.githubAddr,
@@ -67,12 +82,13 @@ const Main = () => {
                 setLoading(false);
             }
             initial();
-
         }, []
     )
 
 
+
     return (<>
+            {contextHolder}
             <ParticleBackground/>
             {loading ? ( // 如果数据还没加载完，就显示 loading 状态
                 <div>Loading...</div>

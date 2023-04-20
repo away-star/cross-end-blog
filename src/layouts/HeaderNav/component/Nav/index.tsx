@@ -2,15 +2,13 @@ import {Menu, MenuProps} from 'antd';
 import React, {useEffect, useState} from 'react';
 import {
     GithubOutlined,
-    InfoOutlined,
+    InfoOutlined, LogoutOutlined,
     ReconciliationOutlined,
     SettingOutlined
 } from "@ant-design/icons";
 import {history} from "@@/core/history";
 import styles from './index.less'
 import {useModel} from "@@/exports";
-
-
 
 
 const Nav: React.FC = () => {
@@ -24,7 +22,7 @@ const Nav: React.FC = () => {
         if (history.location.pathname !== current) {
             setCurrent(history.location.pathname);
         }
-    },[])
+    }, [])
 
     const items: MenuProps['items'] = [
         {
@@ -71,12 +69,13 @@ const Nav: React.FC = () => {
             label: '配置',
             key: `/blog/${personage?.loginInformationId}/setting`,
             icon: <ReconciliationOutlined/>,
+            disabled: localStorage.getItem('authorization') === null || localStorage.getItem('authorization') === undefined || localStorage.getItem('authorization') === '',
         },
         {
             label: '关于',
             key: `/blog/${personage?.loginInformationId}/aboutMe`,
             icon: <InfoOutlined spin={true}/>,
-            disabled: true,
+            disabled: localStorage.getItem('authorization') === null || localStorage.getItem('authorization') === undefined || localStorage.getItem('authorization') === '',
         },
         {
             label: (
@@ -87,14 +86,25 @@ const Nav: React.FC = () => {
             icon: <GithubOutlined/>,
             key: 'Github',
         },
+        {
+            label: '退出登录',
+            key: `logout`,
+            icon: <LogoutOutlined/>,
+            // disabled: true,
+        },
     ];
 
 
     const onClick: MenuProps['onClick'] = (e) => {
+        if (e.key === 'logout') {
+            localStorage.removeItem('Authorization');
+            localStorage.removeItem('loginInformationId');
+            history.replace('/checkin');
+            return;
+        }
         if (e.key === 'Github') {
             return;
         }
-
         setCurrent(e.key)
         if (e.key !== location.pathname) {
             history.push(e.key);

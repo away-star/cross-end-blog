@@ -38,9 +38,9 @@
     "@ctrl/tinycolor" "^3.4.0"
 
 "@ant-design/cssinjs@^1.5.6", "@ant-design/cssinjs@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.npmmirror.com/@ant-design/cssinjs/-/cssinjs-1.9.0.tgz#d6b7c1f0ddeea9dbc741382ae3826281bef06861"
-  integrity sha512-rOHIVPfYDJL4ZMh4GXMlO4kQbE7tu5uXITTeuCdu0uyNIlKtYcVE67FMttYiLTBqlZHkILqaT4qxe2eE2Dxbyg==
+  version "1.9.1"
+  resolved "https://registry.npmmirror.com/@ant-design/cssinjs/-/cssinjs-1.9.1.tgz#cc2e602afab14c795af20fd22b3f9d5ccf304d8a"
+  integrity sha512-CZt1vCMs/sY7RoacYuIkZwQmb8Bhp99ReNNE9Y8lnUzik8fmCdKAQA7ecvVOFwmNFdcBHga7ye/XIRrsbkiqWw==
   dependencies:
     "@babel/runtime" "^7.11.1"
     "@emotion/hash" "^0.8.0"
@@ -1350,6 +1350,24 @@
   resolved "https://registry.npmmirror.com/@bloomberg/record-tuple-polyfill/-/record-tuple-polyfill-0.0.4.tgz#9ef3df44e472ceb9a0a2010d858a526f2021fefa"
   integrity sha512-h0OYmPR3A5Dfbetra/GzxBAzQk8sH7LhRkRUTdagX6nrtlUgJGYCTv4bBK33jsTQw9HDd8PE2x1Ma+iRKEDUsw==
 
+"@chatscope/chat-ui-kit-react@^1.10.1":
+  version "1.10.1"
+  resolved "https://registry.npmmirror.com/@chatscope/chat-ui-kit-react/-/chat-ui-kit-react-1.10.1.tgz#cdf7ebef607bc527205eb8614ce4b8ac9f585b1e"
+  integrity sha512-pJIxvM9zR2oPk601P/S3Du1lZZSQcv76+8/IUhhWo88oy1iqiw2yk71T3nzE0sr8kRfZ8FoSSxOjVx9j7amjow==
+  dependencies:
+    "@chatscope/chat-ui-kit-styles" "^1.2.0"
+    "@fortawesome/fontawesome-free" "^5.12.1"
+    "@fortawesome/fontawesome-svg-core" "^1.2.26"
+    "@fortawesome/free-solid-svg-icons" "^5.12.0"
+    "@fortawesome/react-fontawesome" "^0.1.8"
+    classnames "^2.2.6"
+    prop-types "^15.7.2"
+
+"@chatscope/chat-ui-kit-styles@^1.2.0":
+  version "1.4.0"
+  resolved "https://registry.npmmirror.com/@chatscope/chat-ui-kit-styles/-/chat-ui-kit-styles-1.4.0.tgz#17ded0439d306f7cd2a81f40a2ef197a6ce6bb7b"
+  integrity sha512-016mBJD3DESw7Nh+lkKcPd22xG92ghA0VpIXIbjQtmXhC7Ve6wRazTy8z1Ahut+Tbv179+JxrftuMngsj/yV8Q==
+
 "@chenshuai2144/sketch-color@^1.0.7", "@chenshuai2144/sketch-color@^1.0.8":
   version "1.0.9"
   resolved "https://registry.npmmirror.com/@chenshuai2144/sketch-color/-/sketch-color-1.0.9.tgz#41144e2d9656bff2143516d4e8e62e5003bd466a"
@@ -1788,6 +1806,42 @@
   version "2.3.0"
   resolved "https://registry.npmmirror.com/@formatjs/intl-utils/-/intl-utils-2.3.0.tgz#2dc8c57044de0340eb53a7ba602e59abf80dc799"
   integrity sha512-KWk80UPIzPmUg+P0rKh6TqspRw0G6eux1PuJr+zz47ftMaZ9QDwbGzHZbtzWkl5hgayM/qrKRutllRC7D/vVXQ==
+
+"@fortawesome/fontawesome-common-types@^0.2.36":
+  version "0.2.36"
+  resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.36.tgz#b44e52db3b6b20523e0c57ef8c42d315532cb903"
+  integrity sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==
+
+"@fortawesome/fontawesome-common-types@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.3.0.tgz#949995a05c0d8801be7e0a594f775f1dbaa0d893"
+  integrity sha512-CA3MAZBTxVsF6SkfkHXDerkhcQs0QPofy43eFdbWJJkZiq3SfiaH1msOkac59rQaqto5EqWnASboY1dBuKen5w==
+
+"@fortawesome/fontawesome-free@^5.12.1":
+  version "5.15.4"
+  resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
+  integrity sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==
+
+"@fortawesome/fontawesome-svg-core@^1.2.26":
+  version "1.3.0"
+  resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.3.0.tgz#343fac91fa87daa630d26420bfedfba560f85885"
+  integrity sha512-UIL6crBWhjTNQcONt96ExjUnKt1D68foe3xjEensLDclqQ6YagwCRYVQdrp/hW0ALRp/5Fv/VKw+MqTUWYYvPg==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.3.0"
+
+"@fortawesome/free-solid-svg-icons@^5.12.0":
+  version "5.15.4"
+  resolved "https://registry.npmmirror.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.4.tgz#2a68f3fc3ddda12e52645654142b9e4e8fbb6cc5"
+  integrity sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.36"
+
+"@fortawesome/react-fontawesome@^0.1.8":
+  version "0.1.19"
+  resolved "https://registry.npmmirror.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.19.tgz#2b36917578596f31934e71f92b7cf9c425fd06e4"
+  integrity sha512-Hyb+lB8T18cvLNX0S3llz7PcSOAJMLwiVKBuuzwM/nI5uoBw+gQjnf9il0fR1C3DKOI5Kc79pkJ4/xB0Uw9aFQ==
+  dependencies:
+    prop-types "^15.8.1"
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -2344,9 +2398,9 @@
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*":
-  version "18.15.11"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
-  integrity sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==
+  version "18.15.12"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-18.15.12.tgz#833756634e78c829e1254db006468dadbb0c696b"
+  integrity sha512-Wha1UwsB3CYdqUm2PPzh/1gujGCNtWVUYF0mB00fJFoR4gTyWTDPjSm+zBF787Ahw8vSGgBja90MkgFwvB86Dg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -2421,11 +2475,6 @@
   version "7.3.13"
   resolved "https://registry.npmmirror.com/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
   integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
-
-"@types/showdown@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.npmmirror.com/@types/showdown/-/showdown-2.0.0.tgz#3e800eca8573848cac4e5555f4377ba3a0e7b1f2"
-  integrity sha512-70xBJoLv+oXjB5PhtA8vo7erjLDp9/qqI63SRHm4REKrwuPOLs8HhXwlZJBJaB4kC18cCZ1UUZ6Fb/PLFW4TCA==
 
 "@types/unist@*", "@types/unist@^2.0.0":
   version "2.0.6"
@@ -3103,9 +3152,9 @@ antd-img-crop@^4.11.1:
     tslib "^2.5.0"
 
 antd@^4.20.6:
-  version "4.24.8"
-  resolved "https://registry.npmmirror.com/antd/-/antd-4.24.8.tgz#22f34de6857556868780dfa5fe7b374b0b71b517"
-  integrity sha512-wrNy2Hi27uM3948okG3n2GwzQKBFUn1Qn5mn2I/ALcR28rC6cTjHYOuA248Zl9ECzz3jo4TY2R0SIa+5GZ/zGA==
+  version "4.24.9"
+  resolved "https://registry.npmmirror.com/antd/-/antd-4.24.9.tgz#2f1d24c327d16c722116dfa9406cdf649907c87e"
+  integrity sha512-VPgjzGk9o8UZESlaIGLI8Vei7Dudlrd7bopWm+Adw7uevRejtBMAatnQUNo8hACjuGYIW7AYLU6wYe1dorBX0Q==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.7.0"
@@ -3117,7 +3166,7 @@ antd@^4.20.6:
     lodash "^4.17.21"
     moment "^2.29.2"
     rc-cascader "~3.7.0"
-    rc-checkbox "~2.3.0"
+    rc-checkbox "~3.0.0"
     rc-collapse "~3.4.2"
     rc-dialog "~9.0.2"
     rc-drawer "~6.1.0"
@@ -3136,7 +3185,7 @@ antd@^4.20.6:
     rc-rate "~2.9.0"
     rc-resize-observer "^1.2.0"
     rc-segmented "~2.1.0"
-    rc-select "~14.1.13"
+    rc-select "~14.1.17"
     rc-slider "~10.0.0"
     rc-steps "~5.0.0-alpha.2"
     rc-switch "~3.2.0"
@@ -8185,9 +8234,9 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0, postcss-value-parser@^
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
 postcss@^8.4.13, postcss@^8.4.21, postcss@^8.4.7:
-  version "8.4.22"
-  resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.22.tgz#c29e6776b60ab3af602d4b513d5bd2ff9aa85dc1"
-  integrity sha512-XseknLAfRHzVWjCEtdviapiBtfLdgyzExD50Rg2ePaucEesyh8Wv4VPdW0nbyDa1ydbrAxV19jvMT4+LFmcNUA==
+  version "8.4.23"
+  resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.23.tgz#df0aee9ac7c5e53e1075c24a3613496f9e6552ab"
+  integrity sha512-bQ3qMcpF6A/YjR55xtoTr0jGOlnPOKAIMdOWiv0EIT6HVPEaJiJB4NLljSbiHoC2RX7DN5Uvjtpbg1NPdwv1oA==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
@@ -8396,9 +8445,9 @@ rc-align@^4.0.0:
     resize-observer-polyfill "^1.5.1"
 
 rc-cascader@~3.10.0:
-  version "3.10.2"
-  resolved "https://registry.npmmirror.com/rc-cascader/-/rc-cascader-3.10.2.tgz#9e75e6b7bdd6e531d1f986cda2b68755e21e5b9e"
-  integrity sha512-llKIxAAJZW10BkvhqdNsOSy2AOubj0xGEJFcdo/FP09DrhVI764skhCeBH9WfIhv4X40t9/goDwTsXE8Gul9zA==
+  version "3.10.3"
+  resolved "https://registry.npmmirror.com/rc-cascader/-/rc-cascader-3.10.3.tgz#5ebfef3930ead8f39b217db9415c88487d664e03"
+  integrity sha512-RBK1u59a2m/RKY8F+UvW9pUXdPv7bCxh2s2DAb81QjXX7TbwSX92Y0tICYo/Bo8fRsAh2g+7RXVf488/98ijkA==
   dependencies:
     "@babel/runtime" "^7.12.5"
     array-tree-filter "^2.1.0"
@@ -8418,14 +8467,6 @@ rc-cascader@~3.7.0:
     rc-select "~14.1.0"
     rc-tree "~5.7.0"
     rc-util "^5.6.1"
-
-rc-checkbox@~2.3.0:
-  version "2.3.2"
-  resolved "https://registry.npmmirror.com/rc-checkbox/-/rc-checkbox-2.3.2.tgz#f91b3678c7edb2baa8121c9483c664fa6f0aefc1"
-  integrity sha512-afVi1FYiGv1U0JlpNH/UaEXdh6WUJjcWokj/nUN2TgG80bfG+MDdbfHKlLcNNba94mbjy2/SXJ1HDgrOkXGAjg==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.1"
 
 rc-checkbox@~3.0.0:
   version "3.0.0"
@@ -8742,7 +8783,7 @@ rc-segmented@~2.1.0, rc-segmented@~2.1.2:
     rc-motion "^2.4.4"
     rc-util "^5.17.0"
 
-rc-select@~14.1.0, rc-select@~14.1.13:
+rc-select@~14.1.0, rc-select@~14.1.17:
   version "14.1.17"
   resolved "https://registry.npmmirror.com/rc-select/-/rc-select-14.1.17.tgz#e623eabeaa0dd117d5a63354e6ddaaa118abc5ee"
   integrity sha512-6qQhMqtoUkkboRqXKKFRR5Nu1mrnw2mC1uxIBIczg7aiJ94qCZBg4Ww8OLT9f4xdyCgbFSGh6r3yB9EBsjoHGA==

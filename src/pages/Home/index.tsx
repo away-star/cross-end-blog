@@ -2,14 +2,12 @@ import {Affix, Col, Image, List, message, Row} from "antd";
 import React, {useEffect, useRef, useState} from "react";
 import Author from "@/components/Author";
 import styles from './index.less'
-import homeImg from '@/assets/home1.png'
 import PostCard from "@/components/PostCard";
 import {getPost} from "@/services/api";
 import {history} from "@@/core/history";
 import {useModel} from "@@/exports";
 import Loading from "@/loading";
-import {debounce} from "lodash-es";
-import EssayMel from "@/pages/Essay/component/EssayMel";
+
 
 const HomePage: React.FC = () => {
     const pathParts = history.location.pathname.trim().split('/');
@@ -77,6 +75,8 @@ const HomePage: React.FC = () => {
     // }, 1000);
 
     useEffect(() => {
+
+
         console.log('useEffect')
         fetchData();
        // window.addEventListener("scroll", onScrollEvent)
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
             ) : (
                 // 页面渲染代码
                 <div>
-                    <div className={styles.homeTop}>
+                    <div className={styles.homeTop} >
                         <Image preview={false} width={'100%'} height={'100vh'}
                                src={getRandSlide()}/>
                         <div className={styles.proverbs}>
@@ -99,7 +99,7 @@ const HomePage: React.FC = () => {
                             ))
                             }
                         </div>
-                        <div className={styles.welcome}><p>欢迎来到{userInfo?.nickname}的博客</p></div>
+                        <div className={styles.welcome}><p >欢迎来到{userInfo?.nickname}的博客</p></div>
                     </div>
 
                     <Row justify={"center"} className={styles.homeBody}>
