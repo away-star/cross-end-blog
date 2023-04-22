@@ -1,0 +1,24 @@
+@import "@/global.less";
+
+.shell {
+  margin: 10px;
+  column-count: 4;
+  column-gap: 20px;
+  .card{
+    margin-bottom: 20px;
+    break-inside: avoid;
+    animation: slideInUp 1s;
+    transition: 0.5s ease-in-out;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .shell {
+    column-count: 3;
+  }
+}
+
+
+
+
+

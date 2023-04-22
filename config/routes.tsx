@@ -20,7 +20,7 @@ export default [
         path: '/blog',
         component: '@/layouts/Main',
         // wrappers:[
-        //     '@/wrappers/init/index.tsx.tsx',
+        //     '@/wrappers/init/index.ts.tsx.tsx',
         // ],
         routes: [
             {
@@ -28,7 +28,7 @@ export default [
                 path: '/blog/:id/messageBoard',
                 component: './MessageBoard',
                 // wrappers: [
-                //     '@/wrappers/auth/index.tsx.tsx',
+                //     '@/wrappers/auth/index.ts.tsx.tsx',
                 // ],
             },
             {

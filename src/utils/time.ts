@@ -15,3 +15,33 @@ export const formatTime = (time: string): { date: string, time: string, day: str
 
     return { date: formattedDate, time: formattedTime, day };
 };
+
+
+export const getTimeAgo = (time: string): string => {
+    const now = new Date();
+    const timestamp = Date.parse(time);
+    const elapsedMilliseconds = now.getTime() - timestamp;
+
+    if (elapsedMilliseconds < 60000) {
+        const seconds = Math.round(elapsedMilliseconds / 1000);
+        return `${seconds}秒前`;
+    }
+
+    if (elapsedMilliseconds < 3600000) {
+        const minutes = Math.round(elapsedMilliseconds / 60000);
+        return `${minutes}分钟前`;
+    }
+
+    if (elapsedMilliseconds < 86400000) {
+        const hours = Math.round(elapsedMilliseconds / 3600000);
+        return `${hours}小时前`;
+    }
+
+    const days = Math.round(elapsedMilliseconds / 86400000);
+    if (days < 31) {
+        return `${days}天前`;
+    }
+
+    const months = Math.round(days / 30);
+    return `${months}月前`;
+}

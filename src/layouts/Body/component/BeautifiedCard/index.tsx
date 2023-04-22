@@ -3,15 +3,29 @@ import classNames from "classnames";
 import styles from './index.less';
 import {history} from "umi";
 import EssayWrite from "@/layouts/Body/component/EssayWrite";
+import {useModel} from "@@/exports";
+import {message} from "antd";
 
 export default () => {
+    const {
+        isOwner
+    } = useModel('initialModel', (model) => ({
+        isOwner: model.isOwner,
+    }));
+
+
     return (
         <>
             <div className={classNames(styles.card)}>
                 <div className={classNames(styles.heading)}>Join the cross-end blog <span>Writing</span></div>
                 <div className={classNames(styles.content)}>
-                    <div className={classNames(styles.item, styles["item--create"])} onClick={()=>{
-                        history.push('/write')}
+                    <div className={classNames(styles.item, styles["item--create"])} onClick={() => {
+                        if (!isOwner) {
+                            message.error('You are not the owner of this blog, you cannot create a blog')
+                            return
+                        }
+                        history.push('/write')
+                    }
                     }>
                         <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path

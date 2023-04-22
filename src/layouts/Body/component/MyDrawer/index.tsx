@@ -1,34 +1,25 @@
-import {PlusOutlined} from '@ant-design/icons';
 import {
     DrawerForm,
-    ModalForm,
-    ProForm,
-    ProFormDateRangePicker,
-    ProFormSelect,
-    ProFormText,
 } from '@ant-design/pro-components';
-import {Affix, Button, Card, Col, Divider, message, Space} from 'antd';
+import {Affix, Button, Card, Col, Divider} from 'antd';
 import React, {useState} from 'react';
 import MySide from "@/components/btn/MySide";
 import styles from './index.less';
-import SelectCard from "@/layouts/Body/component/SelectCard";
-import ThreeD from "@/components/btn/ThreeD";
-import GoTo from "@/components/btn/GoTo";
-import Phamtom from "@/components/btn/Phamtom";
 import {history} from "umi";
-import EssayWrite from "@/layouts/Body/component/EssayWrite";
 import {useModel} from "@@/exports";
-import {ProFormGroup, ProFormList} from "@ant-design/pro-form/lib";
 import BeautifiedCard from "@/layouts/Body/component/BeautifiedCard";
 
 export default () => {
+    const pathParts = history.location.pathname.trim().split('/');
+    const idUrl = pathParts[pathParts.length - 2];
+
     const [drawerVisit, setDrawerVisit] = useState(false);
     const {
         initialData,
         setInitialData,
         userInfoModalOpen,
         setUserInfoModalOpen,
-        blogSettingModalOpen,setBlogSettingModalOpen
+        blogSettingModalOpen, setBlogSettingModalOpen
     } = useModel('initialModel', (model) => ({
         initialData: model.initialData,
         setInitialData: model.setInitialData,
@@ -62,12 +53,16 @@ export default () => {
                 </Card>
                 <Divider plain={false}/>
                 <Card title="配置中心:" bordered={false} style={{width: 500}}>
-                    <Button onClick={()=>{
+                    {/*<Button onClick={() => {*/}
+                    {/*    history.push(`/blog/${idUrl}/setting`)*/}
+                    {/*    setDrawerVisit(false)*/}
+                    {/*    setBlogSettingModalOpen(true)*/}
+                    {/*}*/}
+                    {/*}>移步配置标签进行博客配置</Button>*/}
+                    <Button onClick={() => {
                         setUserInfoModalOpen(true)
-                    }}>修改主题配置</Button>
-                    <Button onClick={()=>{
-                        setBlogSettingModalOpen(true)}
-                    }>修改个人信息</Button>
+                    }}>相关功能敬请期待</Button>
+
                 </Card>
 
 

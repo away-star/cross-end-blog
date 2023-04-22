@@ -8,6 +8,7 @@ export default ()=>{
         }
     );
     const [userInfoModalOpen,setUserInfoModalOpen] = useState<boolean>(false);
+
     const [blogSettingModalOpen,setBlogSettingModalOpen] = useState<boolean>(false);
 
     const getRandSlide = () :string=>{
@@ -18,5 +19,14 @@ export default ()=>{
         return ' '
     }
 
-    return {initialData, setInitialData,userInfoModalOpen,setUserInfoModalOpen,blogSettingModalOpen,setBlogSettingModalOpen,getRandSlide}
+    const getLoginInformationId = () :string=>{
+        return initialData.personage?.loginInformationId || ''
+    }
+
+    const isOwner = () :boolean=>{
+        return initialData.personage?.loginInformationId === localStorage.getItem('loginInformationId')
+    }
+
+
+    return {isOwner,initialData, setInitialData,userInfoModalOpen,getLoginInformationId,setUserInfoModalOpen,blogSettingModalOpen,setBlogSettingModalOpen,getRandSlide}
 }

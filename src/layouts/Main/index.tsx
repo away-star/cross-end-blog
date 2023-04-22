@@ -7,11 +7,11 @@ import styles from './index.less'
 import {getInitialArgs, initialData} from "@/services/api";
 import {useModel} from "@umijs/max";
 import {history} from "umi";
-import {message, notification} from "antd";
+import {Button, message, notification, Space} from "antd";
 import ParticleBackground from "@/components/ParticleBackground";
-import {SmileOutlined} from "@ant-design/icons";
-
-
+import {ExperimentOutlined, SmileOutlined} from "@ant-design/icons";
+import ProField from "@ant-design/pro-field";
+import {ProFieldFCMode} from "@ant-design/pro-provider";
 
 
 const Main = () => {
@@ -22,18 +22,68 @@ const Main = () => {
         setInitialData: model.setInitialData,
     }));
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
+    const [state, setState] = useState<ProFieldFCMode>('edit');
+    const [plain, setPlain] = useState<boolean>(false);
+    const [visible, setVisible] = useState<boolean>(true);
+
+
+    const btn = (
+        <Space>
+            <Button type="link" size="small" onClick={() => api.destroy('topRight')}>
+                Destroy All
+            </Button>
+            <Button type="primary" size="small" onClick={() => {
+                history.push('/checkIn')
+            }
+            }>
+                登录/注册自己的博客以获得完整体验
+            </Button>
+        </Space>
+    );
+
 
     const openNotification = () => {
         api.open({
             message: 'cross-end blog 温馨提示',
             description:
                 '您正在访问他人博客，已禁用您的修改权限，祝您有良好的访问体验',
-            icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+            icon: <SmileOutlined style={{color: '#108ee9'}}/>,
+            btn,
+            key: 'topRight',
         });
     };
+
+    const openDebugNotification = () => {
+        const key = 'leftBottom';
+        api.open({
+            message: '欢迎您参加此次测试',
+            description:
+                <div>
+                    <p>测试版本不代表最终品质（会努力进阶的）</p>
+                    <span>对此次测试的体验评分(每个id记最后一次)</span>
+                    {visible?
+                    <ProField text={3.5} valueType="rate" mode={state} plain={plain} onChange={(value) => {
+                        console.log(value)
+                        message.success('感谢您的参与')
+                        //api.destroy(key)
+                       setVisible(false)
+                        setState("read")
+                    }}/>:<span>感谢您的参与</span>
+                    }
+                    <a href={'https://github.com/xingxing2064989403/starBlog'} target={'_blank'} rel="noreferrer" style={{marginLeft:10}}>
+                    点击我前往提交issue
+                </a>
+                </div>,
+            icon: <ExperimentOutlined style={{color: '#108ee9'}}/>,
+            placement: 'bottomLeft',
+            key,
+            duration: 9999,
+        });
+    };
+
 
     useEffect(
         () => {
@@ -45,6 +95,7 @@ const Main = () => {
             }
             console.log(lastPart)
             const initial = async () => {
+                setLoading(true)
                 const res = await getInitialArgs({loginInformationId: loginInformationId});
                 console.log(res)
                 if (res.code !== 200) {
@@ -81,10 +132,21 @@ const Main = () => {
                 setInitialData(initialData);
                 setLoading(false);
             }
-            initial();
+            if (isNaN(Number(lastPart)) || Number(lastPart) === undefined) {
+                console.log('lastPart===null||lastPart===undefined')
+                return
+            } else {
+                initial();
+                openDebugNotification()
+            }
+
+            //销毁
+            return () => {
+                api.destroy('leftBottom')
+            }
+
         }, []
     )
-
 
 
     return (<>

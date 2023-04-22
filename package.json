@@ -23,6 +23,7 @@
     "highlight.js": "^11.7.0",
     "lodash-es": "^4.17.21",
     "markdown-navbar": "^1.4.3",
+    "react-masonry-css": "^1.0.16",
     "react-particles": "^2.9.3",
     "react-scroll-trigger": "^0.6.14",
     "react-syntax-highlighter": "^15.5.0",

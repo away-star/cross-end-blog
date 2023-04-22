@@ -14,6 +14,9 @@ body {
   margin: 0;
   padding: 0;
   font-size: 20px;
+  //font-size: 24px;
+  //font-size: 20px;
+  //font-family: cloud;
   // background-color: #f4f5f5;
   //background: linear-gradient(135deg, #4fb7c5 0%, #e6d893 25%, #e6a7b2 50%, #68768e 75%, #bad596 100%);
   //background-attachment: fixed;
@@ -21,7 +24,8 @@ body {
 }
 
 * {
-  font-family: "Comic Sans", cursive;
+  font-family:'Comic Sans MS','Open Sans',"Comic Sans", cursive;
+  //font-weight: 600;
   //加全局动画
   //animation: slideInUp 1s ease-out both;
 }
@@ -49,6 +53,12 @@ body {
     transform: translateY(100%);
     opacity: 0;
     scale: 0.2;
+  }
+
+  30%{
+    transform: translateY(-10%);
+    opacity: 0.1;
+    scale: 0.7;
   }
   100% {
     transform: translateY(0);

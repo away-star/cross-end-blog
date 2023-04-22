@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './index.less';
-import {LikeOutlined, ScanOutlined} from "@ant-design/icons";
+import {CommentOutlined, LikeOutlined, ScanOutlined} from "@ant-design/icons";
 import Back from "@/components/btn/Back";
 import {Affix} from "antd";
 import {history} from "umi";
+import backgroundImg from "@/assets/backgroundImg.jpeg";
+import {useModel} from "@@/exports";
 
 interface IProps {
     like: number;
@@ -13,23 +15,31 @@ interface IProps {
 
 // 脚手架示例组件
 const TopIm: React.FC<IProps> = (props) => {
+    const {getLoginInformationId} = useModel('initialModel', (model) => ({
+        getLoginInformationId: model.getLoginInformationId
+    }));
+
+
     const {like, title, view} = props;
     return (
-        <div className={styles.topOut}>
+        <div className={styles.topOut} style={{backgroundImage: `url(${backgroundImg})`}}>
             <div className={styles.back}>
-                <Affix offsetTop={20}>
-                <Back text={'返回'} onClick={()=>{
-                    console.log('返回')
-                    history.back()
-                }
-                }/>
+                <Affix offsetTop={60}>
+                    <Back text={'返回'} onClick={() => {
+                        history.push(`/blog/${getLoginInformationId()}/home`)
+                    }
+                    }/>
                 </Affix>
             </div>
-            <div className={styles.topIn}>
-                <p>{title}</p>
-                <span><LikeOutlined style={{marginRight: 0}}/>{like}</span>
-                <span><ScanOutlined style={{marginRight: 0}}/>{view}</span>
-            </div>
+
+            <h3>
+                {title}
+            </h3>
+            <p>
+                <span><LikeOutlined style={{marginRight: 1}}/>{like}</span>
+                <span><ScanOutlined style={{marginRight: 1}}/>{view}</span>
+                <span><CommentOutlined style={{marginRight: 1}}/>{view}</span>
+            </p>
         </div>
     );
 };

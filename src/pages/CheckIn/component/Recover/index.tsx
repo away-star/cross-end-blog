@@ -47,7 +47,7 @@ export default () => {
     }
 
     return (
-        <Modal title="找回密码" open={isCoverModalOpen} footer={null} width={800}>
+        <Modal title="找回密码" open={isCoverModalOpen} footer={null} width={800} onCancel={()=>setIsCoverModalOpen(false)}>
             <StepsForm<{
                 name: string;
             }>

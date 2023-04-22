@@ -28,3 +28,15 @@ export async function writeEssay(
         ...(options || {}),
     });
 }
+
+export async function delEssay(
+    params: {
+        id:string,
+    },
+    options?: { [key: string]: any },
+) {
+    return request(`/api/service-content/essay/${params.id}`, {
+        method: 'DELETE',
+        ...(options || {}),
+    });
+}

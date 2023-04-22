@@ -2,10 +2,13 @@ import styles from './index.less'
 import BackHome from "@/components/btn/BackHome";
 import {Row} from "antd";
 import {history} from "umi";
+import ParticleBackground from "@/components/ParticleBackground";
+import React from "react";
 
 function NotFound() {
     return (
         <>
+            <ParticleBackground/>
         <div className={styles['not-found']}>
             <div className={styles.vortex}>
                 <div className={styles['outer-ring']}></div>

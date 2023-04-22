@@ -10,6 +10,7 @@ import {ProFormSwitch} from "@ant-design/pro-form";
 import GoTo from "@/components/btn/GoTo";
 import MyUpload from "@/components/MyUpload";
 import {writeEssay} from "@/services/api/create";
+import {useModel} from "@@/exports";
 
 
 const formItemLayout = {
@@ -21,12 +22,20 @@ const formItemLayout = {
 export default () => {
     const [modalVisit, setModalVisit] = useState(false);
 
+    const {
+        isOwner
+    } = useModel('initialModel', (model) => ({
+        isOwner: model.isOwner,
+    }));
+
+
     const [images, setImages] = useState<string[]>([]);
 
     const onUploadSuccess = (fileUrls: string[]) => {
         setImages(fileUrls);
         console.log(fileUrls)
     }
+
 
     return (
         <>
@@ -36,6 +45,10 @@ export default () => {
                 title="记录随笔"
                 open={modalVisit}
                 onFinish={async (values) => {
+                    if (!isOwner()) {
+                        message.error('You are not the owner of this blog, you cannot write an essay')
+                        return true;
+                    }
                     if (values.mood === undefined || values.content === undefined) {
                         message.error('请填写完整');
                         return false;

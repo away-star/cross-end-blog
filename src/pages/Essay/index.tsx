@@ -34,6 +34,7 @@ const Essay: React.FC = () => {
                     content: item.content,
                     open: item.open,
                     mood: item.mood,
+                    id: item.id,
                 }));
                 // 将前面转换好的数组赋值给组件状态
                 setEssay(essays);

@@ -12,29 +12,30 @@ import Loading from "@/loading";
 
 export default () => {
 
+    const pathParts = history.location.pathname.trim().split('/');
+    const idUrl = pathParts[pathParts.length - 2];
+
     const {
         initialData,getRandSlide
     } = useModel('initialModel', (model) => ({
         initialData: model.initialData,
-        setInitialData: model.setInitialData,
-        userInfoModalOpen: model.userInfoModalOpen,
-        setUserInfoModalOpen: model.setUserInfoModalOpen,
         getRandSlide: model.getRandSlide
     }));
 
     useEffect(() => {
-        if (!initialData) {
+        console.log('')
+
+        if (localStorage.getItem('Authorization') === undefined||localStorage.getItem('Authorization') === null) {
             history.push('/checkIn')
         }
-        if (localStorage.getItem('Authorization') === null) {
-            history.push('/checkIn')
+        if (!initialData.personage?.loginInformationId) {
+            history.push(`/`)
         }
-    },[initialData])
+    },[])
 
     if (!initialData) {
         return <Loading/>
     }
-
 
     return (
         <>

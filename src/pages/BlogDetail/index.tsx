@@ -9,47 +9,51 @@ import TopIm from "@/pages/BlogDetail/component/TopIm";
 import {history} from "umi";
 import {getPostDetail} from "@/services/api";
 import DescriptionCard from "@/pages/BlogDetail/component/DescriptionCard";
-
-
-
+import FloatingButtons from "@/pages/BlogDetail/component/FloatingButtons";
 
 
 const Back: React.FC = () => {
 
     const id = history.location.pathname.split("/")[3];
-    const [post,setPost] = useState<API.Post>()
+    const [post, setPost] = useState<API.Post>()
 
 
     useEffect(() => {
-        const fetchData=async ()=>{
+        const fetchData = async () => {
             const res = await getPostDetail(id)
-            if(res.code===200){
+            if (res.code === 200) {
                 setPost(res.data)
-            }else {
+            } else {
                 message.error('获取文章详情失败')
             }
         }
         fetchData()
-    },[])
+    }, [])
 
     return (
         <>
-            <TopIm like={1} title={post?.title??''} view={1}/>
-            <Row justify={"center"}>
+
+            <TopIm like={1} title={post?.title ?? ''} view={1}/>
+            <Row justify={"center"} style={{marginTop: 20}}>
+
+                <Col span={1} style={{marginRight: 10}}>
+                    <Affix offsetTop={60}>
+                        <FloatingButtons/></Affix>
+                </Col>
                 <Col span={12} style={{backgroundColor: "transparent"}}>
                     <div className={styles.left}>
                         {/*<MyMarkdown children={post?.content??''}/>*/}
                         {/*<MarkDown content={post?.content??''}/>*/}
-                        <DescriptionCard description={post?.description??''} cover={post?.coverUrl??''}/>
+                        <DescriptionCard description={post?.description ?? ''} cover={post?.coverUrl ?? ''}/>
                         <Divider/>
-                        <MyMarkdown text={post?.content??''}/>
+                        <MyMarkdown text={post?.content ?? ''}/>
                         <Divider/>
                         <BottomInfo juejin={JUEJIN} csdn={CSDN} slogan={POST_SLOGAN}/>
                     </div>
                 </Col>
                 <Col span={4} style={{marginLeft: 10}}>
                     <Affix offsetTop={60}>
-                        <Toc text={post?.content??" "}/>
+                        <Toc text={post?.content ?? " "}/>
                     </Affix>
                 </Col>
             </Row>

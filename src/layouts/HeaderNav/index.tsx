@@ -32,6 +32,7 @@ const HeaderNav: React.FC = () => {
             <Col xs={0} sm={0} md={8} lg={8} xl={8} className={styles.starBlog}>
                 <div className={styles.slog}>
                     <Image
+                        preview={false}
                         width={40}
                         style={{borderRadius: 50}}
                         src={AUTHOR_AVATAR}

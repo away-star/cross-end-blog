@@ -55,6 +55,36 @@ export async function getInitialArgs(
     });
 }
 
+export async function getAllUsers(
+    options?: { [key: string]: any },
+) {
+    return request(`/api/service-user/information/users`, {
+        method: 'GET',
+        ...(options || {}),
+    });
+}
+
+export async function getMessagePage(
+    params: {
+        loginInformationId: string;
+        step:number;
+        lastUpdateDate?:string
+    },
+    options?: { [key: string]: any },
+) {
+    return request(`/api/service-content/message/page`, {
+        method: 'GET',
+        params: {...params},
+        ...(options || {}),
+    });
+}
+
+
+
+
+
+
+
 
 export interface initialData{
     userInfo: UserInfoAPI.userInfoData|undefined;

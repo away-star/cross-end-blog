@@ -29,7 +29,7 @@ const ParticleBackground = () => {
                 background: {
                     //背景颜色
                     color: {
-                        value: "#b0c7d5",
+                        value: "#62a2c9",
                     },
                     //背景图片
                     image: "url('https://www.toptal.com/designers/subtlepatterns/patterns/stardust.png')",
@@ -40,7 +40,7 @@ const ParticleBackground = () => {
                     //背景图片尺寸
                     size: "cover",
                     //背景图片透明度
-                    opacity: 1
+                    opacity: 0.5
                 },
                 // 每秒帧数
                 fpsLimit: 120,
@@ -63,7 +63,7 @@ const ParticleBackground = () => {
                     modes: {
                         //推动模式
                         push: {
-                            quantity: 4,
+                            quantity: 10,
                         },
                         //击退模式
                         repulse: {
@@ -79,7 +79,7 @@ const ParticleBackground = () => {
                     },
                     links: {
                         //连接线颜色
-                        color: "#7c7676",
+                        color: "#5da4e7",
                         //连接距离
                         distance: 150,
                         //连接是否启用
@@ -105,7 +105,7 @@ const ParticleBackground = () => {
                         //是否随机移动
                         random: false,
                         //移动速度
-                        speed: 3,
+                        speed: 2,
                         //是否为直线移动
                         straight: false,
                     },
@@ -117,11 +117,11 @@ const ParticleBackground = () => {
                             //面积
                             area: 800,
                         },
-                        value: 80,
+                        value: 60,
                     },
                     //粒子透明度
                     opacity: {
-                        value: 0.5,
+                        value: 0.3,
                     },
                     //粒子形状
                     shape: {

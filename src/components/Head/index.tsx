@@ -23,7 +23,7 @@ const TopIm: React.FC<IProps> = (props) => {
         }}>
 
             <h1 style={{
-                color: 'white',
+                color: 'black',
                 textAlign: 'center',
                 position: 'absolute',
                 width: '100%',
@@ -36,7 +36,7 @@ const TopIm: React.FC<IProps> = (props) => {
                 {title}
             </h1>
             <h3 style={{
-                color: 'white',
+                color: 'black',
                 textAlign: 'center',
                 position: 'absolute',
                 width: '100%',

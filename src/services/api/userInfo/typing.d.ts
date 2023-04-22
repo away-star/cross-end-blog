@@ -3,19 +3,21 @@ declare namespace UserInfoAPI {
 
     interface userInfoData {
         nickname:string|undefined
-        birthday:string|undefined
+        birthday?:string|undefined
         avatar:string|undefined
-        gender:string|undefined
+        gender?:string|undefined
         address?:string|undefined
         userLever?:string|undefined
-        qq:string|undefined
+        qq?:string|undefined
         slideVenue:string[]|undefined
         welcomeText:string|undefined
         idiograph:string|undefined
-        githubAddr:string|undefined
-        juejinAddr:string|undefined
-        csdnAddr:string|undefined
-        subname:string|undefined
+        githubAddr?:string|undefined
+        juejinAddr?:string|undefined
+        csdnAddr?:string|undefined
+        subname?:string|undefined
+
+        loginInformationId?:string|undefined
     }
 
     interface blogSettingData {
@@ -35,6 +37,4 @@ declare namespace UserInfoAPI {
         createPeople?:string
         id?:string
     }
-
-
 }

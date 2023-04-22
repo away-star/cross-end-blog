@@ -50,7 +50,7 @@ const MyCoEssay: React.FC<IProps> = (props) => {
             </Col>
             <Col span={15}>
                 <div className={styles.content}>
-                    <EssayCard content={essay.content} date={essay.createTime??'time out'} mood={essay.mood} urls={essay.urls}/>
+                    <EssayCard content={essay.content} date={essay.createTime??'time out'} mood={essay.mood} urls={essay.urls} id={essay.id as string}/>
                 </div>
             </Col>
         </Row>

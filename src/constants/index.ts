@@ -3,6 +3,7 @@ export const CLIENT_ID = 'cross-end';
 export const CLIENT_SECRET = 'cross-end';
 export const GRANT_TYPE = 'password';
 export const TOKEN_PREFIX = 'Bearer ';
+export const DOMAIN_PREFIX = 'http://localhost:8888';
 
 
 
@@ -17,6 +18,9 @@ export const AUTHOR_AVATAR = 'https://staraway.love/blog/authorAvatar.jpg';
 export const JUEJIN = 'https://juejin.cn/user/207157472794621';
 export const CSDN = 'https://blog.csdn.net/qq_67602816';
 export const POST_SLOGAN = '如果觉得内容不错，欢迎分享给其他人哦';
+export const DEFAULT_IMAGE = '如果觉得内容不错，欢迎分享给其他人哦';
+export const DEFAULT_WelcomeText = '欢迎光临我的博客';
+export const DEFAULT_AVATAR = 'https://staraway.love/u%3D2169083367%2C64951360%26fm%3D253%26fmt%3Dauto%26app%3D138%26f%3DJPEG.webp';
 
 
 export const MOCK = "# 场景复现：\n" +
