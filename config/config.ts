@@ -41,7 +41,7 @@ export default defineConfig({
     },
 
     //取消自带的layouts配置
-    layout: false,
+   // layout: true,
     favicons: ['https://staraway.love/%E4%B8%BB%E9%A1%B5.svg'],
     //代理配置
     proxy: proxy["dev"],

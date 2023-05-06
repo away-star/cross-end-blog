@@ -17,14 +17,6 @@ type ButtonProps = {
     isActive?: boolean;
 };
 
-// 按钮组件
-const Button = ({icon, onClick, isActive}: ButtonProps) => {
-    return (
-        <button className={`${styles.button} ${isActive ? styles.active : ""}`} onClick={onClick}>
-            <i className={`iconfont ${icon}`}/>
-        </button>
-    );
-};
 
 // 悬浮按钮列组件
 const FloatingButtons = () => {

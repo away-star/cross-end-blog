@@ -5,6 +5,7 @@
   background: linear-gradient(135deg, #cbf1dd 0%, #e7fbfb 100%);
   min-height: 100vh;
   overflow: hidden;
+  animation: slideInUp 0.8s ease-out both;
 
   .forms-container {
     position: absolute;
@@ -323,4 +324,18 @@ form.sign-in-form {
 }
 
 
+@keyframes slideInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 
+  30%{
+    transform: translateY(-10%);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

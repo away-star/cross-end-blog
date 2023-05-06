@@ -8,7 +8,6 @@ const ParticleBackground = () => {
     //初始化粒子
     const particlesInit = useCallback(async (engine: Engine) => {
         console.log(engine);
-
         // 加载 tsparticles 实例，可以在此添加自定义形状或预设。
         // 此处加载 tsparticles 包，是最简单的方法准备好所有内容，从 v2 开始，您只需添加所需功能即可减小包大小
         await loadFull(engine);
@@ -117,7 +116,7 @@ const ParticleBackground = () => {
                             //面积
                             area: 800,
                         },
-                        value: 60,
+                        value: 40,
                     },
                     //粒子透明度
                     opacity: {
@@ -133,7 +132,7 @@ const ParticleBackground = () => {
                     },
                 },
                 //检测视网膜屏幕
-                detectRetina: true,
+                detectRetina: false,
             }}
         />
     );

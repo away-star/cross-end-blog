@@ -7,7 +7,7 @@ import squareBack from '@/assets/squareBack.png'
 import {getAllUsers} from "@/services/api";
 import defaultImg from "@/assets/defaultImg.png";
 import {DEFAULT_AVATAR, DEFAULT_WelcomeText, DOMAIN_PREFIX} from "@/constants";
-import {history} from "umi";
+
 
 const randCover = (value:string[]) => {
     return value[Math.floor(Math.random() * value.length)];
@@ -36,7 +36,7 @@ const Square: React.FC = () => {
                         <div className={styles.shell}>
                             {userInfos.map((userInfo, index) => {
                                 return (<div className={styles.card} key={index} onClick={()=>{
-                                    window.open(DOMAIN_PREFIX+`/blog/${userInfo.loginInformationId}/home`)
+                                    window.open(`/blog/${userInfo.loginInformationId}/home`)
                                     }
                                     }>
                                         <PersonCard avatar={userInfo.avatar??DEFAULT_AVATAR} cover={randCover(userInfo.slideVenue??[defaultImg])} idiograph={userInfo.idiograph??DEFAULT_WelcomeText} nickName={userInfo.nickname??'匿名'}/>

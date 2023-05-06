@@ -24,7 +24,9 @@ export default ()=>{
     }
 
     const isOwner = () :boolean=>{
-        return initialData.personage?.loginInformationId === localStorage.getItem('loginInformationId')
+        console.log(initialData.personage?.loginInformationId.toString(),localStorage.getItem('loginInformationId'))
+
+        return initialData.personage?.loginInformationId.toString() === localStorage.getItem('loginInformationId')
     }
 
 

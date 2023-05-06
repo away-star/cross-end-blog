@@ -1,3 +1,4 @@
+
 /**
  * 在生产环境 代理是无法生效的，所以这里没有生产环境的配置
  * -------------------------------
@@ -11,12 +12,22 @@ export default {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/api/': {
       // 要代理的地址
-      target: 'http://localhost:9000',
+      target: 'http://10.100.6.153:9000',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
       pathRewrite: { '/api': '' },
     },
+
+    //文件上传请求不走网关，减少网关转发压力
+    '/source/': {
+      // 要代理的地址
+      target: 'http://10.100.6.153:8088',
+      // 配置了这个可以从 http 代理到 https
+      // 依赖 origin 的功能可能需要这个，比如 cookie
+      changeOrigin: true,
+    },
+    
   },
   test: {
     '/api/': {

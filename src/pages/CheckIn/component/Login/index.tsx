@@ -51,7 +51,7 @@ const actionStyles: CSSProperties = {
 const goLogin = async (values: any) => {
     console.log(values)
     const username: CheckAPI.loginData = {
-        authType: values.password ? "password" : "captcha",
+        authType: values.password ? "password" : "email",
         captcha: values.captcha,
         email: values.email,
         password: values.password

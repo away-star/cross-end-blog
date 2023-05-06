@@ -5,6 +5,7 @@ import type {RcFile, UploadProps} from 'antd/es/upload';
 import type {UploadFile} from 'antd/es/upload/interface';
 import ImgCrop from "antd-img-crop";
 
+
 const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -108,7 +109,7 @@ const MyUpload: React.FC<IProps> = (props) => {
         <>
             <ImgCrop rotationSlider cropShape={type === 'picture-card' ? 'rect' : 'round'} aspect={aspect}>
                 <Upload
-                    action="http://localhost:8088/source/upload"
+                    action='/source/upload'
                     listType={type === 'picture-card' ? 'picture-card' : 'picture-circle'}
                     fileList={fileList}
                     onChange={handleChange}

@@ -43,10 +43,12 @@ const MyCoEssay: React.FC<IProps> = (props) => {
                     <Image src={getMood(essay.mood)} preview={false}/>
                 </div>
             </Col>
-            <Col lg={3} xl={2} xxl={2} className={styles.date}>
+            <Col lg={2} xl={2} xxl={2} className={styles.date}>
                 {/* eslint-disable-next-line react/jsx-no-undef */}
                 <DashboardTwoTone  style={{fontSize:30}}/>
-                <span>{formatTime(essay.createTime??'time out').date}</span>
+                {/*{essay.createTime??'time out'}*/}
+                <span>{formatTime(essay.createTime??'time out').year}</span>
+                <p>{formatTime(essay.createTime??'time out').month}{'-'}{formatTime(essay.createTime??'time out').dayOfMonth}</p>
             </Col>
             <Col span={15}>
                 <div className={styles.content}>

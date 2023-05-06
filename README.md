@@ -1,15 +1,20 @@
+
+# cross-end blog------large screen web
+
 ## Getting Started
 
-First,download dependency
+在运行此项目之前，你需要先安装node.js环境，推荐使用yarn包管理工具
+
+- First,download dependency
 
 ```bash
-yarn
+yarn or npm install
 ```
 
-Second, run the development server:
+- Second, run the development server:
 
 ```bash
-yarn start
+yarn start or npm run start
 ```
 
 ## 项目介绍
@@ -49,13 +54,13 @@ yarn start
 3. 多页面同时需要的组件放入components下的一级文件夹(例如: components/Author, components/banner以及components/common下
    实现复用)
 4. 页面组件下的组件放在以以页面为名称的文件夹下保证可扩展性
-    1. 使用命名空间导出,确保可读性
+   1. 使用命名空间导出,确保可读性,例如: pages/Article/components/ArticleContent
 5. 布局统一放在 /components/layout下以保证复用性
 6. 组件拆分及管理：针对已划分的各个不同模块，我们进一步的对每一个模块进行了拆分，并且将可复用的 UI 元素封装为组件
 
-### 项目代码介绍
+### 项目结构
 
-```angular2html
+```
 blog
 ├── README.md
 ├── .husky

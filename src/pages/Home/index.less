@@ -18,13 +18,16 @@
     transform: translateX(-100%);
     //animation: popup 1s ease-out forwards;
     animation: popLeft 1.3s ease-out forwards;
+
     p {
       &:nth-child(1) {
         font-size: 1.5rem;
       }
+
       &:nth-child(2) {
         font-size: 1rem;
       }
+
       &:nth-child(3) {
         font-size: 0.7rem;
       }
@@ -35,7 +38,7 @@
     position: absolute;
     margin: auto;
     //font-family: 阿氿的少女心;
-   // font-family: "Comic Sans MS", cursive;
+    // font-family: "Comic Sans MS", cursive;
     font-size: 2.5rem;
     filter: invert(100%);
     text-shadow: 0 0 2px black;
@@ -46,18 +49,18 @@
 }
 
 
-.author{
+.author {
   width: 80%;
 }
 
-.post{
+.post {
   width: 80%;
   margin-bottom: 20px;
   animation: slideInUp 1s ease-in-out both;
 }
 
 
-.homeBody{
+.homeBody {
   margin-top: 100px;
   //animation: slideInUp 1s ease-out both;
 }
@@ -69,9 +72,8 @@
 
 
 .slide {
-   object-fit: cover;
+  object-fit: cover;
 }
-
 
 
 @keyframes popup {
@@ -99,5 +101,27 @@
   100% {
     transform: translateX(0%) rotate(0deg);
     opacity: 1;
+  }
+}
+
+
+//媒体查询
+@media screen and (max-width: 1200px) {
+  .homeTop {
+    .proverbs {
+      width: 50%;
+      left: 5%;
+      p{
+        &:nth-child(1) {
+          font-size: 1.2rem;
+        }
+        &:nth-child(2) {
+          font-size: 0.8rem;
+        }
+        &:nth-child(3) {
+          font-size: 0.5rem;
+        }
+      }
+    }
   }
 }

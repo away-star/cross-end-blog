@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './index.less';
 import {Affix, Col, Divider, message, Row} from "antd";
 import MyMarkdown from "@/components/MyMarkdown";
-import {CSDN, JUEJIN, MOCK1, POST_SLOGAN} from "@/constants";
+import {CSDN, initialPost, JUEJIN, MOCK1, POST_SLOGAN} from "@/constants";
 import Toc from "@/pages/BlogDetail/component/Toc";
 import BottomInfo from "@/pages/BlogDetail/component/BottomInfo";
 import TopIm from "@/pages/BlogDetail/component/TopIm";
@@ -27,7 +27,11 @@ const Back: React.FC = () => {
                 message.error('获取文章详情失败')
             }
         }
-        fetchData()
+        if (id !== '-1') {
+            fetchData()
+        }else{
+            setPost(initialPost)
+        }
     }, [])
 
     return (
@@ -36,11 +40,12 @@ const Back: React.FC = () => {
             <TopIm like={1} title={post?.title ?? ''} view={1}/>
             <Row justify={"center"} style={{marginTop: 20}}>
 
-                <Col span={1} style={{marginRight: 10}}>
+                <Col xl={1} md={1}>
                     <Affix offsetTop={60}>
-                        <FloatingButtons/></Affix>
+                        <FloatingButtons/>
+                    </Affix>
                 </Col>
-                <Col span={12} style={{backgroundColor: "transparent"}}>
+                <Col xl={12} md={14} style={{backgroundColor: "transparent"}}>
                     <div className={styles.left}>
                         {/*<MyMarkdown children={post?.content??''}/>*/}
                         {/*<MarkDown content={post?.content??''}/>*/}
@@ -51,7 +56,7 @@ const Back: React.FC = () => {
                         <BottomInfo juejin={JUEJIN} csdn={CSDN} slogan={POST_SLOGAN}/>
                     </div>
                 </Col>
-                <Col span={4} style={{marginLeft: 10}}>
+                <Col xl={4} style={{marginLeft: 10}}>
                     <Affix offsetTop={60}>
                         <Toc text={post?.content ?? " "}/>
                     </Affix>

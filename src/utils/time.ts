@@ -1,21 +1,20 @@
-export const formatTime = (time: string): { date: string, time: string, day: string } => {
+export const formatTime = (time: string): { date: string, time: string, day: string, year: number, month: number, dayOfMonth: number } => {
     const date = new Date(time);
 
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const dateOfMonth = date.getDate().toString().padStart(2, '0');
+    const month = date.getMonth() + 1;
+    const dateOfMonth = date.getDate();
     const hour = date.getHours().toString().padStart(2, '0');
     const minute = date.getMinutes().toString().padStart(2, '0');
 
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const day = days[date.getDay()];
 
-    const formattedDate = `${year}-${month}-${dateOfMonth}`;
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${dateOfMonth.toString().padStart(2, '0')}`;
     const formattedTime = `${hour}:${minute}`;
 
-    return { date: formattedDate, time: formattedTime, day };
-};
-
+    return {date: formattedDate, time: formattedTime, day, year, month,'dayOfMonth': dateOfMonth}
+}
 
 export const getTimeAgo = (time: string): string => {
     const now = new Date();

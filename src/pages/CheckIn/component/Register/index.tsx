@@ -50,6 +50,7 @@ const actionStyles: CSSProperties = {
 //登录方法
 const goRegister = async (values: any) => {
     const registerData: CheckAPI.registerData = {
+        registerType: 'email',
         captcha: values.captcha,
         email: values.email,
         password: values.password
@@ -62,7 +63,7 @@ const goRegister = async (values: any) => {
         message.success('注册成功,欢迎加入cross-end blog大家庭');
         onLogin()
     } else {
-        message.error(res.message);
+        message.error(res.msg);
     }
 
 

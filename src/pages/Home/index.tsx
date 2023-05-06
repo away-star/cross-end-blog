@@ -1,5 +1,5 @@
-import {Affix, Carousel, Col, Image, List, message, Row} from "antd";
-import React, {useEffect, useRef, useState} from "react";
+import {Affix, Col, Image, List, message, Row} from "antd";
+import React, {useEffect, useState} from "react";
 import Author from "@/components/Author";
 import styles from './index.less'
 import PostCard from "@/components/PostCard";
@@ -7,7 +7,7 @@ import {getPost} from "@/services/api";
 import {history} from "@@/core/history";
 import {useModel} from "@@/exports";
 import Loading from "@/loading";
-import Waterfall from "@/components/Waterfall";
+import {initialPost} from "@/constants";
 
 
 const HomePage: React.FC = () => {
@@ -26,6 +26,7 @@ const HomePage: React.FC = () => {
     const [postLoading, setPostLoading] = useState(false);
 
     const [slide, setSlide] = useState<string>(getRandSlide());
+
 
     //随机首页展示图片
     const fetchData = async () => {
@@ -59,7 +60,7 @@ const HomePage: React.FC = () => {
     };
     useEffect(() => {
         console.log('useEffect')
-        fetchData();
+        fetchData()
         // setTimeout(() => {
         //     setSlide(getRandSlide())
         // }, 5000);
@@ -81,8 +82,6 @@ const HomePage: React.FC = () => {
             {loading ? (
                 <Loading/>
             ) : (
-
-
                 // 页面渲染代码
                 <div>
                     <div className={styles.homeTop}>
@@ -106,18 +105,22 @@ const HomePage: React.FC = () => {
                             {/*        <PostCard post={item}/>*/}
                             {/*    </div>*/}
                             {/*))}*/}
-
-                            <List
-                                loading={postLoading}
-                                //itemLayout="horizontal"
-                                dataSource={post}
-                                renderItem={(item, index) => (
-                                    <List.Item style={{float: index % 2 === 0 ? 'left' : 'right'}}
-                                               className={styles.post}>
-                                        <PostCard post={item}/>
-                                    </List.Item>
-                                )}
-                            />
+                            {post.length > 0 ?
+                                <List
+                                    loading={postLoading}
+                                    //itemLayout="horizontal"
+                                    dataSource={post}
+                                    renderItem={(item, index) => (
+                                        <List.Item style={{float: index % 2 === 0 ? 'left' : 'right'}}
+                                                   className={styles.post}>
+                                            <PostCard post={item}/>
+                                        </List.Item>
+                                    )}
+                                /> :
+                                <div style={{float: 'right', width: '80%'}}>
+                                    <PostCard post={initialPost}/>
+                                </div>
+                            }
                         </Col>
                         <Col xs={0} sm={0} md={5} lg={6} xl={6} offset={1}>
                             <Affix offsetTop={60}>

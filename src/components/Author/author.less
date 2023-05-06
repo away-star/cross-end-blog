@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: transform .2s ease, opacity .2s ease;
+    transition: transform .7s ease, opacity .7s ease;
     .avatar{
       --size: 100px;
       width: var(--size);
@@ -92,5 +92,33 @@
   }
 }
 
-
+//媒体查询
+@media (max-width: 1200px) {
+  .card {
+    padding: 1rem 0.75rem;
+    width: 100%;
+    .info{
+      .avatar{
+        --size: 80px;
+      }
+      .title{
+        font-size: 1.2em;
+      }
+      .subTitle{
+        font-size: 0.6em;
+      }
+      .textBody {
+        font-size: .6em;
+      }
+    }
+    .social{
+      .item{
+        svg{
+          height: 15px;
+          width: 15px;
+        }
+      }
+    }
+  }
+}
 

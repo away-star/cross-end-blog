@@ -8,6 +8,7 @@ export async function getInitialState(): Promise<{ name: string }> {
 }
 
 
+
 //设置拦截器
 export const request: RequestConfig = {
     timeout: 10000,

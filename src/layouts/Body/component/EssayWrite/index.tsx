@@ -7,7 +7,6 @@ import {
 import {message} from 'antd';
 import React, {useState} from 'react';
 import {ProFormSwitch} from "@ant-design/pro-form";
-import GoTo from "@/components/btn/GoTo";
 import MyUpload from "@/components/MyUpload";
 import {writeEssay} from "@/services/api/create";
 import {useModel} from "@@/exports";

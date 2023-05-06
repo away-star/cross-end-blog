@@ -35,7 +35,7 @@ const HeaderNav: React.FC = () => {
                         preview={false}
                         width={40}
                         style={{borderRadius: 50}}
-                        src={AUTHOR_AVATAR}
+                        src={initialData.userInfo?.avatar??AUTHOR_AVATAR}
                     />
                     <span> {initialData.userInfo?.nickname}的博客 </span>
                 </div>

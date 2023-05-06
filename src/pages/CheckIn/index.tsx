@@ -1,11 +1,15 @@
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './index.less'
 import loginSvg from '@/assets/login.svg'
 import registerSvg from '@/assets/register.svg'
 import Login from "@/pages/CheckIn/component/Login";
 import Register from "@/pages/CheckIn/component/Register";
 import Recover from "@/pages/CheckIn/component/Recover";
+import {Button, notification, Space} from "antd";
+import {history} from "@@/core/history";
+import {SmileOutlined} from "@ant-design/icons";
+import MyPop from "@/components/MyPop";
 
 
 export const onRegister=()=>{
@@ -19,13 +23,58 @@ export const onLogin=()=>{
 }
 
 const CSSLogin: React.FC = () => {
+    const [api, contextHolder] = notification.useNotification();
 
-    // useEffect(()=>{
-    //     window.location.reload()
-    // },[])
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(screen.availWidth< screen.availHeight);
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
+
+    const btn = (
+        <Space>
+            <Button type="primary" size="middle" onClick={() => {
+                history.push('/blog/20211120053/home')
+            }
+            }>
+                暂不登录先前往作者博客瞅瞅
+            </Button>
+        </Space>
+    );
+
+
+    const openNotification = () => {
+        api.open({
+            message: '先体验？',
+            icon: <SmileOutlined style={{color: '#108ee9'}}/>,
+            btn,
+            key: 'top',
+            placement: 'top',
+            duration: null,
+        });
+    };
+
+    useEffect(()=>{
+        openNotification()
+    },[])
 
     return (
+
         <div className="container">
+            <MyPop visible={isSmallScreen}/>
+            {contextHolder}
             <div className="forms-container">
                 <div className="signin-signup">
                     <form action="#" className="sign-in-form">

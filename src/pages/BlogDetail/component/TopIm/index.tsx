@@ -13,7 +13,8 @@ interface IProps {
     view: number;
 }
 
-// 脚手架示例组件
+
+
 const TopIm: React.FC<IProps> = (props) => {
     const {getLoginInformationId} = useModel('initialModel', (model) => ({
         getLoginInformationId: model.getLoginInformationId

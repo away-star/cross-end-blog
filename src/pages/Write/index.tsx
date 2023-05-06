@@ -7,6 +7,7 @@ import {history} from "umi";
 import {useModel} from "umi";
 import Release from "@/pages/Write/component/Release";
 import ParticleBackground from "@/components/ParticleBackground";
+import MDRt from "@/pages/Write/component/MDRt";
 
 
 
@@ -39,7 +40,8 @@ const Write: React.FC = () => {
                     </Col>
                 </Row>
             </div>
-            <MdEditor/>
+            {/*<MdEditor/>*/}
+            <MDRt/>
         </>
     );
 };

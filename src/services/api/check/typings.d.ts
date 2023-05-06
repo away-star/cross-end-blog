@@ -4,6 +4,7 @@ declare namespace CheckAPI {
         email: string;
         captcha: string;
         password: string;
+        registerType: 'email' | 'phone';
     }
 
     interface loginData {
@@ -11,7 +12,7 @@ declare namespace CheckAPI {
         email: string;
         captcha?: string;
         password?: string;
-        authType: 'captcha' | 'password';
+        authType: 'email' | 'password';
     }
 
     interface recoverData {

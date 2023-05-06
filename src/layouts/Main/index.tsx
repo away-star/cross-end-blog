@@ -12,14 +12,16 @@ import ParticleBackground from "@/components/ParticleBackground";
 import {ExperimentOutlined, SmileOutlined} from "@ant-design/icons";
 import ProField from "@ant-design/pro-field";
 import {ProFieldFCMode} from "@ant-design/pro-provider";
+import MyPop from "@/components/MyPop";
 
 
 const Main = () => {
     const pathParts = history.location.pathname.trim().split('/');
     const lastPart = pathParts[pathParts.length - 2];
 
-    const {setInitialData} = useModel('initialModel', (model) => ({
+    const {initialData,setInitialData} = useModel('initialModel', (model) => ({
         setInitialData: model.setInitialData,
+        initialData: model.initialData,
     }));
 
     const [loading, setLoading] = useState(false);
@@ -53,6 +55,7 @@ const Main = () => {
             icon: <SmileOutlined style={{color: '#108ee9'}}/>,
             btn,
             key: 'topRight',
+            duration: 10,
         });
     };
 
@@ -80,82 +83,106 @@ const Main = () => {
             icon: <ExperimentOutlined style={{color: '#108ee9'}}/>,
             placement: 'bottomLeft',
             key,
-            duration: 9999,
+            duration: null,
         });
     };
+
+    const fetchData = async () => {
+        let loginInformationId = localStorage.getItem('loginInformationId')
+        console.log(loginInformationId)
+        if (lastPart !== loginInformationId) {
+            loginInformationId = lastPart ? lastPart : null
+            openNotification()
+        }
+        console.log(lastPart)
+        setLoading(true)
+        const res = await getInitialArgs({loginInformationId: loginInformationId});
+        console.log(res)
+        if (res.code !== 200) {
+            message.error('查询不到此用户信息')
+            history.replace('/checkIn')
+            return
+        }
+        //localStorage.setItem('loginInformationId', res?.data?.loginInformation?.id)
+        const userInfo: UserInfoAPI.userInfoData = {
+            csdnAddr: res.data.userInfoDto.csdnAddr,
+            githubAddr: res.data.userInfoDto.githubAddr,
+            juejinAddr: res.data.userInfoDto.juejinAddr,
+            subname: res.data.userInfoDto.subname,
+            address: res.data.userInfoDto.address,
+            avatar: res.data.userInfoDto.avatar,
+            birthday: res.data.userInfoDto.birthday,
+            gender: res.data.userInfoDto.gender,
+            idiograph: res.data.userInfoDto.idiograph,
+            nickname: res.data.userInfoDto.nickname,
+            qq: res.data.userInfoDto.qq,
+            slideVenue: res.data.userInfoDto.slideVenue,
+            userLever: res.data.userInfoDto.userLever,
+            welcomeText: res.data.userInfoDto.welcomeText
+        }
+        const initialData: initialData = {
+            personage: {
+                email: res.data.loginInformation.email,
+                loginInformationId: res.data.loginInformation.id,
+                proverbs: res.data.proverbs,
+                slideVenue: res.data.userInfoDto.slideVenue,
+                labels: res.data.labels
+            }, userInfo: userInfo
+        }
+        setInitialData(initialData);
+        setLoading(false);
+        const id = localStorage.getItem('loginInformationId');
+        if(id === null || id === undefined||id !== lastPart) {
+            return
+        }
+        if (initialData.userInfo?.slideVenue === null || initialData.userInfo?.slideVenue === undefined || initialData.userInfo?.slideVenue.length === 0) {
+            message.error('请先配置博客')
+            history.push(`/blog/${loginInformationId}/setting`)
+        }
+    }
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(screen.availWidth< screen.availHeight);
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
 
     useEffect(
         () => {
-            let loginInformationId = localStorage.getItem('loginInformationId')
-            console.log(loginInformationId)
-            if (lastPart !== loginInformationId) {
-                loginInformationId = lastPart ? lastPart : null
-                openNotification()
-            }
-            console.log(lastPart)
-            const initial = async () => {
-                setLoading(true)
-                const res = await getInitialArgs({loginInformationId: loginInformationId});
-                console.log(res)
-                if (res.code !== 200) {
-                    message.error('查询不到此用户信息')
-                    history.replace('/checkIn')
-                    return
-                }
-                //localStorage.setItem('loginInformationId', res?.data?.loginInformation?.id)
-                const userInfo: UserInfoAPI.userInfoData = {
-                    csdnAddr: res.data.userInfoDto.csdnAddr,
-                    githubAddr: res.data.userInfoDto.githubAddr,
-                    juejinAddr: res.data.userInfoDto.juejinAddr,
-                    subname: res.data.userInfoDto.subname,
-                    address: res.data.userInfoDto.address,
-                    avatar: res.data.userInfoDto.avatar,
-                    birthday: res.data.userInfoDto.birthday,
-                    gender: res.data.userInfoDto.gender,
-                    idiograph: res.data.userInfoDto.idiograph,
-                    nickname: res.data.userInfoDto.nickname,
-                    qq: res.data.userInfoDto.qq,
-                    slideVenue: res.data.userInfoDto.slideVenue,
-                    userLever: res.data.userInfoDto.userLever,
-                    welcomeText: res.data.userInfoDto.welcomeText
-                }
-                const initialData: initialData = {
-                    personage: {
-                        email: res.data.loginInformation.email,
-                        loginInformationId: res.data.loginInformation.id,
-                        proverbs: res.data.proverbs,
-                        slideVenue: res.data.userInfoDto.slideVenue,
-                        labels: res.data.labels
-                    }, userInfo: userInfo
-                }
-                setInitialData(initialData);
-                setLoading(false);
-            }
             if (isNaN(Number(lastPart)) || Number(lastPart) === undefined) {
                 console.log('lastPart===null||lastPart===undefined')
                 return
             } else {
-                initial();
+                fetchData();
                 openDebugNotification()
             }
-
             //销毁
             return () => {
                 api.destroy('leftBottom')
             }
-
         }, []
     )
 
 
     return (<>
+            <MyPop  visible={isSmallScreen}/>
             {contextHolder}
             <ParticleBackground/>
             {loading ? ( // 如果数据还没加载完，就显示 loading 状态
                 <div>Loading...</div>
             ) : (
                 <div>
+
                     <HeaderNav/>
                     <Body/>
                     <Footer/>
