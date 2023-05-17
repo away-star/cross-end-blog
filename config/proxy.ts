@@ -13,7 +13,7 @@ export default {
     '/api/': {
       // 要代理的地址
 
-      target: ' https://e19d-113-55-110-218.ngrok-free.app',
+      target: 'https://e19d-113-55-110-218.ngrok-free.app',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
@@ -32,14 +32,14 @@ export default {
   },
   test: {
     '/api/': {
-      target: ' https://e19d-113-55-110-218.ngrok-free.app',
+      target: 'https://e19d-113-55-110-218.ngrok-free.app',
       changeOrigin: true,
      pathRewrite: { '/api': '' },
     },
   },
   pre: {
     '/api/': {
-      target: ' https://e19d-113-55-110-218.ngrok-free.app',
+      target: 'https://e19d-113-55-110-218.ngrok-free.app',
       changeOrigin: true,
       pathRewrite: { '/api': '' },
     },
