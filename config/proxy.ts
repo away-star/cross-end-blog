@@ -32,16 +32,16 @@ export default {
   },
   test: {
     '/api/': {
-      target: 'https://proapi.azurewebsites.net',
+      target: 'https://5t1v753196.yicp.fun',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+     pathRewrite: { '/api': '' },
     },
   },
   pre: {
     '/api/': {
-      target: 'your pre url',
+      target: 'https://5t1v753196.yicp.fun',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '/api': '' },
     },
   },
 };
