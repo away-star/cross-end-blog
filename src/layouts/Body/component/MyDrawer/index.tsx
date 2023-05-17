@@ -9,6 +9,7 @@ import {history} from "umi";
 import {useModel} from "@@/exports";
 import BeautifiedCard from "@/layouts/Body/component/BeautifiedCard";
 
+
 export default () => {
     const pathParts = history.location.pathname.trim().split('/');
     const idUrl = pathParts[pathParts.length - 2];
