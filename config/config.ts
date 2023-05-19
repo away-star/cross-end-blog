@@ -5,7 +5,7 @@ import routes from "./routes";
 export default defineConfig({
 
 
-    // webpack配置
+    //webpack配置
     chainWebpack(config){
         config.module
             .rule('otf')
@@ -39,7 +39,6 @@ export default defineConfig({
     theme: {
         "@primary-color": "#789ACFFF",
     },
-
     //取消自带的layouts配置
    // layout: true,
     favicons: ['https://staraway.love/%E4%B8%BB%E9%A1%B5.svg'],

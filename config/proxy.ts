@@ -14,7 +14,7 @@ export default {
             target: 'https://5t1v753196.yicp.fun',
             // 配置了这个可以从 http 代理到 https
             // 依赖 origin 的功能可能需要这个，比如 cookie
-            changeOrigin: true,
+            //changeOrigin: true,
             pathRewrite: {'/api': ''},
         },
 
@@ -37,7 +37,7 @@ export default {
     },
     pre: {
         '/api/': {
-            target: 'https://e19d-113-55-110-218.ngrok-free.app',
+            target: 'https://5t1v753196.yicp.fun',
             changeOrigin: true,
             pathRewrite: {'/api': ''},
         },
