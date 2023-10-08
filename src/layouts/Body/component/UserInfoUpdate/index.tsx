@@ -17,7 +17,7 @@ const formItemLayout = {
     wrapperCol: {span: 13},
 };
 
-export default () => {
+const UserInfoUpdate: React.FC = () => {
 
     const [images, setImages] = useState<string[]>([]);
     const [avatar, setAvatar] = useState<string>();
@@ -27,16 +27,29 @@ export default () => {
     }
 
     const {
-        initialData,
-        setInitialData,
+        globalLoading,
+        setGlobalLoading,
         userInfoModalOpen,
-        setUserInfoModalOpen
-    } = useModel('initialModel', (model) => ({
-        initialData: model.initialData,
-        setInitialData: model.setInitialData,
+        setUserInfoModalOpen,
+        blogSettingModalOpen,
+        setBlogSettingModalOpen
+    } = useModel('pageStatusModel', (model) => ({
+
+        globalLoading: model.globalLoading,
+        setGlobalLoading: model.setGlobalLoading,
         userInfoModalOpen: model.userInfoModalOpen,
         setUserInfoModalOpen: model.setUserInfoModalOpen,
+        blogSettingModalOpen: model.blogSettingModalOpen,
+        setBlogSettingModalOpen: model.setBlogSettingModalOpen
     }));
+
+    const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        fetchInitialUserData: model.fetchInitialUserData,
+
+    }));
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
 
     return (
@@ -62,7 +75,7 @@ export default () => {
                     label="昵称"
                     wrapperCol={{span: 13}}
                     placeholder="稍微短一点"
-                    initialValue={initialData.userInfo?.nickname}
+                    initialValue={userinfo?.nickname}
                     //rules={[{required: true, message: '请输入昵称'}]}
                 />
                 <ProFormText
@@ -70,7 +83,7 @@ export default () => {
                     label="副昵称"
                     wrapperCol={{span: 13}}
                     placeholder="稍微长一点"
-                    initialValue={initialData.userInfo?.nickname}
+                    initialValue={userinfo?.nickname}
                     //rules={[{required: true, message: '请输入昵称'}]}
                 />
                 <ProForm.Item label="头像" name="avatar" wrapperCol={{span: 13}}>
@@ -121,14 +134,14 @@ export default () => {
                 />
                 <ProForm.Item label="首页展示图" name="slideVenue" wrapperCol={{span: 13}}>
                     <MyUpload onUploadSuccess={onAvatarUploadSuccess} type={'picture-card'} maxCount={5}
-                              defaultPictureUrl={initialData.userInfo?.slideVenue}/>
+                              defaultPictureUrl={userinfo?.slideShow?.split(';')}/>
                 </ProForm.Item>
                 <ProFormText
                     name="csdnAddr"
                     label="CSDN地址"
                     wrapperCol={{span: 13}}
                     placeholder="此项非必需项哦"
-                    initialValue={initialData.userInfo?.csdnAddr}
+                    initialValue={userinfo?.csdnAddr}
                     //rules={[{required: true, message: '请输入昵称'}]}
                 />
                 <ProFormText
@@ -136,7 +149,7 @@ export default () => {
                     label="github地址"
                     wrapperCol={{span: 13}}
                     placeholder="此项非必需项哦"
-                    initialValue={initialData.userInfo?.githubAddr}
+                    initialValue={userinfo?.githubAddr}
                     //rules={[{required: true, message: '请输入昵称'}]}
                 />
                 <ProFormText
@@ -144,7 +157,7 @@ export default () => {
                     label="掘金地址"
                     wrapperCol={{span: 13}}
                     placeholder="此项非必需项哦"
-                    initialValue={initialData.userInfo?.juejinAddr}
+                    initialValue={userinfo?.juejinAddr}
                     //rules={[{required: true, message: '请输入昵称'}]}
                 />
 
@@ -165,8 +178,8 @@ export default () => {
                     }}
                 >
                     <ProFormGroup key="group">
-                        <ProFormText name="value" label="值" />
-                        <ProFormText name="label" label="显示名称" />
+                        <ProFormText name="value" label="值"/>
+                        <ProFormText name="label" label="显示名称"/>
                     </ProFormGroup>
                 </ProFormList>
 
@@ -199,3 +212,4 @@ export default () => {
         </>
     );
 };
+export default UserInfoUpdate;

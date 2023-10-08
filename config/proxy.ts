@@ -11,35 +11,35 @@ export default {
         // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
         '/api/': {
             // 要代理的地址
-            target: 'https://5t1v753196.yicp.fun',
+            target: 'http://localhost:9100',
             // 配置了这个可以从 http 代理到 https
             // 依赖 origin 的功能可能需要这个，比如 cookie
-            //changeOrigin: true,
+            changeOrigin: true,
             pathRewrite: {'/api': ''},
         },
 
         //文件上传请求不走网关，减少网关转发压力
         '/source/': {
             // 要代理的地址
-            target: 'http://localhost:9200',
+            target: 'http://localhost:9190',
             // 配置了这个可以从 http 代理到 https
             // 依赖 origin 的功能可能需要这个，比如 cookie
+            pathRewrite: {'/source': ''},
             changeOrigin: true,
         },
-
     },
-    test: {
-        '/api/': {
-            target: 'https://5t1v753196.yicp.fun',
-            changeOrigin: true,
-            pathRewrite: {'/api': ''},
-        },
-    },
-    pre: {
-        '/api/': {
-            target: 'https://5t1v753196.yicp.fun',
-            changeOrigin: true,
-            pathRewrite: {'/api': ''},
-        },
-    },
+    // test: {
+    //     '/api/': {
+    //         target: 'https://5t1v753196.yicp.fun',
+    //         changeOrigin: true,
+    //         pathRewrite: {'/api': ''},
+    //     },
+    // },
+    // pre: {
+    //     '/api/': {
+    //         target: 'https://e19d-113-55-110-218.ngrok-free.app',
+    //         changeOrigin: true,
+    //         pathRewrite: {'/api': ''},
+    //     },
+    // },
 };

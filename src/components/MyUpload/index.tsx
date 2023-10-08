@@ -38,7 +38,7 @@ interface IProps {
 }
 
 const MyUpload: React.FC<IProps> = (props) => {
-    const {type, maxCount = 1, accept, defaultPictureUrl, onUploadSuccess, aspect = 1} = props;
+    const {type='picture-card', maxCount = 1, accept='image', defaultPictureUrl, onUploadSuccess, aspect = 1} = props;
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');

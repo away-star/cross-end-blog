@@ -4,8 +4,8 @@ import ImageLayout from "@/pages/Essay/component/ImageLayout";
 import {formatTime} from "@/utils/time";
 import {Dropdown, MenuProps, message, Modal} from "antd";
 import {EditTwoTone, ExclamationOutlined, MailOutlined} from "@ant-design/icons";
-import {delEssay} from "@/services/api/create";
 import {history, useModel} from "@@/exports";
+import {deleteEssay} from "../../../../../services/content/api/essayController";
 
 interface Iprop {
     content: string;
@@ -56,7 +56,7 @@ const EssayCard: React.FC<Iprop> = (props) => {
     const handleOk = async () => {
         setModalText('正在删除...');
         setConfirmLoading(true);
-        const res = await delEssay({id: id});
+        const res = await deleteEssay({essayId: 0});
         if (res.code === 200) {
             message.success('删除成功');
             window.location.reload();

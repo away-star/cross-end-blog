@@ -15,20 +15,31 @@ export default () => {
     const idUrl = pathParts[pathParts.length - 2];
 
     const [drawerVisit, setDrawerVisit] = useState(false);
+
+    const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        fetchInitialUserData: model.fetchInitialUserData,
+    }));
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
+
     const {
-        initialData,
-        setInitialData,
+        globalLoading,
+        setGlobalLoading,
         userInfoModalOpen,
         setUserInfoModalOpen,
-        blogSettingModalOpen, setBlogSettingModalOpen
-    } = useModel('initialModel', (model) => ({
-        initialData: model.initialData,
-        setInitialData: model.setInitialData,
+        blogSettingModalOpen,
+        setBlogSettingModalOpen
+    } = useModel('pageStatusModel', (model) => ({
+
+        globalLoading: model.globalLoading,
+        setGlobalLoading: model.setGlobalLoading,
         userInfoModalOpen: model.userInfoModalOpen,
         setUserInfoModalOpen: model.setUserInfoModalOpen,
         blogSettingModalOpen: model.blogSettingModalOpen,
-        setBlogSettingModalOpen: model.setBlogSettingModalOpen,
+        setBlogSettingModalOpen: model.setBlogSettingModalOpen
     }));
+
     return (
         <>
             <Affix offsetTop={40}>

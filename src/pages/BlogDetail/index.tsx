@@ -2,42 +2,43 @@ import React, {useEffect, useState} from 'react';
 import styles from './index.less';
 import {Affix, Col, Divider, message, Row} from "antd";
 import MyMarkdown from "@/components/MyMarkdown";
-import {CSDN, initialPost, JUEJIN, MOCK1, POST_SLOGAN} from "@/constants";
+
 import Toc from "@/pages/BlogDetail/component/Toc";
 import BottomInfo from "@/pages/BlogDetail/component/BottomInfo";
 import TopIm from "@/pages/BlogDetail/component/TopIm";
 import {history} from "umi";
-import {getPostDetail} from "@/services/api";
 import DescriptionCard from "@/pages/BlogDetail/component/DescriptionCard";
 import FloatingButtons from "@/pages/BlogDetail/component/FloatingButtons";
+import {postDetail} from "../../../services/content/api/postController";
+import {DEFAULT_CSDN_ADDR, DEFAULT_JUEJIN_ADDR, DEFAULT_SLOGAN} from "@/constants";
 
 
 const Back: React.FC = () => {
 
     const id = history.location.pathname.split("/")[3];
-    const [post, setPost] = useState<API.Post>()
+    const [postinfo, setPostinfo] = useState<ContentAPI.PostRequest>()
 
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await getPostDetail(id)
+            const res = await postDetail({
+                postId: parseInt(id)
+            })
             if (res.code === 200) {
-                setPost(res.data)
+                setPostinfo(res.data?.post)
             } else {
                 message.error('获取文章详情失败')
             }
         }
-        if (id !== '-1') {
-            fetchData()
-        }else{
-            setPost(initialPost)
-        }
+        fetchData().then(() => {
+            message.success("获取文章详情成功")
+        })
     }, [])
 
     return (
         <>
 
-            <TopIm like={1} title={post?.title ?? ''} view={1}/>
+            <TopIm like={1} title={postinfo?.title ?? ''} view={1}/>
             <Row justify={"center"} style={{marginTop: 20}}>
 
                 <Col xl={1} md={1}>
@@ -49,16 +50,16 @@ const Back: React.FC = () => {
                     <div className={styles.left}>
                         {/*<MyMarkdown children={post?.content??''}/>*/}
                         {/*<MarkDown content={post?.content??''}/>*/}
-                        <DescriptionCard description={post?.description ?? ''} cover={post?.coverUrl ?? ''}/>
+                        <DescriptionCard description={postinfo?.description ?? ''} cover={postinfo?.coverUrl ?? ''}/>
                         <Divider/>
-                        <MyMarkdown text={post?.content ?? ''}/>
+                        <MyMarkdown text={postinfo?.content ?? ''}/>
                         <Divider/>
-                        <BottomInfo juejin={JUEJIN} csdn={CSDN} slogan={POST_SLOGAN}/>
+                        <BottomInfo juejin={DEFAULT_JUEJIN_ADDR} csdn={DEFAULT_CSDN_ADDR} slogan={DEFAULT_SLOGAN}/>
                     </div>
                 </Col>
                 <Col xl={4} style={{marginLeft: 10}}>
                     <Affix offsetTop={60}>
-                        <Toc text={post?.content ?? " "}/>
+                        <Toc text={postinfo?.content ?? " "}/>
                     </Affix>
                 </Col>
             </Row>

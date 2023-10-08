@@ -7,10 +7,9 @@ import React from 'react';
 import MyUpload from "@/components/MyUpload";
 import styles from './index.less';
 import {ProFormDatePicker, ProFormRadio} from "@ant-design/pro-form";
-import {updateBlogSetting, updateInfo} from "@/services/api/userInfo";
 import {message} from "antd";
 import {history} from "umi";
-
+import {updateInfo} from "../../../../services/userSecurity/api/userController";
 
 const formItemLayout = {
     labelCol: {span: 4},
@@ -18,7 +17,7 @@ const formItemLayout = {
 };
 
 interface IProp {
-    userInfoData: UserInfoAPI.userInfoData|undefined;
+    userInfoData: UserSecurityAPI.Userinfo | undefined;
 }
 
 
@@ -33,27 +32,23 @@ const UserInfoSetting: React.FC<IProp> = (props) => {
 
     const upFinish = async (e: Record<string, any>) => {
         console.log(e)
-        const userInfoData: UserInfoAPI.userInfoData = {
-            slideVenue: undefined,
-            avatar: avatar,
+        console.log(userInfoData);
+        const res = await updateInfo({
+            nickname: e.nickname,
             birthday: e.birthday,
-            csdnAddr:e.csndAddr ,
+            avatar: avatar,
             gender: e.gender,
             githubAddr: e.githubAddr,
             idiograph: e.idiograph,
             juejinAddr: e.juejinAddr,
-            nickname: e.nickname,
             qq: e.qq,
             subname: e.subname,
-            userLever: undefined,
             welcomeText: e.welcomeText,
-        }
-        console.log(userInfoData);
-        const res=await updateInfo(userInfoData)
+        })
         if (res.code === 200) {
             message.success("更新成功！")
             history.push('/')
-        }else{
+        } else {
             message.error("更新失败！")
         }
     }
@@ -91,7 +86,7 @@ const UserInfoSetting: React.FC<IProp> = (props) => {
             />
             <ProForm.Item label="头像" name="avatar" wrapperCol={{span: 13}}>
                 <MyUpload onUploadSuccess={onAvatarUploadSuccess} type={'picture-circle'}
-                          defaultPictureUrl={userInfoData?.avatar?[userInfoData?.avatar]:undefined}/>
+                          defaultPictureUrl={userInfoData?.avatar ? [userInfoData?.avatar] : undefined}/>
             </ProForm.Item>
             <ProFormRadio.Group
                 name="gender"

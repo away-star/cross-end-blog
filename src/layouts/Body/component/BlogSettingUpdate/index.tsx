@@ -17,29 +17,48 @@ const formItemLayout = {
     wrapperCol: {span: 13},
 };
 
-export default () => {
+interface IProp {
+    text: string;
+}
+
+const BlogSettingUpdate: React.FC<IProp> = (props) => {
+
+    const {text} = props;
 
     const [images, setImages] = useState<string[]>([]);
     const [avatar, setAvatar] = useState<string>();
 
 
-    const {
-        initialData,
-        setInitialData,
-        blogSettingModalOpen,
-        setBlogSettingModalOpen
-    } = useModel('initialModel', (model) => ({
-        initialData: model.initialData,
-        setInitialData: model.setInitialData,
-        blogSettingModalOpen: model.blogSettingModalOpen,
-        setBlogSettingModalOpen: model.setBlogSettingModalOpen,
+    const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        fetchInitialUserData: model.fetchInitialUserData,
     }));
-    const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
     const onAvatarUploadSuccess = (fileUrls: string[]) => {
         setAvatar(fileUrls[0]);
         console.log(fileUrls)
     }
+
+
+    const {
+        globalLoading,
+        setGlobalLoading,
+        userInfoModalOpen,
+        setUserInfoModalOpen,
+        blogSettingModalOpen,
+        setBlogSettingModalOpen
+    } = useModel('pageStatusModel', (model) => ({
+
+        globalLoading: model.globalLoading,
+        setGlobalLoading: model.setGlobalLoading,
+        userInfoModalOpen: model.userInfoModalOpen,
+        setUserInfoModalOpen: model.setUserInfoModalOpen,
+        blogSettingModalOpen: model.blogSettingModalOpen,
+        setBlogSettingModalOpen: model.setBlogSettingModalOpen
+    }));
+
 
     return (
         <>
@@ -138,3 +157,5 @@ export default () => {
         </>
     );
 };
+
+export default BlogSettingUpdate;

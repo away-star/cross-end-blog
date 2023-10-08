@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from 'react';
 import './index.less'
 import loginSvg from '@/assets/login.svg'
@@ -10,37 +9,27 @@ import {Button, notification, Space} from "antd";
 import {history} from "@@/core/history";
 import {SmileOutlined} from "@ant-design/icons";
 import MyPop from "@/components/MyPop";
+import {useLocation} from "@@/exports";
+import classNames from "classnames";
 
 
-export const onRegister=()=>{
+export const onRegister = () => {
     const container = document.querySelector(".container");
+    console.log(container)
     container?.classList.add("sign-up-mode");
 }
 
-export const onLogin=()=>{
+export const onLogin = () => {
     const container = document.querySelector(".container");
     container?.classList.remove("sign-up-mode");
 }
 
 const CSSLogin: React.FC = () => {
+    console.log(useLocation().pathname)
+    console.log(history.location.pathname)
     const [api, contextHolder] = notification.useNotification();
 
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsSmallScreen(screen.availWidth< screen.availHeight);
-        };
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
 
 
     const btn = (
@@ -65,10 +54,22 @@ const CSSLogin: React.FC = () => {
             duration: null,
         });
     };
+    useEffect(() => {
 
-    useEffect(()=>{
+        const handleResize = () => {
+            setIsSmallScreen(screen.availWidth < screen.availHeight);
+        };
+
+        handleResize();
         openNotification()
-    },[])
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
 
     return (
 
@@ -77,12 +78,12 @@ const CSSLogin: React.FC = () => {
             {contextHolder}
             <div className="forms-container">
                 <div className="signin-signup">
-                    <form action="#" className="sign-in-form">
+                    <div className={classNames("sign-in-form", "form")}>
                         <Login/>
-                    </form>
-                    <form action="#" className="sign-up-form">
+                    </div>
+                    <div className={classNames("sign-up-form", "form")}>
                         <Register/>
-                    </form>
+                    </div>
                 </div>
             </div>
 

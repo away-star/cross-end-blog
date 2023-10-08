@@ -13,13 +13,13 @@ import {
 import {Divider, Form, message, Space, Tabs} from 'antd';
 import type {CSSProperties} from 'react';
 import {useState} from 'react';
-import {getLoginCaptcha, login} from "@/services/api/check";
 import {history} from "umi";
-import {TOKEN_PREFIX} from "@/constants";
 import {useModel} from "@@/exports";
+import {codeSendForLogin, login} from "../../../../../services/userSecurity/api/userSecurityController";
+import {AUTH_EMAIL_TYPE, AUTH_PASSWORD_TYPE} from "@/constants";
 
 
-type LoginType = 'captcha' | 'password';
+type LoginType = 'email' | 'password';
 
 const iconStyles: CSSProperties = {
     color: 'rgba(0, 0, 0, 0.2)',
@@ -47,36 +47,35 @@ const actionStyles: CSSProperties = {
     flexDirection: 'column',
 }
 
-//登录方法
-const goLogin = async (values: any) => {
-    console.log(values)
-    const username: CheckAPI.loginData = {
-        authType: values.password ? "password" : "email",
-        captcha: values.captcha,
-        email: values.email,
-        password: values.password
-    }
-    console.log(username)
-    const res = await login({username});
-    console.log(res)
-    if (res.code === 200) {
-        message.success('登录成功');
-        //localStorage.setItem('loginInformationId', res.data.loginInformation.id)
-        localStorage.setItem('Authorization', TOKEN_PREFIX + res.data.access_token);
-        const loginInformationId=res.data.loginInformationId
-        console.log(loginInformationId)
-        localStorage.setItem('loginInformationId', loginInformationId);
-        history.push(`/blog/${loginInformationId}/home`)
-    } else {
-        message.error(res.msg);
-    }
-}
+
 
 export default () => {
-    const [loginType, setLoginType] = useState<LoginType>('password');
+    const [loginType, setLoginType] = useState<LoginType>(AUTH_PASSWORD_TYPE);
     const {setIsCoverModalOpen} = useModel('checkModel', (model) => ({
         setIsCoverModalOpen: model.setIsCoverModalOpen,
     }));
+
+    //登录方法
+    const goLogin = async (values: any) => {
+        console.log(values)
+        const res = await login({
+            account: values.email ?? undefined,
+            authType: loginType,
+            captcha: values.captcha ?? undefined,
+            phone: values.phone ?? undefined,
+            email: values.email ?? undefined,
+            password: values.password ?? undefined
+        });
+        console.log(res)
+        if (res.code === 200) {
+            let security_info_id = res.data!.securityInfo!.id!;
+            localStorage.setItem('loginInformationId', security_info_id.toString());
+            history.push(`/blog/${security_info_id}/home`)
+            message.success('登录成功');
+        } else {
+            message.error(res.msg);
+        }
+    }
 
 
     const [form] = Form.useForm();
@@ -84,13 +83,18 @@ export default () => {
 
     const getCaptcha = async () => {
         console.log(email)
-        const res = await getLoginCaptcha({email});
+        const res = await codeSendForLogin({email});
         if (res.code === 200) {
             message.success('验证码已发送');
         } else {
-            message.error(res.message);
+            message.error(res.msg);
         }
     }
+
+    const items  = [
+        {label: "密码登录", key: AUTH_PASSWORD_TYPE, },
+        {label: "验证码登录", key: AUTH_EMAIL_TYPE, },
+    ];
 
     return (
         <ProConfigProvider hashed={false}>
@@ -106,12 +110,12 @@ export default () => {
                             style={actionStyles}
                         >
                             <Divider plain>
-              <span style={{color: '#CCC', fontWeight: 'normal', fontSize: 14}}>
-                其他登录方式
+              <span style={{color: '#023131', fontWeight: 'normal', fontSize: 14}}>
+                第三方登录
               </span>
                             </Divider>
                             <Space align="center" size={24}>
-                                <div
+                                 <div
                                     style={actionIconStyles}
                                 >
                                     <QqOutlined style={{...iconStyles, color: '#1677FF'}}/>
@@ -134,11 +138,10 @@ export default () => {
                         centered
                         activeKey={loginType}
                         onChange={(activeKey) => setLoginType(activeKey as LoginType)}
+                        items={items}
                     >
-                        <Tabs.TabPane key={'password'} tab={'密码登录'}/>
-                        <Tabs.TabPane key={'captcha'} tab={'验证码登录'}/>
                     </Tabs>
-                    {loginType === 'password' && (
+                    {loginType === AUTH_PASSWORD_TYPE && (
                         <>
                             <ProFormText
                                 name="email"
@@ -174,7 +177,7 @@ export default () => {
                             />
                         </>
                     )}
-                    {loginType === 'captcha' && (
+                    {loginType === AUTH_EMAIL_TYPE && (
                         <>
                             <ProFormText
                                 name="email"

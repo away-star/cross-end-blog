@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {Col, Image, List, Row} from 'antd';
 import styles from './index.less'
 
-import postUrl from '@/assets/yay.jpg'
 import {formatTime} from "@/utils/time";
 import MyMarkdown from "@/components/MyMarkdown";
 import {history} from "umi";
 
 interface Iprop {
-    post: API.Post
+    post: ContentAPI.Post
 }
 
 const PostCard: React.FC<Iprop> = (props) => {
@@ -33,7 +32,7 @@ const PostCard: React.FC<Iprop> = (props) => {
                     <Image src={post.coverUrl} width={'100%'}/>
                 </Col>
                 <Col span={15}>
-                    <MyMarkdown text={post.content}/>
+                    <MyMarkdown text={post.content??''}/>
                 </Col>
             </Row>
         </div>

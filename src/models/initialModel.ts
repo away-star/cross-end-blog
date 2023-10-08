@@ -1,34 +1,51 @@
 import {useState} from "react";
-import {initialData} from "@/services/api";
+import {getUserinfo} from "../../services/userSecurity/api/userController";
+import {message} from "antd";
+import {history} from "@@/core/history";
+import {localStorageUserSecurityKey} from "@/constants";
 
-export default ()=>{
-    const [initialData,setInitialData] = useState<initialData>({
-            userInfo:undefined,
-            personage:undefined,
+
+export default () => {
+    const [initialUserData, setInitialUserData] = useState<UserSecurityAPI.UserInfoDto>({});
+
+    const [slideVenue, setSlideVenue] = useState<string[]>([]);
+
+
+
+    const getSecurityInfoId = (): string => {
+        return initialUserData?.securityInfo?.id?.toString() || ''
+    }
+
+    const isOwner = (): boolean => {
+        console.log(initialUserData?.securityInfo?.id?.toString(), localStorage.getItem(localStorageUserSecurityKey))
+        return initialUserData?.securityInfo?.id?.toString() === localStorage.getItem(localStorageUserSecurityKey)
+    }
+
+    const fetchInitialUserData = async (security_info_id: number) => {
+        const res = await getUserinfo({security_info_id: security_info_id});
+        if (res.code === 200) {
+            setInitialUserData(res.data!);
+            setSlideVenue(res.data?.userinfo?.slideShow?.split(';') || [])
+        } else {
+            message.error(res.msg)
+            setTimeout(() => {
+                history.push('/checkIn')
+            }, 1000)
         }
-    );
-    const [userInfoModalOpen,setUserInfoModalOpen] = useState<boolean>(false);
-
-    const [blogSettingModalOpen,setBlogSettingModalOpen] = useState<boolean>(false);
-
-    const getRandSlide = () :string=>{
-        const slide = initialData.personage?.slideVenue;
-        if(slide){
-            return slide[Math.floor(Math.random()*slide.length)]
+        if (localStorage.getItem('security_info_id') === res.data?.securityInfo?.id?.toString()) {
+            if (res.data?.userinfo?.slideShow === null || res.data?.userinfo?.slideShow?.length === 0) {
+                message.error('请先配置博客')
+                history.push(`/blog/${security_info_id}/setting`)
+            }
         }
-        return ' '
     }
 
-    const getLoginInformationId = () :string=>{
-        return initialData.personage?.loginInformationId || ''
+    return {
+        isOwner,
+        fetchInitialUserData,
+        slideVenue,
+        initialUserData,
+        setInitialUserData,
+        getSecurityInfoId,
     }
-
-    const isOwner = () :boolean=>{
-        console.log(initialData.personage?.loginInformationId.toString(),localStorage.getItem('loginInformationId'))
-
-        return initialData.personage?.loginInformationId.toString() === localStorage.getItem('loginInformationId')
-    }
-
-
-    return {isOwner,initialData, setInitialData,userInfoModalOpen,getLoginInformationId,setUserInfoModalOpen,blogSettingModalOpen,setBlogSettingModalOpen,getRandSlide}
 }

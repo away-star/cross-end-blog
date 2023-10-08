@@ -10,15 +10,15 @@ import ParticleBackground from "@/components/ParticleBackground";
 import MDRt from "@/pages/Write/component/MDRt";
 
 
-
 const Write: React.FC = () => {
-    const {updateWriteData} = useModel('writeModel', (model) => ({
-        updateWriteData: model.updateWriteData,
+    const {postWriteData, setPostWriteData} = useModel('writeModel', (model) => ({
+        postWriteData: model.postWriteData,
+        setPostWriteData: model.setPostWriteData,
     }));
 
     const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.value)
-        updateWriteData('title', e.target.value);
+        setPostWriteData({...postWriteData, title: e.target.value})
     }
 
     return (

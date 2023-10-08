@@ -16,9 +16,13 @@ interface IProps {
 
 
 const TopIm: React.FC<IProps> = (props) => {
-    const {getLoginInformationId} = useModel('initialModel', (model) => ({
-        getLoginInformationId: model.getLoginInformationId
+    const {initialUserData, setInitialUserData, getRandSlide, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        getRandSlide: model.getRandSlide,
+        fetchInitialUserData: model.fetchInitialUserData
     }));
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
 
     const {like, title, view} = props;
@@ -27,7 +31,7 @@ const TopIm: React.FC<IProps> = (props) => {
             <div className={styles.back}>
                 <Affix offsetTop={60}>
                     <Back text={'返回'} onClick={() => {
-                        history.push(`/blog/${getLoginInformationId()}/home`)
+                        history.push(`/blog/${securityInfo?.id}/home`)
                     }
                     }/>
                 </Affix>

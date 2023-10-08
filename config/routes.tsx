@@ -41,11 +41,7 @@ export default [
                 path: '/blog/:id/essay',
                 component: './Essay',
             },
-            {
-                //todo  此处一定要写全路径
-                path: '/blog/square',
-                component: './Square',
-            },
+
             {
                 //todo  此处一定要写全路径
                 path: '/blog/:id/aboutMe',
@@ -58,13 +54,18 @@ export default [
             },
             {
                 //todo  此处一定要写全路径
+                path: '/blog/:id/skill/:category',
+                component: './SkillBlog',
+            },
+            {
+                //todo  此处一定要写全路径
                 path: '/blog/details/:id',
                 component: './BlogDetail',
             },
             {
                 //todo  此处一定要写全路径
-                path: '/blog/:id/skill/:category',
-                component: './SkillBlog',
+                path: '/blog/square',
+                component: './Square',
             },
             {
                 component: './404'

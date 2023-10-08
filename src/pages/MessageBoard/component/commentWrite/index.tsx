@@ -6,9 +6,9 @@ import {message} from 'antd';
 import React, {useState} from 'react';
 import {ProFormSwitch} from "@ant-design/pro-form";
 import SpaceBtn from "@/components/btn/SpaceBtn";
-import {leaveMessage} from "@/services/api/interaction";
 import {history} from "umi";
 import {useModel} from "@@/exports";
+import {messageLeaveAction} from "../../../../../services/social/api/messageLeaveController";
 
 
 const formItemLayout = {
@@ -22,15 +22,24 @@ export default () => {
 
     const [modalVisit, setModalVisit] = useState(false);
 
-    const {getLoginInformationId} = useModel('initialModel', (model) => ({
-        getLoginInformationId: model.getLoginInformationId,
+    const {initialUserData, setInitialUserData, getRandSlide, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        getRandSlide: model.getRandSlide,
+        fetchInitialUserData: model.fetchInitialUserData
     }));
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
-    const goWrite =() => {
-        if (localStorage.getItem('Authorization') === null||localStorage.getItem('Authorization') === undefined) {
-            message.error('先登录才能留言哦');
+
+    const goWrite = () => {
+        if (localStorage.getItem('Authorization') === null || localStorage.getItem('Authorization') === undefined) {
+            message.error('先登录才能留言哦').then(r => {
+                    console.log(r)
+                    history.push('/checkIn')
+                }
+            );
             return;
-        }else {
+        } else {
             setModalVisit(true)
         }
     }
@@ -43,18 +52,15 @@ export default () => {
                 title="留言"
                 open={modalVisit}
                 onFinish={async (values) => {
-                    const messageData:InteractAPI.messageData = {
+                    const res = await messageLeaveAction({
                         content: values.content,
-                        open: values.open,
-                        hostId: getLoginInformationId(),
-                    }
-                    const res = await leaveMessage(messageData);
+                        to_user_id: securityInfo!.id!,
+                    })
                     console.log(res)
                     if (res.code === 200) {
                         message.success('留言成功')
                         window.location.reload()
-                        history.push('/blog/' + getLoginInformationId() + '/messageBoard')
-                    }else {
+                    } else {
                         message.error('留言失败')
                     }
                 }}

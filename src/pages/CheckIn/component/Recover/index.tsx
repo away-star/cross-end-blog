@@ -4,14 +4,15 @@ import {
 } from '@ant-design/pro-components';
 import {Button, message, Modal} from 'antd';
 import {LockOutlined, MessageOutlined} from "@ant-design/icons";
-import {getRecoverCaptcha,recover} from "@/services/api/check";
 import React from "react";
 import {useModel} from "@umijs/max";
+import {codeSendForRecover, recover} from "../../../../../services/userSecurity/api/userSecurityController";
+
 
 
 const getCaptcha = async (value: any) => {
     message.loading('正在发送验证码');
-    const res = await getRecoverCaptcha({email: value.email});
+    const res = await codeSendForRecover({email: value.email});
     if (res.code === 200) {
         message.destroy();
         message.success('验证码已发送');
@@ -31,16 +32,17 @@ export default () => {
 
     const goRecover = async (values: any) => {
         console.log(values)
-        const registerData: CheckAPI.registerData = {
-            captcha: values.captcha,
+        const res = await recover({
+            authType: values.authType,
             email: values.email,
+            captcha: values.captcha,
             password: values.password
-        }
-        const res = await recover(registerData)
+        })
         console.log(res)
         if (res.code === 200) {
-            message.success('重置密码成功,快去登录吧');
             setIsCoverModalOpen(false)
+            message.success('重置密码成功,快去登录吧');
+
         } else {
             message.error(res.msg);
         }

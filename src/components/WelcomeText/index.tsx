@@ -19,7 +19,7 @@ const WelcomeText: React.FC<Props> = (props) => {
 
               <div className="welcomeTextBack">
                   <p className="welcomeTextDescription">
-                      Cool description so you can read it too my friend
+                      Cool description so you can read it to my friend
                   </p>
               </div>
           </div>

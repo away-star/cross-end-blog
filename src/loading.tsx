@@ -1,4 +1,4 @@
-import DidmondDance from "@/components/load/DidmondDance";
+import DiamondDance from "@/components/load/DidmondDance";
 
 // 定义居中样式
 const centerStyle = {
@@ -11,7 +11,7 @@ const centerStyle = {
 export default () => {
     return (
         <div style={centerStyle}>
-            <DidmondDance text={'loading'}/>
+            <DiamondDance text={'loading'}/>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 // 运行时配置
 import './global.less'
 import type {RequestConfig} from 'umi';
+import {localStorageUserSecurityKey} from "@/constants";
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 // 更多信息见文档：https://next.umijs.org/docs/api/runtime-config#getinitialstate
 export async function getInitialState(): Promise<{ name: string }> {
@@ -18,10 +19,11 @@ export const request: RequestConfig = {
         errorHandler: (error: any, opts: any) => {
             console.log(error, opts)
             if (error.response.status === 401) {
-                localStorage.removeItem('Authorization');
+                localStorage.removeItem(localStorageUserSecurityKey);
                 console.log('请求返回401，跳转到登录页');
             }
         }
+
     },
     requestInterceptors: [
         (url, options) => {

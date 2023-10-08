@@ -1,46 +1,58 @@
 import styles from './author.less'
 import React from "react";
 import {history} from "umi";
+import {getIdFromUrl} from "@/utils/urlUtil";
+import {
+    DEFAULT_AVATAR, DEFAULT_CSDN_ADDR,
+    DEFAULT_GITHUB_ADDR,
+    DEFAULT_IDIOGRAPH,
+    DEFAULT_JUEJIN_ADDR,
+    DEFAULT_NICKNAME,
+    DEFAULT_PROVERB
+} from "@/constants";
 
 interface IProps {
-    avatar?: string;
-    nickname?: string;
-    subtitle?: string;
-    textBody?: string;
-    social?: {
-        otherLink?: string;
-        githubLink?: string;
-    }
+    userinfo: UserSecurityAPI.Userinfo;
+    proverbs: string[]|undefined;
 }
 
 
 const Author: React.FC<IProps> = (props) => {
-    const {avatar, nickname, subtitle, textBody, social} = props;
+    const {
+        avatar=DEFAULT_AVATAR,
+        nickname= DEFAULT_NICKNAME,
+        idiograph=DEFAULT_IDIOGRAPH,
+        githubAddr=DEFAULT_GITHUB_ADDR,
+        juejinAddr=DEFAULT_JUEJIN_ADDR,
+        csdnAddr=DEFAULT_CSDN_ADDR,
+    } = props.userinfo;
 
-    const pathParts = history.location.pathname.trim().split('/');
-    const lastPart = pathParts[pathParts.length - 2];
+    const {proverbs=[DEFAULT_PROVERB,DEFAULT_PROVERB]} = props;
+
+
     return (
         <>
             <div className={styles.card}>
                 <div className={styles.info}>
-                    <div className={styles.avatar} style={{  backgroundImage: `url(${avatar})`}}></div>
+                    <div className={styles.avatar} style={{backgroundImage: `url(${avatar})`}}></div>
                     <div className={styles.title}>{nickname}</div>
-                    <div className={styles.subtitle}>{subtitle}</div>
-                    <p className={styles.textBody}>{textBody}</p>
+                    <div className={styles.subtitle}>{idiograph}</div>
+                    <p className={styles.textBody}>{proverbs[Math.floor(Math.random() * proverbs.length)]}</p>
                 </div>
                 <ul className={styles.social} onClick={() => {
-                    window.open(social?.otherLink)
+                    window.open(juejinAddr)
                 }
                 }>
                     <li className={styles.item}>
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="currentColor" d="M12.383 2.001l-.014.005a7.024 7.024 0 0 0-5.926 5.043 5.742 5.742 0 0 0-4.02.583V2.001H.142v20.012h2.28v-5.452a5.314 5.314 0 0 1 5.314-5.315h.373a5.314 5.314 0 0 1 5.314 5.315v5.452h2.28V13.065a5.442 5.442 0 0 1 .909-3.04 4.844 4.844 0 0 1 4.08-1.796 4.684 4.684 0 0 1 2.927 1.52v-1.306h2.156v5.915a7.367 7.367 0 0 1-10.283 6.8c-1.953-1.003-3.177-2.842-3.177-4.937 0-3.285 2.68-5.964 5.965-5.964a5.973 5.973 0 0 1 5.314 3.194 6.16 6.16 0 0 1-.947 6.642 7.008 7.008 0 0 1-.707.632L12.383 2z"></path>
+                            <path fill="currentColor"
+                                  d="M12.383 2.001l-.014.005a7.024 7.024 0 0 0-5.926 5.043 5.742 5.742 0 0 0-4.02.583V2.001H.142v20.012h2.28v-5.452a5.314 5.314 0 0 1 5.314-5.315h.373a5.314 5.314 0 0 1 5.314 5.315v5.452h2.28V13.065a5.442 5.442 0 0 1 .909-3.04 4.844 4.844 0 0 1 4.08-1.796 4.684 4.684 0 0 1 2.927 1.52v-1.306h2.156v5.915a7.367 7.367 0 0 1-10.283 6.8c-1.953-1.003-3.177-2.842-3.177-4.937 0-3.285 2.68-5.964 5.965-5.964a5.973 5.973 0 0 1 5.314 3.194 6.16 6.16 0 0 1-.947 6.642 7.008 7.008 0 0 1-.707.632L12.383 2z"></path>
                         </svg>
                     </li>
 
                     <li className={styles.item} onClick={() => {
-                        console.log(`/blog/${lastPart}/home`)
-                        history.push(`/blog/${lastPart}/home`)
+                        console.log(`/blog/${getIdFromUrl(history.location.pathname)}/home`)
+                        history.push(`/blog/${getIdFromUrl(history.location.pathname)}/home`)
                     }
                     }>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -51,8 +63,7 @@ const Author: React.FC<IProps> = (props) => {
                         </svg>
                     </li>
                     <li className={styles.item} onClick={() => {
-                        console.log(social?.githubLink)
-                        window.open(social?.githubLink)
+                        window.open(githubAddr)
                     }}>
                         <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <path fill="black" id="right"

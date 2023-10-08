@@ -8,10 +8,10 @@ import {message} from 'antd';
 import React, {useState} from 'react';
 import {ProFormSwitch} from "@ant-design/pro-form";
 import MyUpload from "@/components/MyUpload";
-import {writeEssay} from "@/services/api";
+
 import PostBtn from "@/components/btn/PostBtn";
 import {useModel,history} from "umi";
-import {write} from "@/services/api/create";
+import {savePost} from "../../../../../services/content/api/postController";
 
 
 const formItemLayout = {
@@ -22,12 +22,17 @@ const formItemLayout = {
 
 export default () => {
     const [modalVisit, setModalVisit] = useState(false);
-    const {initialData} = useModel('initialModel', (model) => ({
-        initialData: model.initialData,
+    const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        fetchInitialUserData: model.fetchInitialUserData
     }));
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
-    const {writeData} = useModel('writeModel', (model) => ({
-        writeData: model.writeData,
+
+    const {postWriteData, setPostWriteData} = useModel('writeModel', (model) => ({
+        postWriteData: model.postWriteData,
+        setPostWriteData: model.setPostWriteData,
     }));
 
     const [cover, setCover] = useState<string>();
@@ -37,11 +42,6 @@ export default () => {
         console.log(fileUrls)
     }
 
-    const selectOptions = initialData?.userInfo?.labelVenue?.map((item) => {
-                return {label: item, value: item}
-            }
-        )
-    ;
 
 
     return (
@@ -60,15 +60,15 @@ export default () => {
                         message.error('请填写简介')
                         return false
                     }
-                    const post: CreatAPI.writeData = {
+                    const post: ContentAPI.PostRequest = {
                         description: values.description,
                         category: values.category,
-                        content: writeData.content,
+                        content: postWriteData.content,
                         coverUrl: cover,
-                        open: values.open,
-                        title: writeData.title
+                        isPublic: values.open,
+                        title: postWriteData.title
                     }
-                    const res = await write(post)
+                    const res = await savePost(post)
                     if (res.code === 200) {
                         message.success('发布成功')
                         setModalVisit(false)
@@ -87,9 +87,9 @@ export default () => {
                 onOpenChange={setModalVisit}
                 trigger={
                     <PostBtn text={'发布'} onclick={() => {
-                        if (writeData.content === undefined || writeData.content === '') {
+                        if (postWriteData.content === undefined || postWriteData.content === '') {
                             message.error('请先写文章')
-                        } else if (writeData.title === undefined || writeData.title === '') {
+                        } else if (postWriteData.title === undefined || postWriteData.title === '') {
                             message.error('请先写标题')
                         } else {
                             setModalVisit(true)
@@ -101,9 +101,12 @@ export default () => {
                 <ProFormSelect
                     name="category"
                     label="category"
-                    request={async () => selectOptions ?? []}
+                    valueEnum={{
+                        '1': '前端',
+                        '2': '后端',
+                    }}
                     placeholder="Please select a category"
-                    initialValue={selectOptions?.[0].value}
+                    initialValue={labels?.[0].title}
                     // rules={[{ required: true, message: 'Please select your mood!' }]}
                 />
                 <ProFormTextArea
@@ -115,7 +118,7 @@ export default () => {
                 />
                 <ProForm.Item label="cover" name="cover" wrapperCol={{span: 13}}>
                     {/*<MyUpload  onUploadSuccess={()=>{console.log('666')}}/>*/}
-                    <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'} multi={false}/>
+                    <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'}/>
                 </ProForm.Item>
                 <ProFormSwitch label={'isPublic'} name={'open'} initialValue={true}/>
             </ModalForm>

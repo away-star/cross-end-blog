@@ -1,16 +1,11 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
-export default () =>{
-    const [writeData,setWriteData] = useState(
-        {
-            content: '',
-            title: '',
-        }
-    );
+export default () => {
+    const [postWriteData, setPostWriteData] = useState<ContentAPI.PostRequest>(
+        {});
 
-    const updateWriteData = (key: keyof CreatAPI.writeData, value: string) => {
-        setWriteData({ ...writeData, [key]: value });
-    };
 
-    return { writeData, updateWriteData,setWriteData};
+
+
+    return {postWriteData, setPostWriteData};
 };

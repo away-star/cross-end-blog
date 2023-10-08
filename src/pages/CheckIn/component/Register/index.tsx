@@ -14,12 +14,12 @@ import {
 import {Divider, Form, message, Space, Tabs} from 'antd';
 import type {CSSProperties} from 'react';
 import {useState} from 'react';
-import {getLoginCaptcha, getRecoverCaptcha, getRegisterCaptcha, login, register} from "@/services/api/check";
 import {history} from "umi";
-import {TOKEN_PREFIX} from "@/constants";
+import {AUTH_EMAIL_TYPE} from "@/constants";
 import {onLogin} from "@/pages/CheckIn";
+import {codeSendForRegister, register} from "../../../../../services/userSecurity/api/userSecurityController";
+import userSecurity from "../../../../../services/userSecurity/api";
 
-type LoginType = 'captcha' | 'password';
 
 const iconStyles: CSSProperties = {
     color: 'rgba(0, 0, 0, 0.2)',
@@ -49,24 +49,21 @@ const actionStyles: CSSProperties = {
 
 //登录方法
 const goRegister = async (values: any) => {
-    const registerData: CheckAPI.registerData = {
-        registerType: 'email',
-        captcha: values.captcha,
+    console.log(values)
+    const res = await register({
         email: values.email,
-        password: values.password
-    }
-    // console.log(username)
-    const res = await register(registerData);
-    console.log(res)
+        captcha: values.captcha,
+        phone: values.phone,
+        registerType: AUTH_EMAIL_TYPE,
+    });
     console.log(res)
     if (res.code === 200) {
-        message.success('注册成功,欢迎加入cross-end blog大家庭');
         onLogin()
+        message.success('注册成功,欢迎加入cross-end blog大家庭');
+
     } else {
         message.error(res.msg);
     }
-
-
 }
 
 
@@ -76,13 +73,13 @@ export default () => {
     const email = Form.useWatch('email', form);
 
     const getCaptcha = async () => {
-        const res = await getRegisterCaptcha({email});
+        const res = await codeSendForRegister({email});
         // console.log(email)
         // const res = await login({username: {email}});
         if (res.code === 200) {
             message.success('验证码已发送');
         } else {
-            message.error(res.message);
+            message.error(res.msg);
         }
     }
 
@@ -103,8 +100,8 @@ export default () => {
                     actions={
                         <div style={actionStyles}>
                             <Divider plain>
-                        <span style={{color: '#CCC', fontWeight: 'normal', fontSize: 14}}>
-                            其他注册方式
+                        <span style={{color: '#0a6262', fontWeight: 'normal', fontSize: 14}}>
+                            第三方登录
                         </span>
                             </Divider>
                             <Space align="center" size={24}>

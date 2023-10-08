@@ -19,6 +19,7 @@ const Waterfall: React.FC<WaterfallProps> = ({ cards }) => {
             <Row gutter={16}>
                 {cardList.map((card: CardProps) => {
                     return (
+                        <>
                         <Col span={8}>
                             <Card
                                 style={{height:60}}
@@ -28,6 +29,7 @@ const Waterfall: React.FC<WaterfallProps> = ({ cards }) => {
                                 <Card.Meta title={card.title} description={card.description} />
                             </Card>
                         </Col>
+                        </>
                     );
                 })}
             </Row>
@@ -43,7 +45,7 @@ const Waterfall: React.FC<WaterfallProps> = ({ cards }) => {
             const { offsetWidth } = cardContainer;
             const columnCount = Math.floor(offsetWidth / cardWidth);
 
-            const newCardColumns = Array.from({ length: columnCount }, () => []);
+            const newCardColumns = Array.from({ length: columnCount }, () => [] as CardProps[]);
 
             cards.forEach((card) => {
                 const minHeightIndex = columnsHeight.indexOf(Math.min(...columnsHeight));

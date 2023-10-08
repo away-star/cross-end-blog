@@ -8,7 +8,6 @@ import CommentCard from "@/pages/MessageBoard/component/CommentCard";
 import styles from './index.less';
 import SpaceBtn from "@/components/btn/SpaceBtn";
 import CommentWrite from "@/pages/MessageBoard/component/commentWrite";
-import {getAllUsers, getMessagePage} from "@/services/api";
 import PostCard from "@/components/PostCard";
 import {DEFAULT_AVATAR} from "@/constants";
 import {getTimeAgo} from "@/utils/time";
@@ -22,7 +21,7 @@ function MessageBoard() {
         getRandSlide: model.getRandSlide
     }));
 
-    const [messages, setMessages] = useState<InteractAPI.messageData[]>([]);
+    const [messages, setMessages] = useState<ContentAPI.messageData[]>([]);
    // const [loading, setLoading] = useState(true); // 加载状态变量
 
 

@@ -1,15 +1,23 @@
 import {Col, Row, Image} from "antd";
 import React, {useEffect, useState} from "react";
 import styles from './index.less'
-import {AUTHOR_AVATAR} from "@/constants";
-import Nav from "@/layouts/HeaderNav/component/Nav";
+
 import classNames from "classnames";
 import {useModel} from "@@/exports";
+import {DEFAULT_AVATAR} from "@/constants";
+import Nav from "@/layouts/HeaderNav/component/Nav";
 
 const HeaderNav: React.FC = () => {
-    const {initialData} = useModel('initialModel', (model) => ({
-        initialData: model.initialData,
+    const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
+        setInitialUserData: model.setInitialUserData,
+        initialUserData: model.initialUserData,
+        fetchInitialUserData: model.fetchInitialUserData
     }));
+
+
+    const {userinfo, securityInfo, labels, proverbs} = initialUserData!
+
+
     const [isUp, setIsUp] = useState<boolean>(true)
     useEffect(() => {
         const handleScroll = (event: WheelEvent) => {
@@ -35,13 +43,13 @@ const HeaderNav: React.FC = () => {
                         preview={false}
                         width={40}
                         style={{borderRadius: 50}}
-                        src={initialData.userInfo?.avatar??AUTHOR_AVATAR}
+                        src={userinfo?.avatar ?? DEFAULT_AVATAR}
                     />
-                    <span> {initialData.userInfo?.nickname}的博客 </span>
+                    <span> {userinfo?.nickname}的博客 </span>
                 </div>
             </Col>
             <Col xs={24} sm={24} md={10} lg={10} xl={10}>
-                <Nav/>
+                <Nav text={"ss"}/>
             </Col>
         </Row>
     )

@@ -7,16 +7,16 @@ import {
 } from '@ant-design/pro-components';
 import React from 'react';
 import MyUpload from "@/components/MyUpload";
-import {updateBlogSetting} from "@/services/api/userInfo";
 import {message} from "antd";
 import {history} from "@@/core/history";
 
 
 interface IProp {
-    labels: UserInfoAPI.label[] | undefined;
-    proverbs: UserInfoAPI.proverb[] | undefined;
+    labels: UserSecurityAPI.Label[] | undefined;
+    proverbs: UserSecurityAPI.Proverb[] | undefined;
     slideVenue: string[];
 }
+
 
 
 const BlogSetting: React.FC<IProp> = (props) => {
@@ -33,19 +33,19 @@ const BlogSetting: React.FC<IProp> = (props) => {
 
     const upFinish = async (e: Record<string, any>) => {
         console.log(e)
-        const blogSettingData: UserInfoAPI.blogSettingData = {
-            labels: e.labels,
-            proverbs: e.proverbs,
-            slides: slideShow
-        }
-        console.log(blogSettingData);
-        const res=await updateBlogSetting(blogSettingData)
-        if (res.code === 200) {
-            message.success("更新成功！")
-            history.push('/')
-        }else{
-            message.error("更新失败！")
-        }
+        // const blogSettingData: UserCenterAPI.Label = {
+        //     labels: e.labels,
+        //     proverbs: e.proverbs,
+        //     slides: slideShow
+        // }
+        // console.log(blogSettingData);
+        // const res=await updateBlogSetting(blogSettingData)
+        // if (res.code === 200) {
+        //     message.success("更新成功！")
+        //     history.push('/')
+        // }else{
+        //     message.error("更新失败！")
+        // }
     }
 
 

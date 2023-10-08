@@ -21,7 +21,6 @@ interface IProps {
 
 const MyMarkdown: React.FC<IProps> = ({text}) => {
 
-
     const randStyle = (): any => {
         const styles = [tomorrow, atomDark, solarizedlight, hopscotch, okaidia, materialOceanic, gruvboxDark];
         return styles[Math.floor(Math.random() * styles.length)];

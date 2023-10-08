@@ -4,29 +4,60 @@
 
 export const CLIENT_ID = 'cross-end';
 export const CLIENT_SECRET = 'cross-end';
-export const GRANT_TYPE = 'password';
-export const TOKEN_PREFIX = 'Bearer ';
-export const DOMAIN_PREFIX = '10.103.90.187:9000';
-export const  UPLOAD_DOMAIN_PREFIX = '10.103.90.187:8088';
+
+/**
+ * 资源port
+ */
+
+export const sourceTarget = 'http://127.0.0.1:9209/';
 
 
 
+/**
+ * 本地存储key
+ */
+export const localStorageUserSecurityKey= 'user_security_id';
+
+/**
+ * 认证方式
+ */
+export const AUTH_PASSWORD_TYPE = 'password';
+export const AUTH_EMAIL_TYPE = 'email';
+export const AUTH_PHONE_TYPE = 'phone';
+export const GRANT_TYPE = 'phone';
 
 
-export const DEFAULT_NAME = 'Umi Max';
-export const FLAG1 = 'FIGHTING';
-export const FLAG2 = '越努力越幸运';
-export const QQ = 'QQ:984494524';
-export const EMAIL = 'email:2064989403@qq.com';
-export const AUTHOR_AVATAR = 'https://staraway.love/blog/authorAvatar.jpg';
-export const JUEJIN = 'https://juejin.cn/user/207157472794621';
-export const CSDN = 'https://blog.csdn.net/qq_67602816';
-export const POST_SLOGAN = '如果觉得内容不错，欢迎分享给其他人哦';
-export const DEFAULT_IMAGE = '如果觉得内容不错，欢迎分享给其他人哦';
+/**
+ * 代理路径
+ */
+export const API_USERSECURITY_PREFIX = '/api/userSecurity';
+export const API_USERCENTER_PREFIX = '/api/userCenter';
+export const API_MEDIA_PREFIX = '/source/media';
+export const API_CONTENT_PREFIX = '/api/content';
+export const API_SOCIAL_PREFIX = '/api/social';
+
+
+/**
+ * 默认参数
+ */
+export const DEFAULT_NICKNAME = 'xingxing';
+export const DEFAULT_AVATAR = 'https://avatars.githubusercontent.com/u/106024593?v=4';
+export const DEFAULT_PROVERB = 'What does not kill me makes me stronger.';
+export const DEFAULT_GITHUB_ADDR = 'https://github.com/away-star';
+export const DEFAULT_JUEJIN_ADDR = 'https://juejin.cn/user/207157472794621';
+export const DEFAULT_CSDN_ADDR = 'https://blog.csdn.net/qq_67602816';
+export const DEFAULT_SLIDE = 'https://blog.csdn.net/qq_67602816';
+export const DEFAULT_IDIOGRAPH = '越努力越幸运';
+export const AUTHOR_QQ = '984494524';
+export const AUTHOR_EMAIL = 'email:2064989403@qq.com';
+export const DEFAULT_SLOGAN = '如果觉得内容不错，欢迎分享给其他人哦';
 export const DEFAULT_WelcomeText = '欢迎光临我的博客';
-export const DEFAULT_AVATAR = 'https://staraway.love/u%3D2169083367%2C64951360%26fm%3D253%26fmt%3Dauto%26app%3D138%26f%3DJPEG.webp';
+export const DEFAULT_Slide = '欢迎光临我的博客';
 
 
+/**
+ * mock
+ */
 export const MOCK = "# 场景复现：\n" +
     "`react多组件间通讯`\n" +
     "\n" +
@@ -156,8 +187,8 @@ export const MOCK1 = "# 场景复现：\n" +
 
 
 
-export const initialPost:API.Post = {
-    id: "-1",
+export const initialPost:ContentAPI.Post = {
+    id: -1,
     category: "initial",
     content: "### 登录 or 注册\n" +
         "- 先注册后登录（其他登录方式后续开放）--------------也可直接访问他人主页哦\n" +

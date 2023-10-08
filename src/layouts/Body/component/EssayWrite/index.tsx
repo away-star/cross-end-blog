@@ -8,8 +8,8 @@ import {message} from 'antd';
 import React, {useState} from 'react';
 import {ProFormSwitch} from "@ant-design/pro-form";
 import MyUpload from "@/components/MyUpload";
-import {writeEssay} from "@/services/api/create";
 import {useModel} from "@@/exports";
+import {saveEssay} from "../../../../../services/content/api/essayController";
 
 
 const formItemLayout = {
@@ -52,10 +52,10 @@ export default () => {
                         message.error('请填写完整');
                         return false;
                     }
-                    const essay: CreatAPI.essayData = {
-                        content: values.content, mood: values.mood, open: values.open, urls: images
+                    const essay: ContentAPI.EssayRequest = {
+                        content: values.content, mood: values.mood, isPublic: values.open, coverUrls: images
                     }
-                    const response = await writeEssay(essay);
+                    const response = await saveEssay(essay);
                     console.log(response)
                     if (response.code === 200) {
                         message.success('提交成功');
