@@ -7,10 +7,12 @@ import * as postController from './postController';
 import * as essayController from './essayController';
 import * as commentController from './commentController';
 import * as favoriteController from './favoriteController';
+import * as chartsController from './chartsController';
 export default {
   replyController,
   postController,
   essayController,
   commentController,
   favoriteController,
+  chartsController,
 };

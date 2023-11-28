@@ -1,6 +1,4 @@
-import {
-    DrawerForm,
-} from '@ant-design/pro-components';
+import {DrawerForm,} from '@ant-design/pro-components';
 import {Affix, Button, Card, Col, Divider} from 'antd';
 import React, {useState} from 'react';
 import MySide from "@/components/btn/MySide";
@@ -72,12 +70,14 @@ export default () => {
                     {/*}*/}
                     {/*}>移步配置标签进行博客配置</Button>*/}
                     <Button onClick={() => {
+                        setDrawerVisit(false)
                         setUserInfoModalOpen(true)
-                    }}>相关功能敬请期待</Button>
-
+                    }}>UserInfoModalOpen</Button>
+                    <Button onClick={() => {
+                        setDrawerVisit(false)
+                        setBlogSettingModalOpen(true)
+                    }}>BlogSettingModalOpen</Button>
                 </Card>
-
-
             </DrawerForm>
         </>
     );

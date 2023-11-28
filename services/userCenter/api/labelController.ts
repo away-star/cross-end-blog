@@ -1,7 +1,8 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
-import {API_USERCENTER_PREFIX} from "@/constants";
+import { API_USERCENTER_PREFIX } from '@/constants';
+
 /** 此处后端没有提供注释 PUT /label */
 export async function updateLabel(
   body: UserCenterAPI.LabelRequest,
@@ -34,6 +35,21 @@ export async function deleteLabel(
 /** 此处后端没有提供注释 POST /label/add */
 export async function putLabel(body: UserCenterAPI.LabelRequest, options?: { [key: string]: any }) {
   return request<UserCenterAPI.ResultString>(`${API_USERCENTER_PREFIX}/label/add`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 此处后端没有提供注释 POST /label/addAll */
+export async function putLabels(
+  body: UserCenterAPI.LabelRequest[],
+  options?: { [key: string]: any },
+) {
+  return request<UserCenterAPI.ResultString>(`${API_USERCENTER_PREFIX}/label/addAll`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

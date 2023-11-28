@@ -1,6 +1,6 @@
 declare namespace ContentAPI {
   type actionParams = {
-    targetId: number;
+    targetId: number | string;
   };
 
   type Authenticator = true;
@@ -12,56 +12,58 @@ declare namespace ContentAPI {
     unknown?: boolean;
   };
 
+  type ChartsDataVo = true;
+
   type commentPageParams = {
-    step: number;
+    step: number | string;
     lastUpdateDate?: string;
     postId: string;
   };
 
   type CommentRequest = {
-    id?: number;
+    id?: number | string;
     content?: string;
-    authorId?: number;
-    postId?: number;
+    authorId?: number | string;
+    postId?: number | string;
   };
 
   type CommentVo = {
     /** 评论id主键 */
-    id?: number;
+    id?: number | string;
     /** 评论内容 */
     content?: string;
     /** 评论人id */
-    authorId?: number;
+    authorId?: number | string;
     /** 文章id */
-    postId?: number;
+    postId?: number | string;
     /** 该记录创建时间 */
     createTime?: string;
     /** 该记录最后一次修改时间 */
     updateTime?: string;
     /** 逻辑删除 */
-    deleteFlag?: number;
+    deleteFlag?: number | string;
     replies?: Reply[];
-    favoriteCount?: number;
+    favoriteCount?: number | string;
   };
 
   type deleteActionParams = {
-    targetId: number;
+    targetId: number | string;
   };
 
   type deleteCommentParams = {
-    commentId: number;
+    commentId: number | string;
   };
 
   type deleteEssayParams = {
-    essayId: number;
+    essayId: number | string;
   };
 
   type deletePostParams = {
-    postId: number;
+    postId: number | string;
   };
 
   type deleteReplyParams = {
-    replyId: number;
+    replyId: number | string;
   };
 
   type Engine = {
@@ -71,14 +73,14 @@ declare namespace ContentAPI {
   };
 
   type essayPageParams = {
-    authorId: number;
-    step: number;
+    authorId: number | string;
+    step: number | string;
     lastUpdateDate?: string;
   };
 
   type EssayRequest = {
     coverUrls?: string[];
-    id?: number;
+    id?: number | string;
     content?: string;
     mood?: string;
     isPublic?: boolean;
@@ -86,13 +88,13 @@ declare namespace ContentAPI {
 
   type EssayVo = {
     /** 随笔id主键 */
-    id?: number;
+    id?: number | string;
     /** 随笔内容 */
     content?: string;
     /** 写随笔时候的心情 */
     mood?: string;
     /** 作者id */
-    authorId?: number;
+    authorId?: number | string;
     /** 是否公开 */
     isPublic?: boolean;
     /** 封面图片 */
@@ -102,9 +104,9 @@ declare namespace ContentAPI {
     /** 该记录最后一次修改时间 */
     updateTime?: string;
     /** 逻辑删除 */
-    deleteFlag?: number;
+    deleteFlag?: number | string;
     urls?: string[];
-    favoriteCount?: number;
+    favoriteCount?: number | string;
   };
 
   type Filter = true;
@@ -120,30 +122,7 @@ declare namespace ContentAPI {
 
   type HttpExchange = {
     protocol?: string;
-    responseCode?: number;
-    localAddress?: {
-      address?: {
-        canonicalHostName?: string;
-        hostAddress?: string;
-        address?: string[];
-        hostName?: string;
-        linkLocalAddress?: boolean;
-        multicastAddress?: boolean;
-        anyLocalAddress?: boolean;
-        loopbackAddress?: boolean;
-        siteLocalAddress?: boolean;
-        mcglobal?: boolean;
-        mcnodeLocal?: boolean;
-        mclinkLocal?: boolean;
-        mcsiteLocal?: boolean;
-        mcorgLocal?: boolean;
-      };
-      port?: number;
-      unresolved?: boolean;
-      hostName?: string;
-      hostString?: string;
-    };
-    requestMethod?: string;
+    responseCode?: number | string;
     remoteAddress?: {
       address?: {
         canonicalHostName?: string;
@@ -161,18 +140,41 @@ declare namespace ContentAPI {
         mcsiteLocal?: boolean;
         mcorgLocal?: boolean;
       };
-      port?: number;
+      port?: number | string;
       unresolved?: boolean;
       hostName?: string;
       hostString?: string;
     };
+    requestMethod?: string;
     requestURI?: string;
-    requestHeaders?: { empty?: boolean };
     requestBody?: Record<string, any>;
     principal?: HttpPrincipal;
+    responseBody?: Record<string, any>;
+    requestHeaders?: { empty?: boolean };
     httpContext?: HttpContext;
     responseHeaders?: { empty?: boolean };
-    responseBody?: Record<string, any>;
+    localAddress?: {
+      address?: {
+        canonicalHostName?: string;
+        hostAddress?: string;
+        address?: string[];
+        hostName?: string;
+        linkLocalAddress?: boolean;
+        multicastAddress?: boolean;
+        anyLocalAddress?: boolean;
+        loopbackAddress?: boolean;
+        siteLocalAddress?: boolean;
+        mcglobal?: boolean;
+        mcnodeLocal?: boolean;
+        mclinkLocal?: boolean;
+        mcsiteLocal?: boolean;
+        mcorgLocal?: boolean;
+      };
+      port?: number | string;
+      unresolved?: boolean;
+      hostName?: string;
+      hostString?: string;
+    };
   };
 
   type HttpHandler = true;
@@ -201,7 +203,7 @@ declare namespace ContentAPI {
         mcsiteLocal?: boolean;
         mcorgLocal?: boolean;
       };
-      port?: number;
+      port?: number | string;
       unresolved?: boolean;
       hostName?: string;
       hostString?: string;
@@ -214,46 +216,46 @@ declare namespace ContentAPI {
     method?: string;
     query?: string;
     path?: string;
-    params?: { raw?: Record<string, any>; empty?: boolean };
-    contentType?: string;
-    headers?: { empty?: boolean };
+    userAgent?: UserAgent;
     charset?: string;
     multipart?: MultipartFormData;
     uri?: string;
     body?: string;
-    userAgent?: UserAgent;
     cookies?: {
       name?: string;
       value?: string;
       comment?: string;
       commentURL?: string;
       domain?: string;
-      maxAge?: number;
+      maxAge?: number | string;
       path?: string;
       portlist?: string;
       secure?: boolean;
       httpOnly?: boolean;
-      version?: number;
+      version?: number | string;
       discard?: boolean;
     }[];
     getMethod?: boolean;
     postMethod?: boolean;
     cookieMap?: Record<string, any>;
     userAgentStr?: string;
-    bodyStream?: Record<string, any>;
     bodyBytes?: string[];
     cookiesStr?: string;
+    bodyStream?: Record<string, any>;
+    params?: { raw?: Record<string, any>; empty?: boolean };
+    headers?: { empty?: boolean };
+    contentType?: string;
     httpContext?: HttpContext;
   };
 
   type MultipartFormData = {
     loaded?: boolean;
     paramNames?: string[];
-    paramListMap?: { raw?: Record<string, any>; empty?: boolean };
-    fileListValueMap?: { raw?: Record<string, any>; empty?: boolean };
-    fileMap?: Record<string, any>;
     fileParamNames?: string[];
     paramMap?: Record<string, any>;
+    fileMap?: Record<string, any>;
+    paramListMap?: { raw?: Record<string, any>; empty?: boolean };
+    fileListValueMap?: { raw?: Record<string, any>; empty?: boolean };
   };
 
   type Null = true;
@@ -271,44 +273,44 @@ declare namespace ContentAPI {
 
   type PageCommentVo = {
     records?: CommentVo[];
-    total?: number;
-    size?: number;
-    current?: number;
+    total?: number | string;
+    size?: number | string;
+    current?: number | string;
     orders?: OrderItem[];
     optimizeCountSql?: boolean;
     searchCount?: boolean;
     optimizeJoinOfCountSql?: boolean;
-    maxLimit?: number;
+    maxLimit?: number | string;
     countId?: string;
-    pages?: number;
+    pages?: number | string;
   };
 
   type PageEssayVo = {
     records?: EssayVo[];
-    total?: number;
-    size?: number;
-    current?: number;
+    total?: number | string;
+    size?: number | string;
+    current?: number | string;
     orders?: OrderItem[];
     optimizeCountSql?: boolean;
     searchCount?: boolean;
     optimizeJoinOfCountSql?: boolean;
-    maxLimit?: number;
+    maxLimit?: number | string;
     countId?: string;
-    pages?: number;
+    pages?: number | string;
   };
 
   type PagePostSimpleVo = {
     records?: PostSimpleVo[];
-    total?: number;
-    size?: number;
-    current?: number;
+    total?: number | string;
+    size?: number | string;
+    current?: number | string;
     orders?: OrderItem[];
     optimizeCountSql?: boolean;
     searchCount?: boolean;
     optimizeJoinOfCountSql?: boolean;
-    maxLimit?: number;
+    maxLimit?: number | string;
     countId?: string;
-    pages?: number;
+    pages?: number | string;
   };
 
   type Platform = {
@@ -316,21 +318,21 @@ declare namespace ContentAPI {
     pattern?: Record<string, any>;
     android?: boolean;
     mobile?: boolean;
-    ios?: boolean;
     ipad?: boolean;
+    ios?: boolean;
     iphoneOrIPod?: boolean;
     unknown?: boolean;
   };
 
   type Post = {
     /** 帖子id */
-    id?: number;
+    id?: number | string;
     /** 帖子标题 */
     title?: string;
     /** 帖子内容 */
     content?: string;
     /** post作者id */
-    authorId?: number;
+    authorId?: number | string;
     /** 归属领域 */
     category?: string;
     /** 是否公开 */
@@ -344,31 +346,31 @@ declare namespace ContentAPI {
     /** 该记录最后一次修改时间 */
     updateTime?: string;
     /** 逻辑删除 */
-    deleteFlag?: number;
+    deleteFlag?: number | string;
   };
 
   type postDetailParams = {
-    postId: number;
+    postId: number | string;
   };
 
   type PostDetailVo = {
     post?: Post;
     commentVos?: CommentVo[];
-    favoriteCount?: number;
+    favoriteCount?: number | string;
   };
 
   type postPageParams = {
-    authorId: number;
-    step: number;
+    authorId: number | string;
+    step: number | string;
     lastUpdateDate?: string;
     category?: string;
   };
 
   type PostRequest = {
-    id?: number;
+    id?: number | string;
     title?: string;
     content?: string;
-    authorId?: number;
+    authorId?: number | string;
     category?: string;
     isPublic?: boolean;
     coverUrl?: string;
@@ -377,13 +379,13 @@ declare namespace ContentAPI {
 
   type PostSimpleVo = {
     /** 帖子id */
-    id?: number;
+    id?: number | string;
     /** 帖子标题 */
     title?: string;
     /** 帖子内容 */
     content?: string;
     /** post作者id */
-    authorId?: number;
+    authorId?: number | string;
     /** 归属领域 */
     category?: string;
     /** 是否公开 */
@@ -397,66 +399,72 @@ declare namespace ContentAPI {
     /** 该记录最后一次修改时间 */
     updateTime?: string;
     /** 逻辑删除 */
-    deleteFlag?: number;
-    favoriteCount?: number;
+    deleteFlag?: number | string;
+    favoriteCount?: number | string;
   };
 
   type Reply = {
     /** 回复id主键 */
-    id?: number;
+    id?: number | string;
     /** 回复内容 */
     content?: string;
     /** 回复人id */
-    authorId?: number;
+    authorId?: number | string;
     /** 目标id */
-    targetId?: number;
+    targetId?: number | string;
     /** 该记录创建时间 */
     createTime?: string;
     /** 该记录最后一次修改时间 */
     updateTime?: string;
     /** 逻辑删除 */
-    deleteFlag?: number;
+    deleteFlag?: number | string;
   };
 
   type ReplyRequest = {
-    id?: number;
+    id?: number | string;
     content?: string;
-    authorId?: number;
-    targetId?: number;
+    authorId?: number | string;
+    targetId?: number | string;
+  };
+
+  type ResultChartsDataVo = {
+    code?: number | string;
+    msg?: string;
+    data?: ChartsDataVo;
   };
 
   type ResultNull = {
-    code?: number;
+    code?: number | string;
     msg?: string;
     data?: Null;
   };
 
   type ResultPageCommentVo = {
-    code?: number;
+    code?: number | string;
     msg?: string;
     data?: PageCommentVo;
   };
 
   type ResultPageEssayVo = {
-    code?: number;
+    code?: number | string;
     msg?: string;
     data?: PageEssayVo;
   };
 
   type ResultPagePostSimpleVo = {
-    code?: number;
+    code?: number | string;
     msg?: string;
     data?: PagePostSimpleVo;
   };
 
   type ResultPostDetailVo = {
-    code?: number;
+    code?: number | string;
     msg?: string;
     data?: PostDetailVo;
   };
 
   type ResultString = {
-    code?: number;
+    code?: number | string;
     msg?: string;
     data?: string;
   };

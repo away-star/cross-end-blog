@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import MyUpload from "@/components/MyUpload";
 import {message} from "antd";
-import {history} from "@@/core/history";
+import {history} from "umi";
 
 
 interface IProp {
@@ -28,17 +28,15 @@ const BlogSetting: React.FC<IProp> = (props) => {
 
     const onAvatarUploadSuccess = (fileUrls: string[]) => {
         setSlideShow(fileUrls);
-        console.log(fileUrls)
     }
 
     const upFinish = async (e: Record<string, any>) => {
-        console.log(e)
         // const blogSettingData: UserCenterAPI.Label = {
         //     labels: e.labels,
         //     proverbs: e.proverbs,
         //     slides: slideShow
         // }
-        // console.log(blogSettingData);
+        // (blogSettingData);
         // const res=await updateBlogSetting(blogSettingData)
         // if (res.code === 200) {
         //     message.success("更新成功！")
@@ -58,7 +56,7 @@ const BlogSetting: React.FC<IProp> = (props) => {
                     {
                         required: true,
                         validator: async (_, value) => {
-                            console.log(value);
+
                             if (value && value.length > 0) {
                                 return;
                             }
@@ -115,7 +113,6 @@ const BlogSetting: React.FC<IProp> = (props) => {
                     {
                         required: true,
                         validator: async (_, value) => {
-                            console.log(value);
                             if (value && value.length > 0) {
                                 return;
                             }

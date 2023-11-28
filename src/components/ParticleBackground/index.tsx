@@ -7,7 +7,7 @@ import { loadFull } from "tsparticles";
 const ParticleBackground = () => {
     //初始化粒子
     const particlesInit = useCallback(async (engine: Engine) => {
-        console.log(engine);
+        (engine);
         // 加载 tsparticles 实例，可以在此添加自定义形状或预设。
         // 此处加载 tsparticles 包，是最简单的方法准备好所有内容，从 v2 开始，您只需添加所需功能即可减小包大小
         await loadFull(engine);
@@ -15,7 +15,7 @@ const ParticleBackground = () => {
 
     //粒子加载状态监测
     const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        await console.log(container);
+        await (container);
     }, []);
 
     //初始化粒子效果配置项

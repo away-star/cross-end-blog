@@ -1,6 +1,12 @@
 declare namespace UserSecurityAPI {
   type Authenticator = true;
 
+  type BlogSettingRequest = {
+    labelList?: Label[];
+    proverbList?: Proverb[];
+    slideVenue?: string[];
+  };
+
   type Browser = {
     name?: string;
     pattern?: Record<string, any>;
@@ -30,11 +36,11 @@ declare namespace UserSecurityAPI {
 
   type getUserinfoParams = {
     /** 登录信息id */
-    security_info_id?: number;
+    securityInfoId?: number |  string;
   };
 
   type getUsersListParams = {
-    security_info_id?: number;
+    securityInfoId?: number |  string;
     size: number;
   };
 
@@ -50,11 +56,7 @@ declare namespace UserSecurityAPI {
   type HttpExchange = {
     protocol?: string;
     responseCode?: number;
-    requestBody?: Record<string, any>;
-    principal?: HttpPrincipal;
-    requestHeaders?: { empty?: boolean };
-    responseHeaders?: { empty?: boolean };
-    responseBody?: Record<string, any>;
+    requestMethod?: string;
     remoteAddress?: {
       address?: {
         canonicalHostName?: string;
@@ -77,6 +79,13 @@ declare namespace UserSecurityAPI {
       hostName?: string;
       hostString?: string;
     };
+    requestURI?: string;
+    responseBody?: Record<string, any>;
+    requestBody?: Record<string, any>;
+    principal?: HttpPrincipal;
+    requestHeaders?: { empty?: boolean };
+    httpContext?: HttpContext;
+    responseHeaders?: { empty?: boolean };
     localAddress?: {
       address?: {
         canonicalHostName?: string;
@@ -99,9 +108,6 @@ declare namespace UserSecurityAPI {
       hostName?: string;
       hostString?: string;
     };
-    requestMethod?: string;
-    httpContext?: HttpContext;
-    requestURI?: string;
   };
 
   type HttpHandler = true;
@@ -143,6 +149,13 @@ declare namespace UserSecurityAPI {
     method?: string;
     query?: string;
     path?: string;
+    contentType?: string;
+    headers?: { empty?: boolean };
+    charset?: string;
+    multipart?: MultipartFormData;
+    uri?: string;
+    body?: string;
+    userAgent?: UserAgent;
     cookies?: {
       name?: string;
       value?: string;
@@ -157,29 +170,22 @@ declare namespace UserSecurityAPI {
       version?: number;
       discard?: boolean;
     }[];
-    params?: { raw?: Record<string, any>; empty?: boolean };
-    headers?: { empty?: boolean };
-    multipart?: MultipartFormData;
-    postMethod?: boolean;
-    bodyStream?: Record<string, any>;
-    cookiesStr?: string;
     getMethod?: boolean;
+    postMethod?: boolean;
+    bodyBytes?: string[];
+    cookiesStr?: string;
     userAgentStr?: string;
     cookieMap?: Record<string, any>;
-    bodyBytes?: string[];
-    contentType?: string;
-    charset?: string;
-    uri?: string;
-    body?: string;
-    userAgent?: UserAgent;
+    bodyStream?: Record<string, any>;
+    params?: { raw?: Record<string, any>; empty?: boolean };
     httpContext?: HttpContext;
   };
 
   type Label = {
     /** 主键 */
-    id?: number;
+    id?: number | string;
     /** 用户登录信息id */
-    securityInfoId?: number;
+    securityInfoId?: number |  string;
     /** 标签背景 */
     backgroundImg?: string;
     /** 标题 */
@@ -214,12 +220,12 @@ declare namespace UserSecurityAPI {
 
   type MultipartFormData = {
     loaded?: boolean;
-    fileMap?: Record<string, any>;
+    paramNames?: string[];
     fileListValueMap?: { raw?: Record<string, any>; empty?: boolean };
     paramMap?: Record<string, any>;
     fileParamNames?: string[];
     paramListMap?: { raw?: Record<string, any>; empty?: boolean };
-    paramNames?: string[];
+    fileMap?: Record<string, any>;
   };
 
   type Null = true;
@@ -252,11 +258,11 @@ declare namespace UserSecurityAPI {
   type Platform = {
     name?: string;
     pattern?: Record<string, any>;
+    android?: boolean;
     mobile?: boolean;
+    ipad?: boolean;
     iphoneOrIPod?: boolean;
     ios?: boolean;
-    ipad?: boolean;
-    android?: boolean;
     unknown?: boolean;
   };
 
@@ -266,9 +272,9 @@ declare namespace UserSecurityAPI {
     /** 创作者 */
     createPeople?: string;
     /** 使用人id */
-    securityInfoId?: number;
+    securityInfoId?: number |  string;
     /** 主键 */
-    id?: number;
+    id?: number | string;
     /** 状态 */
     isActive?: number;
     /** 该记录创建时间 */
@@ -333,7 +339,7 @@ declare namespace UserSecurityAPI {
 
   type SecurityInfo = {
     /** 主键 */
-    id?: number;
+    id?: number | string;
     /** 手机号 */
     phone?: string;
     /** 账号 */
@@ -358,10 +364,10 @@ declare namespace UserSecurityAPI {
   type UploadFile = {
     header?: UploadFileHeader;
     fileName?: string;
-    uploaded?: boolean;
-    inMemory?: boolean;
     fileInputStream?: Record<string, any>;
     fileContent?: string[];
+    inMemory?: boolean;
+    uploaded?: boolean;
   };
 
   type UploadFileHeader = {
@@ -377,11 +383,11 @@ declare namespace UserSecurityAPI {
 
   type User2power = {
     /** 用户登录信息id */
-    securityInfoId?: number;
+    securityInfoId?: number |  string;
     /** 权限主键 */
     powerId?: number;
     /** 主键 */
-    id?: number;
+    id?: number | string;
     /** 该记录创建时间 */
     createTime?: string;
     /** 该记录最后一次修改时间 */
@@ -403,9 +409,9 @@ declare namespace UserSecurityAPI {
 
   type Userinfo = {
     /** 主键 */
-    id?: number;
+    id?: number | string;
     /** 用户登录信息id */
-    securityInfoId?: number;
+    securityInfoId?: number |  string;
     /** 网名 */
     nickname?: string;
     /** 生日 */

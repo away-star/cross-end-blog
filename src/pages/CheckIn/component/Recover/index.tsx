@@ -31,14 +31,14 @@ export default () => {
     }));
 
     const goRecover = async (values: any) => {
-        console.log(values)
+        (values)
         const res = await recover({
             authType: values.authType,
             email: values.email,
             captcha: values.captcha,
             password: values.password
         })
-        console.log(res)
+        (res)
         if (res.code === 200) {
             setIsCoverModalOpen(false)
             message.success('重置密码成功,快去登录吧');

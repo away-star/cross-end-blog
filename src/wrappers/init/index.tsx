@@ -5,9 +5,9 @@
 // import {message} from "antd";
 //
 // export default () => {
-//     console.log(localStorage.getItem('Authorization'))
+//     (localStorage.getItem('Authorization'))
 //     const loginInformationId = localStorage.getItem('loginInformationId')
-//     console.log(loginInformationId)
+//     (loginInformationId)
 //
 //
 //     const pathParts = history.location.pathname.trim().split('/');
@@ -20,14 +20,14 @@
 //     useEffect(
 //         () => {
 //             let loginInformationId = localStorage.getItem('loginInformationId')
-//             console.log(loginInformationId)
+//             (loginInformationId)
 //             if (lastPart !== loginInformationId) {
 //                 loginInformationId = lastPart ? lastPart : null
 //             }
-//             console.log(lastPart)
+//             (lastPart)
 //             const initial = async () => {
 //                 const res = await getInitialArgs({loginInformationId: loginInformationId});
-//                 console.log(res)
+//                 (res)
 //                 if (res.code !== 200) {
 //                     message.error('查询不到此用户信息')
 //                     history.replace('/checkIn')

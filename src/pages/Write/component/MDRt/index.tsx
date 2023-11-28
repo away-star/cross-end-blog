@@ -17,7 +17,7 @@ export default function MDRt() {
     }));
 
     const mdChange = (v: string | undefined) => {
-        console.log(v);
+        (v);
 
         setValue(v ?? '');
         updateWriteData("content", v ?? '');

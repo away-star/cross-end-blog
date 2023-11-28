@@ -4,7 +4,7 @@ import {Affix, Col, Divider, List, message, Row, Timeline} from "antd";
 import Head from "@/components/Head";
 import Author from "@/components/Author";
 
-import {history} from "@@/core/history";
+import {history} from "umi";
 import EssayMel from "@/pages/Essay/component/EssayMel";
 import {useModel} from "@@/exports";
 import {essayPage} from "../../../services/content/api/essayController";

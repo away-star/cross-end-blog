@@ -8,14 +8,17 @@
     "prepare": "husky install",
     "postinstall": "max setup",
     "setup": "max setup",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "openapi": "ts-node openapi.config.ts"
   },
   "dependencies": {
+    "@ant-design/happy-work-theme": "^1.0.0",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-components": "^2.4.4",
     "@chatscope/chat-ui-kit-react": "^1.10.1",
     "@uiw/react-md-editor": "^3.20.5",
     "@umijs/max": "^4.0.42",
+    "@umijs/openapi": "^1.9.1",
     "antd": "^5.4.0",
     "antd-img-crop": "^4.11.1",
     "classnames": "^2.3.2",
@@ -33,7 +36,9 @@
     "react-use": "^17.4.0",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "tsparticles": "^2.9.3"
+    "ts-node": "^10.9.1",
+    "tsparticles": "^2.9.3",
+    "umi-request": "^1.4.0"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.7",

@@ -4,11 +4,10 @@ import Author from "@/components/Author";
 import styles from './index.less'
 import PostCard from "@/components/PostCard";
 
-import {history} from "@@/core/history";
+import {history} from "umi";
 import {useModel} from "@@/exports";
 import Loading from "@/loading";
 import {initialPost} from "@/constants";
-import {getUserinfo} from "../../../services/userSecurity/api/userController";
 import {postPage} from "../../../services/content/api/postController";
 import {getRandSlide} from "@/utils/sevice";
 
@@ -29,7 +28,6 @@ const HomePage: React.FC = () => {
     const [postList, setPostList] = useState<ContentAPI.PostSimpleVo[]>([]);
 
     useEffect(() => {
-        console.log('useEffect')
         const fetchData = async () => {
             const res = await postPage({
                 authorId: parseInt(idUrl), category: undefined, step: 5

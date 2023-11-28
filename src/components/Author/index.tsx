@@ -51,7 +51,7 @@ const Author: React.FC<IProps> = (props) => {
                     </li>
 
                     <li className={styles.item} onClick={() => {
-                        console.log(`/blog/${getIdFromUrl(history.location.pathname)}/home`)
+                        (`/blog/${getIdFromUrl(history.location.pathname)}/home`)
                         history.push(`/blog/${getIdFromUrl(history.location.pathname)}/home`)
                     }
                     }>

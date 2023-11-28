@@ -32,7 +32,7 @@ export default () => {
 
     const onUploadSuccess = (fileUrls: string[]) => {
         setImages(fileUrls);
-        console.log(fileUrls)
+        (fileUrls)
     }
 
 
@@ -56,7 +56,7 @@ export default () => {
                         content: values.content, mood: values.mood, isPublic: values.open, coverUrls: images
                     }
                     const response = await saveEssay(essay);
-                    console.log(response)
+                    (response)
                     if (response.code === 200) {
                         message.success('提交成功');
                         window.location.reload();
@@ -91,7 +91,7 @@ export default () => {
                     fieldProps={{autoSize: {minRows: 3, maxRows: 10}}}
                 />
                 <ProForm.Item label="图片" name="file" wrapperCol={{span: 13}}>
-                    {/*<MyUpload  onUploadSuccess={()=>{console.log('666')}}/>*/}
+                    {/*<MyUpload  onUploadSuccess={()=>{('666')}}/>*/}
                     <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'} maxCount={9}/>
                 </ProForm.Item>
                 <ProFormSwitch label={'isPublic'} name={'open'} initialValue={true}/>

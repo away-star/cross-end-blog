@@ -11,6 +11,7 @@ import CommentWrite from "@/pages/MessageBoard/component/commentWrite";
 import PostCard from "@/components/PostCard";
 import {DEFAULT_AVATAR} from "@/constants";
 import {getTimeAgo} from "@/utils/time";
+import {MessageList} from "@chatscope/chat-ui-kit-react";
 
 const {Header, Content} = Layout;
 
@@ -21,7 +22,7 @@ function MessageBoard() {
         getRandSlide: model.getRandSlide
     }));
 
-    const [messages, setMessages] = useState<ContentAPI.messageData[]>([]);
+    const [messages, setMessages] = useState<SocialAPI.MessageLeave[]>([]);
    // const [loading, setLoading] = useState(true); // 加载状态变量
 
 
@@ -29,11 +30,10 @@ function MessageBoard() {
         const pathParts = history.location.pathname.trim().split('/');
         const idUrl = pathParts[pathParts.length - 2];
 
-        const res = await getMessagePage({step: 20, loginInformationId: idUrl});
+        const res = await get({step: 20, loginInformationId: idUrl});
         if (res.code !== 200) {
             message.error(res.msg);
         } else {
-            console.log(res.data);
             const messages: InteractAPI.messageData[] = res.data.records.map((item:any) => ({
                 createTime: item.createTime,
                 updateTime: item.updateTime,
@@ -50,7 +50,7 @@ function MessageBoard() {
     }
 
     useEffect(() => {
-        console.log('useEffect')
+        ('useEffect')
         fetchData();
         // window.addEventListener("scroll", onScrollEvent)
     }, []);

@@ -47,7 +47,7 @@ const DevelopmentTimeLine: React.FC<IProp> = (props) => {
             let activeItemIndex = activeIndex;  // 定义名为activeItemIndex的变量，初始值为activeIndex
 
             selectors.item.forEach(function (item, i) {  // 遍历selectors.item数组，对每个元素执行回调函数
-                console.log("执行");  // 输出"执行"到控制台
+                ("执行");  // 输出"执行"到控制台
                 const rect = item.getBoundingClientRect();  // 获取元素的大小及其相对于视口的位置
                 const itemTop = rect.top + scrollTop;  // 计算元素相对于文档顶部的偏移量
                 const itemBottom = itemTop + rect.height;  // 计算元素底部相对于文档顶部的偏移量

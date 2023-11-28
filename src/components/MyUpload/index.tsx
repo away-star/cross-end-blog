@@ -38,20 +38,22 @@ interface IProps {
 }
 
 const MyUpload: React.FC<IProps> = (props) => {
-    const {type='picture-card', maxCount = 1, accept='image', defaultPictureUrl, onUploadSuccess, aspect = 1} = props;
-    const [previewOpen, setPreviewOpen] = useState(false);
+    const {
+        type = 'picture-card',
+        maxCount = 1,
+        accept = 'image',
+        defaultPictureUrl,
+        onUploadSuccess,
+        aspect = 1
+    } = props;
+    const [previewOpen, setPreviewOpen] = useState<boolean>(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
     const [fileList, setFileList] = useState<UploadFile[]>([]);
 
     useEffect(() => {
+        // 将默认图片转换为fileList
         if (defaultPictureUrl !== undefined && defaultPictureUrl !== null) {
-            // setFileList([{
-            //     uid: '-1',
-            //     name: 'image.png',
-            //     status: 'done',
-            //     url: defaultPictureUrl,
-            // },])
             setFileList(defaultPictureUrl.map((item, index) => ({
                 uid: index.toString(),
                 name: 'image.png' + index.toString(),
@@ -67,33 +69,27 @@ const MyUpload: React.FC<IProps> = (props) => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj as RcFile);
         }
-
         setPreviewImage(file.url || (file.preview as string));
         setPreviewOpen(true);
         setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
     };
 
     const handleChange: UploadProps['onChange'] = ({fileList: newFileList}) => {
-
         setFileList(newFileList);
-        console.log(newFileList)
-        console.log(fileList)
         if (newFileList[newFileList.length - 1]?.status === 'done') {
-            console.log('download success')
             if (newFileList.length > fileList.length) {
                 newFileList[newFileList.length - 1] = {
                     uid: fileList.length.toString(),
-                    name: 'image.png' + fileList.length.toString().toString(),
+                    name: 'image.png' + fileList.length.toString(),
                     status: 'done',
-                    url: newFileList[newFileList.length - 1].response.message,
+                    url: newFileList[newFileList.length - 1].response.msg,
                 }
             }
-            console.log(newFileList)
             onUploadSuccess(newFileList.map((item) => {
                 if (item.url) {
                     return item.url
                 } else {
-                    return item.response.message
+                    return item.response.msg
                 }
             }))
         }
@@ -109,14 +105,14 @@ const MyUpload: React.FC<IProps> = (props) => {
         <>
             <ImgCrop rotationSlider cropShape={type === 'picture-card' ? 'rect' : 'round'} aspect={aspect}>
                 <Upload
-                    action='/source/upload'
+                    action='/source/image/upload'
+                    headers={{'Authorization': localStorage.getItem('Authorization')!}}
                     listType={type === 'picture-card' ? 'picture-card' : 'picture-circle'}
                     fileList={fileList}
                     onChange={handleChange}
                     onPreview={handlePreview}
                     // beforeUpload={beforeUpload}
                 >
-                    {/*{fileList.length < (multi?9:1) && uploadButton}*/}
                     {fileList.length >= maxCount ? null : uploadButton}
                 </Upload>
             </ImgCrop>

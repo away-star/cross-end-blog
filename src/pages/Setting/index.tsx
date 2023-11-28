@@ -25,7 +25,7 @@ export default () => {
     const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
     useEffect(() => {
-        console.log('')
+        ('')
         if (localStorage.getItem('Authorization') === undefined||localStorage.getItem('Authorization') === null) {
             history.push('/checkIn')
         }

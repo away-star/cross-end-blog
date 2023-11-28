@@ -8,7 +8,7 @@ import {
 
 const Demo = () => {
     return (
-        <ProForm onFinish={async (e) => console.log(e)}>
+        <ProForm onFinish={async (e) => (e)}>
             <ProFormText name="name" label="姓名" />
             <ProFormList
                 name="users"

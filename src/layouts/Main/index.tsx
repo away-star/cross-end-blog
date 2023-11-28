@@ -1,22 +1,21 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import HeaderNav from "@/layouts/HeaderNav";
 import Footer from "@/layouts/Footer";
 import Body from "@/layouts/Body";
-import '@/global.less'
 import {history} from "umi";
-import {Button, message, notification, Space} from "antd";
-import ParticleBackground from "@/components/ParticleBackground";
+import {App, Button, ConfigProvider, message, notification, Space, theme} from "antd";
 import {ExperimentOutlined, SmileOutlined} from "@ant-design/icons";
 import ProField from "@ant-design/pro-field";
 import {ProFieldFCMode} from "@ant-design/pro-provider";
 import MyPop from "@/components/MyPop";
-import {useLocation, useModel} from "@@/exports";
+import {Helmet, useModel} from "@@/exports";
 import {getUserinfo} from "../../../services/userSecurity/api/userController";
 import {getIdFromUrl} from "@/utils/urlUtil";
 import {localStorageUserSecurityKey} from "@/constants";
-import Loading from "@/loading";
 import UserInfoUpdate from "@/layouts/Body/component/UserInfoUpdate";
 import BlogSettingUpdate from "@/layouts/Body/component/BlogSettingUpdate";
+import {HappyProvider} from "@ant-design/happy-work-theme";
+import {witheToken} from "@/pages/CheckIn";
 
 
 const Main = () => {
@@ -32,14 +31,18 @@ const Main = () => {
         userInfoModalOpen,
         setUserInfoModalOpen,
         blogSettingModalOpen,
-        setBlogSettingModalOpen
+        setBlogSettingModalOpen,
+        darkEnv,
+        setDarkEnv
     } = useModel('pageStatusModel', (model) => ({
         globalLoading: model.globalLoading,
         setGlobalLoading: model.setGlobalLoading,
         userInfoModalOpen: model.userInfoModalOpen,
         setUserInfoModalOpen: model.setUserInfoModalOpen,
         blogSettingModalOpen: model.blogSettingModalOpen,
-        setBlogSettingModalOpen: model.setBlogSettingModalOpen
+        setBlogSettingModalOpen: model.setBlogSettingModalOpen,
+        darkEnv: model.darkEnv,
+        setDarkEnv: model.setDarkEnv
     }));
 
     const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
@@ -89,7 +92,6 @@ const Main = () => {
                     <span>对此次测试的体验评分(每个id记最后一次)</span>
                     {visible ?
                         <ProField text={3.5} valueType="rate" mode={state} plain={plain} onChange={(value) => {
-                            console.log(value)
                             message.success('感谢您的参与')
                             //api.destroy(key)
                             setVisible(false)
@@ -122,20 +124,43 @@ const Main = () => {
     }, []);
 
 
-    useLayoutEffect(() => {
-        console.log(userInfoModalOpen)
+    useEffect(() => {
+
 
         const fetchData = async () => {
             const res = await getUserinfo(
-                {security_info_id: parseInt(getIdFromUrl(history.location.pathname))}
+                {securityInfoId: getIdFromUrl(history.location.pathname)}
             )
             if (res.code === 200) {
                 if (res.data?.securityInfo?.id?.toString() !== localStorage.getItem(localStorageUserSecurityKey)) {
                     openNotification()
                 }
                 setInitialUserData(res.data!)
+                //这样就可以让初始值出来！！！！！！
+                const userUserinfo = res.data!.userinfo!;
+                const userLabels = res.data!.labels;
+                const userProverbs = res.data!.proverbs;
+                if (userUserinfo.nickname === null ||
+                    userUserinfo.subname === null ||
+                    userUserinfo.avatar === null ||
+                    userUserinfo.welcomeText === null
+                ) {
+                    setUserInfoModalOpen(true)
+                }
+                if (userUserinfo.slideShow === null ||
+                    userLabels?.length === 0 ||
+                    userProverbs?.length === 0
+                ) {
+                    setBlogSettingModalOpen(true)
+                }
+                //暂时全部打开 todo 后期删除
+                //setBlogSettingModalOpen(true)
+                setUserInfoModalOpen(true)
             }
         }
+
+
+
         openDebugNotification()
         setGlobalLoading(true);
         fetchData().then(() => {
@@ -147,21 +172,36 @@ const Main = () => {
     }, [])
 
 
-    return (<>
-            <MyPop visible={isSmallScreen}/>
-            {contextHolder}
-            {/*<UserInfoUpdate/>*/}
-            {<BlogSettingUpdate text={"ss"}/>}
-            <ParticleBackground/>
-            {globalLoading ? ( // 如果数据还没加载完，就显示 loading 状态
-                <Loading/>
-            ) : (
-                <div>
-                    <HeaderNav/>
-                    <Body/>
-                    <Footer/>
-                </div>
-            )}
+    return (
+        <>
+            <Helmet>
+                <title>{userinfo?.nickname+"的个人博客"}</title>
+                <link rel={'icon'} href={userinfo?.avatar} type={'image/x-icon'}/>
+            </Helmet>
+            <ConfigProvider theme={{
+                token: witheToken,
+                algorithm: darkEnv ? theme.darkAlgorithm : theme.defaultAlgorithm,
+                components: {},
+            }}>
+                <App>
+                    <HappyProvider>
+                        <MyPop visible={isSmallScreen}/>
+                        {contextHolder}
+                        {<UserInfoUpdate/>}
+                        {<BlogSettingUpdate/>}
+                        {/*<ParticleBackground/>*/}
+                        {/*{globalLoading ? ( // 如果数据还没加载完，就显示 loading 状态*/}
+                        {/*    <Loading/>*/}
+                        {/*) : (*/}
+                        <div>
+                            <HeaderNav/>
+                            <Body/>
+                            <Footer/>
+                        </div>
+                        {/*)}*/}
+                    </HappyProvider>
+                </App>
+            </ConfigProvider>
         </>
     );
 };

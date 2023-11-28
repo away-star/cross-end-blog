@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './index.less';
 import {Column} from "rc-table";
 import {Image, Row} from "antd";
-import happySvg from '@/assets/happy.svg';
-import tiredSvg from '@/assets/studying.svg';
-import enrichSvg from '@/assets/success.svg';
-import sadSvg from '@/assets/working.svg';
+import happySvg from '@/assets/motion/happy.svg';
+import tiredSvg from '@/assets/motion/studying.svg';
+import enrichSvg from '@/assets/motion/success.svg';
+import sadSvg from '@/assets/motion/working.svg';
 import ImageLayout from "@/pages/Essay/component/ImageLayout";
 import NineGrid from "@/pages/Essay/component/NineGrid";
 

@@ -26,13 +26,13 @@ const UserInfoSetting: React.FC<IProp> = (props) => {
     const [avatar, setAvatar] = React.useState<string>();
 
     const onAvatarUploadSuccess = (fileUrls: string[]) => {
-        console.log(fileUrls)
+        (fileUrls)
         setAvatar(fileUrls[0]);
     }
 
     const upFinish = async (e: Record<string, any>) => {
-        console.log(e)
-        console.log(userInfoData);
+        (e)
+        (userInfoData);
         const res = await updateInfo({
             nickname: e.nickname,
             birthday: e.birthday,

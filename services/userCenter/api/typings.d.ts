@@ -1,29 +1,29 @@
 declare namespace UserCenterAPI {
   type deleteLabelParams = {
-    id: number;
+    id: number|string;
   };
 
   type deleteProverbParams = {
-    id: number;
+    id: number|string;
   };
 
   type getAll1Params = {
-    security_info_id?: number;
+    securityInfoId?: number|string;
   };
 
   type getAllParams = {
-    security_info_id?: number;
+    securityInfoId?: number|string;
   };
 
   type getUserInfosParams = {
-    ids: number[];
+    ids: string[];
   };
 
   type Label = {
     /** 主键 */
-    id?: number;
+    id?: string;
     /** 用户登录信息id */
-    securityInfoId?: number;
+    securityInfoId?: number|string;
     /** 标签背景 */
     backgroundImg?: string;
     /** 标题 */
@@ -38,7 +38,11 @@ declare namespace UserCenterAPI {
     deleteFlag?: number;
   };
 
-  type LabelRequest = true;
+  type LabelRequest = {
+    backgroundImg?: string;
+    title: string;
+    subTitle?: string;
+  };
 
   type Proverb = {
     /** 箴言 */
@@ -46,9 +50,9 @@ declare namespace UserCenterAPI {
     /** 创作者 */
     createPeople?: string;
     /** 使用人id */
-    securityInfoId?: number;
+    securityInfoId?: number|string;
     /** 主键 */
-    id?: number;
+    id?: string;
     /** 状态 */
     isActive?: number;
     /** 该记录创建时间 */
@@ -65,7 +69,7 @@ declare namespace UserCenterAPI {
     /** 创作者 */
     createPeople?: string;
     /** 主键 */
-    id?: number;
+    id?: string;
     /** 状态 */
     isActive?: number;
   };
@@ -96,9 +100,9 @@ declare namespace UserCenterAPI {
 
   type Userinfo = {
     /** 主键 */
-    id?: number;
+    id?: string;
     /** 用户登录信息id */
-    securityInfoId?: number;
+    securityInfoId?: number|string;
     /** 网名 */
     nickname?: string;
     /** 生日 */
@@ -112,7 +116,7 @@ declare namespace UserCenterAPI {
     /** 用户等级 */
     userLever?: boolean;
     /** QQ号 */
-    qq?: number;
+    qq?: string;
     /** 首页展示图（不超过五张） */
     slideShow?: string;
     /** 个人签名 */

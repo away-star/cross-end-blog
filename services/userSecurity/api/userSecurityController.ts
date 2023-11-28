@@ -1,7 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
-import {API_USERSECURITY_PREFIX} from "@/constants";
+import { API_USERSECURITY_PREFIX } from '@/constants';
 
 /** 此处后端没有提供注释 POST /userSecurity/login */
 export async function login(

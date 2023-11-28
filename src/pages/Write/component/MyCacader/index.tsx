@@ -50,7 +50,7 @@ const options: Option[] = [
 ];
 
 const onChange = (value:any) => {
-    console.log(value);
+    (value);
 };
 
 const filter = (inputValue: string, path: DefaultOptionType[]) =>
@@ -64,7 +64,7 @@ const App: React.FC = () => (
         onChange={onChange}
         placeholder="Please select"
         showSearch={{ filter }}
-        onSearch={(value) => console.log(value)}
+        onSearch={(value) => (value)}
     />
 );
 

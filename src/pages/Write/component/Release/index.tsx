@@ -39,7 +39,7 @@ export default () => {
 
     const onUploadSuccess = (fileUrls: string[]) => {
         setCover(fileUrls[0]);
-        console.log(fileUrls)
+        (fileUrls)
     }
 
 
@@ -117,7 +117,7 @@ export default () => {
                     fieldProps={{autoSize: {minRows: 3, maxRows: 10}}}
                 />
                 <ProForm.Item label="cover" name="cover" wrapperCol={{span: 13}}>
-                    {/*<MyUpload  onUploadSuccess={()=>{console.log('666')}}/>*/}
+                    {/*<MyUpload  onUploadSuccess={()=>{('666')}}/>*/}
                     <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'}/>
                 </ProForm.Item>
                 <ProFormSwitch label={'isPublic'} name={'open'} initialValue={true}/>

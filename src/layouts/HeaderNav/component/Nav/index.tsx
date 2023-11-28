@@ -1,14 +1,17 @@
 import {Menu, MenuProps} from 'antd';
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React from 'react';
 import {
+    CommentOutlined,
+    FundProjectionScreenOutlined,
     GithubOutlined,
-    InfoOutlined, LogoutOutlined,
+    HomeOutlined,
+    InfoOutlined,
+    LogoutOutlined,
     ReconciliationOutlined,
 } from "@ant-design/icons";
 import {history} from "umi";
 import styles from './index.less'
 import {useModel} from "@@/exports";
-import {getIdFromUrl} from "@/utils/urlUtil";
 import {localStorageUserSecurityKey} from "@/constants";
 
 
@@ -18,7 +21,6 @@ interface IProps {
 
 const Nav: React.FC<IProps> = () => {
 
-    const [currentId, setCurrentId] = useState<string>();
 
     const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
         setInitialUserData: model.setInitialUserData,
@@ -28,16 +30,11 @@ const Nav: React.FC<IProps> = () => {
     const {userinfo, securityInfo, labels, proverbs} = initialUserData!
 
 
-    useLayoutEffect(() => {
-        setCurrentId(getIdFromUrl(history.location.pathname));
-    }, [])
-
-
     const items: MenuProps['items'] = [
         {
             label: '主页',
-            key: `/blog/${currentId}/home`,
-            icon: <img src={'https://staraway.love/%E4%B8%BB%E9%A1%B5.svg'} alt={""} width={20}/>,
+            key: `/blog/${securityInfo?.id}/home`,
+            icon: <HomeOutlined />,
         },
         // {
         //     label: '技术',
@@ -61,18 +58,18 @@ const Nav: React.FC<IProps> = () => {
         // },
         {
             label: '随笔',
-            key: `/blog/${currentId}/essay`,
+            key: `/blog/${securityInfo?.id}/essay`,
             icon: <ReconciliationOutlined/>,
         },
         {
             label: '留言区',
-            key: `/blog/${currentId}/messageBoard`,
-            icon: <ReconciliationOutlined/>,
+            key: `/blog/${securityInfo?.id}/messageBoard`,
+            icon: <CommentOutlined />,
         },
         {
             label: '广场',
             key: `/blog/square`,
-            icon: <ReconciliationOutlined/>,
+            icon: <FundProjectionScreenOutlined />,
         },
         // {
         //     label: '配置',
@@ -82,9 +79,9 @@ const Nav: React.FC<IProps> = () => {
         // },
         {
             label: '关于',
-            key: `/blog/${currentId}/aboutMe`,
+            key: `/blog/${securityInfo?.id}/aboutMe`,
             icon: <InfoOutlined spin={true}/>,
-            disabled: localStorage.getItem(localStorageUserSecurityKey)!== currentId,
+            disabled: localStorage.getItem(localStorageUserSecurityKey) !== securityInfo?.id,
         },
         {
             label: (
@@ -96,7 +93,7 @@ const Nav: React.FC<IProps> = () => {
             key: 'Github',
         },
         {
-            label: currentId === localStorage.getItem(localStorageUserSecurityKey) ? '退出登录' : '前往登录/注册',
+            label: securityInfo?.id === localStorage.getItem(localStorageUserSecurityKey) ? '退出登录' : '前往登录/注册',
             key: `logout`,
             icon: <LogoutOutlined/>,
             // disabled: true,
@@ -113,7 +110,6 @@ const Nav: React.FC<IProps> = () => {
         if (e.key === 'Github') {
             return;
         }
-        setCurrentId(e.key)
         if (e.key !== location.pathname) {
             history.push(e.key);
         }
@@ -123,7 +119,6 @@ const Nav: React.FC<IProps> = () => {
     return (
         <Menu onClick={onClick}
               defaultActiveFirst={true}
-              // selectedKeys={[current]}
               mode="horizontal"
               inlineIndent={15}
               className={styles.menuNav}

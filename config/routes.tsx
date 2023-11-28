@@ -27,9 +27,9 @@ export default [
                 name: 'messageBoard',
                 path: '/blog/:id/messageBoard',
                 component: './MessageBoard',
-                // wrappers: [
-                //     '@/wrappers/auth/index.ts.tsx.tsx',
-                // ],
+                wrappers: [
+                    '@/wrappers/routerGateWay/index.tsx',
+                ],
             },
             {
                 //todo  此处一定要写全路径
@@ -40,22 +40,34 @@ export default [
                 //todo  此处一定要写全路径
                 path: '/blog/:id/essay',
                 component: './Essay',
+                wrappers: [
+                    '@/wrappers/routerGateWay/index.tsx',
+                ],
             },
 
             {
                 //todo  此处一定要写全路径
                 path: '/blog/:id/aboutMe',
                 component: './AboutMe',
+                wrappers: [
+                    '@/wrappers/routerGateWay/index.tsx',
+                ],
             },
             {
                 //todo  此处一定要写全路径
                 path: '/blog/:id/setting',
                 component: './Setting',
+                wrappers: [
+                    '@/wrappers/routerGateWay/index.tsx',
+                ],
             },
             {
                 //todo  此处一定要写全路径
                 path: '/blog/:id/skill/:category',
                 component: './SkillBlog',
+                wrappers: [
+                    '@/wrappers/routerGateWay/index.tsx',
+                ],
             },
             {
                 //todo  此处一定要写全路径

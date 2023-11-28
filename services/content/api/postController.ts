@@ -1,7 +1,8 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
-import {API_CONTENT_PREFIX} from "@/constants";
+import {API_CONTENT_PREFIX, API_SOCIAL_PREFIX} from "@/constants";
+
 /** 此处后端没有提供注释 PUT /post */
 export async function updatePost(body: ContentAPI.PostRequest, options?: { [key: string]: any }) {
   return request<ContentAPI.ResultString>(`${API_CONTENT_PREFIX}/post`, {

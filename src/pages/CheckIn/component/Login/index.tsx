@@ -48,7 +48,6 @@ const actionStyles: CSSProperties = {
 }
 
 
-
 export default () => {
     const [loginType, setLoginType] = useState<LoginType>(AUTH_PASSWORD_TYPE);
     const {setIsCoverModalOpen} = useModel('checkModel', (model) => ({
@@ -57,7 +56,6 @@ export default () => {
 
     //登录方法
     const goLogin = async (values: any) => {
-        console.log(values)
         const res = await login({
             account: values.email ?? undefined,
             authType: loginType,
@@ -66,11 +64,11 @@ export default () => {
             email: values.email ?? undefined,
             password: values.password ?? undefined
         });
-        console.log(res)
         if (res.code === 200) {
-            let security_info_id = res.data!.securityInfo!.id!;
-            localStorage.setItem('loginInformationId', security_info_id.toString());
-            history.push(`/blog/${security_info_id}/home`)
+            let securityInfoId = res.data!.securityInfo!.id!;
+            localStorage.setItem('loginInformationId', securityInfoId.toString());
+            localStorage.setItem('Authorization', res.data!.token!);
+            history.push(`/blog/${securityInfoId}/home`)
             message.success('登录成功');
         } else {
             message.error(res.msg);
@@ -82,7 +80,7 @@ export default () => {
     const email = Form.useWatch('email', form);
 
     const getCaptcha = async () => {
-        console.log(email)
+        (email)
         const res = await codeSendForLogin({email});
         if (res.code === 200) {
             message.success('验证码已发送');
@@ -91,9 +89,9 @@ export default () => {
         }
     }
 
-    const items  = [
-        {label: "密码登录", key: AUTH_PASSWORD_TYPE, },
-        {label: "验证码登录", key: AUTH_EMAIL_TYPE, },
+    const items = [
+        {label: "密码登录", key: AUTH_PASSWORD_TYPE,},
+        {label: "验证码登录", key: AUTH_EMAIL_TYPE,},
     ];
 
     return (
@@ -115,7 +113,7 @@ export default () => {
               </span>
                             </Divider>
                             <Space align="center" size={24}>
-                                 <div
+                                <div
                                     style={actionIconStyles}
                                 >
                                     <QqOutlined style={{...iconStyles, color: '#1677FF'}}/>

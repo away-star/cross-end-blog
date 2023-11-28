@@ -34,7 +34,7 @@ export default () => {
     const goWrite = () => {
         if (localStorage.getItem('Authorization') === null || localStorage.getItem('Authorization') === undefined) {
             message.error('先登录才能留言哦').then(r => {
-                    console.log(r)
+                    (r)
                     history.push('/checkIn')
                 }
             );
@@ -56,7 +56,7 @@ export default () => {
                         content: values.content,
                         to_user_id: securityInfo!.id!,
                     })
-                    console.log(res)
+                    (res)
                     if (res.code === 200) {
                         message.success('留言成功')
                         window.location.reload()

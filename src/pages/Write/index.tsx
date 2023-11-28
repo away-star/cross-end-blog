@@ -17,7 +17,7 @@ const Write: React.FC = () => {
     }));
 
     const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
+        (e.target.value)
         setPostWriteData({...postWriteData, title: e.target.value})
     }
 

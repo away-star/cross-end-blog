@@ -13,7 +13,7 @@ import {
     gruvboxDark
 } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import styles from './index.less';
-import {history} from "@@/core/history";
+import {history} from "umi";
 
 interface IProps {
     text: string;
@@ -40,7 +40,7 @@ const MyMarkdown: React.FC<IProps> = ({text}) => {
 
     useEffect(() => {
         if (isNaN(Number(idUrl))) {
-            console.log('not a number')
+            ('not a number')
             const element = document.querySelector(`.${styles.body}`);
             element?.classList.add(styles.inner);
         }

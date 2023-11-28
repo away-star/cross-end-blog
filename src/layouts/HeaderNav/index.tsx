@@ -27,7 +27,6 @@ const HeaderNav: React.FC = () => {
                 setIsUp(true);
             }
         };
-
         window.addEventListener("wheel", handleScroll);
         return () => {
             window.removeEventListener("wheel", handleScroll);

@@ -3,8 +3,6 @@ import proxy from "./proxy";
 import routes from "./routes";
 
 export default defineConfig({
-
-
     //哈希后缀，使用browser模式，用于 增量发布和避免浏览器加载缓存
     hash: false,
     //打包输出目录
@@ -26,15 +24,18 @@ export default defineConfig({
     initialState: {},
     request: {},
     //antd主题配置
-    theme: {
-        "@primary-color": "#789ACFFF",
-    },
+    // theme: {
+    //     "@primary-color": "#789ACFFF",
+    // },
     //取消自带的layouts配置
     // layout: true,
-    favicons: ['https://staraway.love/%E4%B8%BB%E9%A1%B5.svg'],
+    // favicons: ['https://staraway.love/%E4%B8%BB%E9%A1%B5.svg'],
     //路由配置
     routes,
     //包管理
     npmClient: "yarn",
     dva: {},
+    codeSplitting: {
+        jsStrategy: 'granularChunks',
+    },
 });

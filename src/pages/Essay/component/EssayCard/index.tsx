@@ -68,7 +68,7 @@ const EssayCard: React.FC<Iprop> = (props) => {
     };
 
     const handleCancel = () => {
-        console.log('Clicked cancel button');
+        ('Clicked cancel button');
         setOpen(false);
     };
     const onClick: MenuProps['onClick'] = ({key}) => {

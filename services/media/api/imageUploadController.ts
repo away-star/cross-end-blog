@@ -1,7 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
-import {API_MEDIA_PREFIX} from "@/constants";
+import {API_CONTENT_PREFIX, API_MEDIA_PREFIX, API_SOCIAL_PREFIX} from "@/constants";
 
 /** 此处后端没有提供注释 POST /image/upload */
 export async function upload(body: {}, options?: { [key: string]: any }) {

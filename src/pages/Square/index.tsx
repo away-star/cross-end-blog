@@ -22,7 +22,7 @@ const Square: React.FC = () => {
             const res = await getUsersList({size: 20}
             );
             if (res.code === 200) {
-                console.log(res.data);
+                (res.data);
                 setUserInfos({...userInfos, ...res.data?.records ?? []}); // 设置数据
             }
         }

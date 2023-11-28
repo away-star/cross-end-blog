@@ -49,14 +49,14 @@ const actionStyles: CSSProperties = {
 
 //登录方法
 const goRegister = async (values: any) => {
-    console.log(values)
+    (values)
     const res = await register({
         email: values.email,
         captcha: values.captcha,
         phone: values.phone,
         registerType: AUTH_EMAIL_TYPE,
     });
-    console.log(res)
+    (res)
     if (res.code === 200) {
         onLogin()
         message.success('注册成功,欢迎加入cross-end blog大家庭');
@@ -74,7 +74,7 @@ export default () => {
 
     const getCaptcha = async () => {
         const res = await codeSendForRegister({email});
-        // console.log(email)
+        // (email)
         // const res = await login({username: {email}});
         if (res.code === 200) {
             message.success('验证码已发送');
