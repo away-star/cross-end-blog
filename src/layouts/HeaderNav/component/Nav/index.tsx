@@ -120,7 +120,7 @@ const Nav: React.FC<IProps> = () => {
         <Menu onClick={onClick}
               defaultActiveFirst={true}
               mode="horizontal"
-              inlineIndent={15}
+              inlineIndent={5}
               className={styles.menuNav}
               items={items}/>
     );

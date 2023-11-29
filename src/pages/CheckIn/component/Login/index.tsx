@@ -16,7 +16,7 @@ import {useState} from 'react';
 import {history} from "umi";
 import {useModel} from "@@/exports";
 import {codeSendForLogin, login} from "../../../../../services/userSecurity/api/userSecurityController";
-import {AUTH_EMAIL_TYPE, AUTH_PASSWORD_TYPE} from "@/constants";
+import {AUTH_EMAIL_TYPE, AUTH_PASSWORD_TYPE, AuthorizationToken, localStorageUserSecurityKey} from "@/constants";
 
 
 type LoginType = 'email' | 'password';
@@ -66,8 +66,8 @@ export default () => {
         });
         if (res.code === 200) {
             let securityInfoId = res.data!.securityInfo!.id!;
-            localStorage.setItem('loginInformationId', securityInfoId.toString());
-            localStorage.setItem('Authorization', res.data!.token!);
+            localStorage.setItem(localStorageUserSecurityKey, securityInfoId.toString());
+            localStorage.setItem(AuthorizationToken, res.data!.token!);
             history.push(`/blog/${securityInfoId}/home`)
             message.success('登录成功');
         } else {

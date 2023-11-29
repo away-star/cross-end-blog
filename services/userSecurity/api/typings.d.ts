@@ -385,7 +385,7 @@ declare namespace UserSecurityAPI {
     /** 用户登录信息id */
     securityInfoId?: number |  string;
     /** 权限主键 */
-    powerId?: number;
+    powerId?: number | string;
     /** 主键 */
     id?: number | string;
     /** 该记录创建时间 */

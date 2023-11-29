@@ -1,6 +1,5 @@
 import React from "react";
 import {Affix, Col, Input, Row} from "antd";
-import MdEditor from "@/pages/Write/component/MdEditor";
 import styles from './index.less';
 import Back from "@/components/btn/Back";
 import {history} from "umi";
@@ -17,7 +16,6 @@ const Write: React.FC = () => {
     }));
 
     const titleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        (e.target.value)
         setPostWriteData({...postWriteData, title: e.target.value})
     }
 

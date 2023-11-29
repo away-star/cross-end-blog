@@ -12,15 +12,15 @@ export default function MDRt() {
     const [previewTheme] = useState('github');
     const [codeTheme] = useState('github');
 
-    const {updateWriteData} = useModel('writeModel', (model) => ({
-        updateWriteData: model.updateWriteData,
+
+    const {postWriteData, setPostWriteData} = useModel('writeModel', (model) => ({
+        postWriteData: model.postWriteData,
+        setPostWriteData: model.setPostWriteData,
     }));
 
     const mdChange = (v: string | undefined) => {
-        (v);
-
         setValue(v ?? '');
-        updateWriteData("content", v ?? '');
+        setPostWriteData({...postWriteData, content: v})
     };
 
 
@@ -30,23 +30,34 @@ export default function MDRt() {
     ) => {
         const res = await Promise.all(
             files.map((file) => {
-                return new Promise((rev, rej) => {
+                return new Promise((resolve, reject) => {
                     const form = new FormData();
                     form.append('file', file);
                     axios
-                        .post('/source/upload', form, {
+                        .post('/source/image/upload', form, {
                             headers: {
-                                'Content-Type': 'multipart/form-data'
+                                'Content-Type': 'multipart/form-data',
+                                'Authorization': localStorage.getItem('Authorization')!
                             }
                         })
-                        .then((res) => rev(res))
-                        .catch((error) => rej(error));
+                        .then((res) => {
+                            if (res.status === 200) {
+                                resolve(res);
+                            } else {
+                                reject(`Upload failed with status: ${res.status}`);
+                            }
+                        })
+                        .catch((error) => reject(`Upload failed with error: ${error}`));
                 });
             })
         );
 
-        // @ts-ignore
-        callback(res.map((item) => item.data.message))
+        const failedUploads = res.filter((response: any) => response instanceof Error);
+        if (failedUploads.length > 0) {
+            console.error(`Failed uploads: ${failedUploads}`);
+        } else {
+            callback(res.map((item: any) => item.data.data));
+        }
     };
 
     return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' ,height:'100vh'}}>

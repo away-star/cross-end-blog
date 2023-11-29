@@ -17,6 +17,7 @@ export const sourceTarget = 'http://127.0.0.1:9209/';
  * 本地存储key
  */
 export const localStorageUserSecurityKey= 'user_security_id';
+export const AuthorizationToken= 'Authorization';
 
 /**
  * 认证方式

@@ -125,8 +125,6 @@ const Main = () => {
 
 
     useEffect(() => {
-
-
         const fetchData = async () => {
             const res = await getUserinfo(
                 {securityInfoId: getIdFromUrl(history.location.pathname)}
@@ -158,9 +156,6 @@ const Main = () => {
                 setUserInfoModalOpen(true)
             }
         }
-
-
-
         openDebugNotification()
         setGlobalLoading(true);
         fetchData().then(() => {

@@ -19,12 +19,12 @@ generateService({
     // import {API_MEDIA_PREFIX} from "@/constants";`,
 
     // content
-    // schemaPath: 'http://localhost:9113/v3/api-docs',
-    // serversPath: './services/content',
-    // namespace: 'ContentAPI',
-    // apiPrefix: 'API_CONTENT_PREFIX',
-    // requestImportStatement: `import { request } from 'umi'
-    // import {API_CONTENT_PREFIX} from "@/constants";`,
+    schemaPath: 'http://localhost:9113/v3/api-docs',
+    serversPath: './services/content',
+    namespace: 'ContentAPI',
+    apiPrefix: 'API_CONTENT_PREFIX',
+    requestImportStatement: `import { request } from 'umi'
+    import {API_CONTENT_PREFIX} from "@/constants";`,
 
     // userSecurity
     // schemaPath: 'http://localhost:9110/v3/api-docs',
@@ -35,12 +35,12 @@ generateService({
     // import {API_USERSECURITY_PREFIX} from "@/constants";`,
 
     // userCenter
-    schemaPath: 'http://localhost:9111/v3/api-docs',
-    serversPath: './services/userCenter',
-    namespace: 'UserCenterAPI',
-    apiPrefix: 'API_USERCENTER_PREFIX',
-    requestImportStatement: `import { request } from 'umi';
-    import {API_USERCENTER_PREFIX} from "@/constants";`,
+    // schemaPath: 'http://localhost:9111/v3/api-docs',
+    // serversPath: './services/userCenter',
+    // namespace: 'UserCenterAPI',
+    // apiPrefix: 'API_USERCENTER_PREFIX',
+    // requestImportStatement: `import { request } from 'umi';
+    // import {API_USERCENTER_PREFIX} from "@/constants";`,
 
     // social
     // schemaPath: 'http://localhost:9114/v3/api-docs',

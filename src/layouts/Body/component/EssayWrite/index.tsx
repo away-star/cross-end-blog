@@ -1,20 +1,16 @@
-import {
-    ModalForm,
-    ProForm,
-    ProFormSelect,
-    ProFormTextArea,
-} from '@ant-design/pro-components';
+import {ModalForm, ProFormSelect, ProFormTextArea, ProFormUploadButton,} from '@ant-design/pro-components';
 import {message} from 'antd';
 import React, {useState} from 'react';
 import {ProFormSwitch} from "@ant-design/pro-form";
-import MyUpload from "@/components/MyUpload";
-import {useModel} from "@@/exports";
+import {history, useModel} from "@@/exports";
 import {saveEssay} from "../../../../../services/content/api/essayController";
+import {UploadFile} from "antd/es/upload/interface";
+import {RcFile, UploadChangeParam} from "antd/es/upload";
 
 
 const formItemLayout = {
     labelCol: {span: 6},
-    wrapperCol: {span: 6},
+    wrapperCol: {span: 12},
 };
 
 
@@ -32,8 +28,35 @@ export default () => {
 
     const onUploadSuccess = (fileUrls: string[]) => {
         setImages(fileUrls);
-        (fileUrls)
     }
+
+    const onPreview = async (file: UploadFile) => {
+        let src = file.url as string;
+        if (!src) {
+            src = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file.originFileObj as RcFile);
+                reader.onload = () => resolve(reader.result as string);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+    };
+
+    const handleUploadChange = ({file}: UploadChangeParam) => {
+        if (file.status === 'done') {
+            console.log(file.response.code)
+            if (file.response.code === -10006) {
+                message.error(file.response.msg).then(r => {
+                    history.push('/checkin');   // 跳转到登录页
+                })
+            }
+            file.url = file.response.data;
+        }
+
+    };
 
 
     return (
@@ -53,14 +76,17 @@ export default () => {
                         return false;
                     }
                     const essay: ContentAPI.EssayRequest = {
-                        content: values.content, mood: values.mood, isPublic: values.open, coverUrls: images
+                        content: values.content,
+                        mood: values.mood,
+                        publicFlag: values.publicFlag,
+                        coverUrls: values.covers.map((cover: any) => cover.url),
                     }
                     const response = await saveEssay(essay);
-                    (response)
                     if (response.code === 200) {
-                        message.success('提交成功');
-                        window.location.reload();
-                        return true;
+                        message.success('提交成功',0.5).then(r => {
+                            window.location.reload();
+                            return true;
+                        });
                     } else {
                         message.error('提交失败');
                         return false;
@@ -90,11 +116,24 @@ export default () => {
                     wrapperCol={{span: 12}}
                     fieldProps={{autoSize: {minRows: 3, maxRows: 10}}}
                 />
-                <ProForm.Item label="图片" name="file" wrapperCol={{span: 13}}>
-                    {/*<MyUpload  onUploadSuccess={()=>{('666')}}/>*/}
-                    <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'} maxCount={9}/>
-                </ProForm.Item>
-                <ProFormSwitch label={'isPublic'} name={'open'} initialValue={true}/>
+                {/*<ProForm.Item label="图片" name="file" wrapperCol={{span: 13}}>*/}
+                {/*    /!*<MyUpload  onUploadSuccess={()=>{('666')}}/>*!/*/}
+                {/*    <MyUpload onUploadSuccess={onUploadSuccess} type={'picture-card'} maxCount={9}/>*/}
+                {/*</ProForm.Item>*/}
+                <ProFormUploadButton
+                    name="covers"
+                    label="图片"
+                    max={9}
+                    fieldProps={{
+                        name: 'file',
+                        listType: 'picture-card',
+                        headers: {'Authorization': localStorage.getItem('Authorization')!},
+                        onPreview: onPreview,
+                        onChange: handleUploadChange,
+                    }}
+                    action='/source/image/upload'
+                />
+                <ProFormSwitch label={'isPublic'} name={'publicFlag'} initialValue={true}/>
             </ModalForm>
         </>
     );

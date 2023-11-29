@@ -1,4 +1,4 @@
-import {Col, Row, Image} from "antd";
+import {Col, Row, Image, Space} from "antd";
 import React, {useEffect, useState} from "react";
 import styles from './index.less'
 
@@ -6,6 +6,7 @@ import classNames from "classnames";
 import {useModel} from "@@/exports";
 import {DEFAULT_AVATAR} from "@/constants";
 import Nav from "@/layouts/HeaderNav/component/Nav";
+import MySearch from "@/components/mySearch";
 
 const HeaderNav: React.FC = () => {
     const {initialUserData, setInitialUserData, fetchInitialUserData} = useModel('initialModel', (model) => ({
@@ -47,8 +48,11 @@ const HeaderNav: React.FC = () => {
                     <span> {userinfo?.nickname}的博客 </span>
                 </div>
             </Col>
-            <Col xs={24} sm={24} md={10} lg={10} xl={10}>
-                <Nav text={"ss"}/>
+            <Col xs={24} sm={24} md={13} lg={13} xl={13}>
+                <Space>
+                <MySearch text={" "}/><Nav text={"ss"}/>
+                </Space>
+                {/*<Nav text={"ss"}/>*/}
             </Col>
         </Row>
     )
